@@ -16,15 +16,21 @@ body {
     @include roboto-font;
 }
 
-.forum {
-    @include forum-font($color: $gold);
+.section {
+    padding: $padding-basic;
 }
-.roboto {
-    @include roboto-font;
+
+.dark-section {
+    background-color: $dark-bg;
+}
+
+.light-section {
+    background-color: $light;
 }
   
 .wrapper {
-    max-width: $desktop;
+    max-width: $desktop-1920;
+    width: $width-basic;
     margin: $margin-basic;
 }
   

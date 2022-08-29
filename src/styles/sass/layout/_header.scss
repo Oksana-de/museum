@@ -1,0 +1,79 @@
+.header {
+    height: 150px;
+
+    .wrapper {
+        @include flex;
+    }
+}
+
+.logo {
+    flex: 0 1 0;
+}
+
+.logo__wrapper {
+    @include flex;
+    width: 199px;
+    height: 33px;
+}
+
+.logo__link {
+    padding-right: 200px;
+    height: 150px;
+    @include link;
+    @include flex;
+    @include forum-font($color: $light);
+    font-size: $font-middle;
+    line-height: 150px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    .logo-svg {
+        align-self: flex-start;
+
+        path {
+            transition: fill $transition-duration;
+        }
+    
+        rect {
+            transition: fill $transition-duration;
+        }
+    }
+
+    &:hover {
+        .logo-svg {
+            path {
+                fill: $gold;
+            }
+    
+            rect {
+                fill: $gold;
+            }
+        } 
+    }
+}
+
+.menu {
+    flex: 1 1 0;
+    max-width: 775px;
+}
+
+.menu__list {
+    @extend %not-list;
+    @include flex;
+}
+
+.menu__item {
+    padding-right: 20px;
+
+    &:last-of-type {
+        padding-right: 0;
+    }
+}
+
+.menu__link {
+    display: block;
+    @include link;
+    @include roboto-font($color: $light, $size: $font-small, $line-height: 150px, $letter-spacing: 2px);
+    font-weight: 100;
+    text-transform: capitalize;
+}
