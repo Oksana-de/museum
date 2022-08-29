@@ -1,0 +1,18 @@
+@import "base/fonts";
+@import "base/normalize";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/placeholders";
+@import "base/general";
+
+//Components
+@import "components/headings";
+@import "components/buttons";
+@import "components/social";
+@import "components/slider";
+
+// Layout
+@import "layout/header";
+@import "layout/main";
+@import "layout/hero";
+@import "layout/footer";
