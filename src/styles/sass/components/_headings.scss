@@ -1,0 +1,26 @@
+.section-title__wrapper {
+    border-bottom: 3px solid $red-bg;
+}
+
+.section-title {
+    margin: 0 0 25px;
+    @include forum-font($color: $light);
+    font-weight: 400;
+    font-size: $font-section;
+    line-height: $fontline-section;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.txt-gold {
+    color: $gold;
+}
+
+.section-subtitle {
+    margin: 0 0 75px;
+    @include roboto-font($color: $light);
+    font-weight: 300;
+    font-size: $font-middle;
+    line-height: $fontline-middle;
+    letter-spacing: 2px;
+}

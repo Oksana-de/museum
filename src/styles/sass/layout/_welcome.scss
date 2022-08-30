@@ -1,0 +1,164 @@
+.welcome-section {
+    padding: 0;
+
+    .wrapper {
+        position: relative;
+
+        & > *:not(.welcome__slider) {
+            position: relative;
+        }
+    }
+
+    .section-title__wrapper {
+        border-style: none;
+        padding-top: 150px;
+        width: 598px;
+        @include flex($justify-content: flex-start, $align-items: flex-start);
+    }
+
+    .btn__wrapper {
+        margin-bottom: 152px;
+        width: 360px;
+        height: 75px;
+        cursor: pointer;
+        
+        &:hover {
+            .btn {
+                background-color: $gold;
+            }
+        }
+    }
+
+    .btn {       
+        height: 100%;
+        padding: 0 64px;
+        @include flex;
+        @include link($link-color: $light, $link-hover: $light);
+        @include roboto-font($color: $light);
+        font-weight: 300;
+        font-size: $font-small;
+        line-height: $fontline-small;
+        letter-spacing: 2px;
+        background-color: $red-bg;
+        border-radius: 10px;
+        transition: background-color $transition-duration;
+    }
+
+    .pagination {
+        margin: 0 0 0 auto;
+        padding: 0 75px 0 74px;
+        width: 600px;
+        height: 120px;
+        @include flex;
+        background-color: $dark-bg;
+
+        & > * {
+            @include flex;
+        }
+
+        .page__num {
+            width: 75px;
+        }
+
+        .page {
+            margin: 0;
+            @include roboto-font($color: $light);
+            font-weight: 400;
+            font-size: $font-small;
+            line-height: 120px;
+        }
+
+        .bullets__list {
+            @extend %not-list;
+            width: 180px;
+            height: 16px;
+        }
+
+        .bullet__item {
+            width: 16px;
+            height: 16px;
+            background-color: $light;
+            cursor: pointer;
+            transition: background-color $transition-duration;            
+
+            &:hover {
+                background-color: $pagination-hover;
+            }
+
+            &.active {
+                cursor: auto;
+                background-color: $pagination-active;
+            }
+        }
+
+        .arrows {
+            width: 80px;
+        }
+
+        .arrow {
+            width: 30px;
+            height: 8px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            cursor: pointer;
+            transition: filter $transition-duration;
+
+            &:hover {
+                filter: invert(60%) sepia(11%) saturate(1085%) hue-rotate(356deg) brightness(88%) contrast(83%);
+            }
+        }
+
+        .arrow__left {
+            background-image: url(../assets/svg/arrow-left.svg);
+        }
+
+        .arrow__right {
+            background-image: url(../assets/svg/arrow-right.svg);
+        }
+    }
+}
+
+.welcome__slider {
+    position: absolute;
+    @extend %not-list;
+    top: 0;
+    left: calc(100% - 1000px);
+    width: 1000px;
+    height: 750px;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.welcome__img {
+    display: none;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    animation: $transition-duration ease-in-out;
+
+    &.active {
+        display: flex;
+    }
+}
+
+.img-01 {
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/img-01.jpg);
+}
+
+.img-02 {
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/img-02.jpg);
+}
+
+.img-03 {
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/img-03.jpg);
+}
+
+.img-04 {
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/img-04.jpg);
+}
+
+.img-05 {
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/img-05.jpg);
+}
