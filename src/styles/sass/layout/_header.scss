@@ -17,7 +17,7 @@
 }
 
 .logo__link {
-    padding-right: 200px;
+    padding-right: 150px;
     height: 150px;
     @include link;
     @include flex;
@@ -50,6 +50,10 @@
             }
         } 
     }
+}
+
+.logo__txt {
+    margin: 0;
 }
 
 .menu {

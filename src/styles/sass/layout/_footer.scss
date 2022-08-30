@@ -1,0 +1,135 @@
+.footer {
+    .wrapper:last-child {
+        @include flex;
+    }
+}
+
+.footer__info {
+    @include flex($justify-content: flex-start);
+
+    .logo {
+        flex: 0 1 auto;
+        @include flex;
+        height: 265px;
+        padding-top: 75px;
+    }
+
+    .logo__link {
+        height: 50px;
+        margin-right: 97px;
+        padding-right: 45px;
+        align-self: flex-start;
+    }
+
+    .menu {
+        max-width: none;        
+        padding: 87px 92px 0 0;
+        align-self: flex-start;
+    }
+
+    .menu__list {
+        height: 128px;
+        max-width:363px;
+        flex-flow: column wrap;
+        column-width: 107px;
+        column-gap: calc(100% - 107px * 2);
+        row-gap: 25px;
+        align-items: flex-start;
+    }
+
+    .menu__link {
+        line-height: 26px;
+    }
+}
+
+.social {
+    flex: 0 1 auto;
+    align-self: flex-start;
+    padding-top: 162px;
+    max-width: 340px;
+}
+
+.social__list {
+    @extend %not-list;
+    @include flex($justify-content: flex-start);
+    column-gap: 25px;
+}
+
+.social__item {
+    transition: filter $transition-duration;
+
+    &:hover {
+        filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
+    }
+}
+
+.social__link {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border: 1px solid $filler;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+}
+
+.yt {
+    background-image: url(../assets/svg/yt.svg);
+}
+
+.ig {
+    background-image: url(../assets/svg/ig.svg);
+}
+
+.fb {
+    background-image: url(../assets/svg/fb.svg);
+}
+
+.tt {
+    background-image: url(../assets/svg/tt.svg);
+}
+
+.pt {
+    background-image: url(../assets/svg/pt.svg);
+}
+
+.e-mail {
+    filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
+    background-image: url(../assets/svg/e-mail.svg);
+}
+
+.linkedin {
+    filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
+    background-image: url(../assets/svg/linkedin.svg);
+}
+
+.gh {
+    filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
+    background-image: url(../assets/svg/gh.svg);
+}
+
+.deco-line {
+    width: 100%;
+    height: 3px;
+    background-color: $filler;
+}
+
+.copyright {
+    flex: 1 1 0;
+}
+
+.developer-contact {
+    flex: 1 1 0;
+}
+
+.developer {
+    flex: 0 1 auto;
+}
+
+.copyright__txt,
+.developer-name {
+    margin: 50px 0;
+    @include roboto-font($color: $light, $size: $font-small, $line-height: $font-small);
+    font-weight: 100;
+}
