@@ -26,6 +26,10 @@
     color: $gold;
 }
 
+.txt-highlight {
+    color: $highlight-gold;
+}
+
 .section-subtitle {
     margin: 0 0 75px;
     @include roboto-font($color: $light);
