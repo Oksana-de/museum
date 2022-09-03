@@ -1087,7 +1087,7 @@ body {
 
 .picture-inner-wrapper {
   width: 100%;
-  height: 2900px;
+  max-height: 2900px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -1100,6 +1100,7 @@ body {
 }
 .picture-inner-wrapper .picture-gal {
   width: calc((100% - 72px) / 3);
+  height: auto;
 }
 .picture-inner-wrapper .picture-gal:first-of-type {
   margin-top: 50px;
