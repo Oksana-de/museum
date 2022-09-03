@@ -731,23 +731,23 @@ body {
 }
 
 .img-01 {
-  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/img-01.jpg);
+  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/welcome-slider/img-01.jpg);
 }
 
 .img-02 {
-  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/img-02.jpg);
+  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/welcome-slider/img-02.jpg);
 }
 
 .img-03 {
-  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/img-03.jpg);
+  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/welcome-slider/img-03.jpg);
 }
 
 .img-04 {
-  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/img-04.jpg);
+  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/welcome-slider/img-04.jpg);
 }
 
 .img-05 {
-  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/img-05.jpg);
+  background-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(../assets/img/welcome-slider/img-05.jpg);
 }
 
 .tours {
@@ -1059,6 +1059,62 @@ body {
 }
 .video__slider-pagination .stroke.right {
   background-image: url(../assets/svg/stroke-right.svg);
+}
+
+.gallery-section {
+  padding-bottom: 0;
+}
+.gallery-section .section-title__wrapper {
+  padding-bottom: 50px;
+}
+
+.picture-wrapper {
+  position: relative;
+  width: 100%;
+  height: 1960px;
+  overflow-y: hidden;
+}
+
+.picture-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 360px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  z-index: 1;
+}
+
+.picture-inner-wrapper {
+  width: 100%;
+  height: 2900px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 36px;
+  row-gap: 24px;
+  columns: 3;
+}
+.picture-inner-wrapper .picture-gal {
+  width: calc((100% - 72px) / 3);
+}
+.picture-inner-wrapper .picture-gal:first-of-type {
+  margin-top: 50px;
+}
+.picture-inner-wrapper .picture-gal:nth-child(3n+1) {
+  order: 1;
+}
+.picture-inner-wrapper .picture-gal:nth-child(3n+2) {
+  order: 2;
+}
+.picture-inner-wrapper .picture-gal:nth-child(3n) {
+  order: 3;
+}
+.picture-inner-wrapper .picture-gal:nth-child(3) {
+  margin-top: 50px;
 }
 
 .footer .wrapper:last-child {
