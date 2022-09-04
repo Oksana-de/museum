@@ -365,8 +365,69 @@
                         Buy Tickets
                     </h2>
                 </div>
+
+                <div class="buy__tickets">
+                    <div class="tickets__bg">
+                    </div>
+                    <form action="/" method="post" target="_blank" class="tickets__form">
+
+                        <fieldset class="tickets-options tickets-type">
+                            <legend class="form__title-wrapper">
+                                <h3 class="form__title">
+                                    Ticket Type
+                                </h3>
+                            </legend>
+                            <label class="lbl">
+                                Permanent exhibition
+                                <input class="radio-mark" type="radio" name="ticket-type" id="permanent" checked="checked">
+                                <span class="custom-mark"></span>
+                            </label>
+                            <label class="lbl">
+                                Temporary exhibition
+                                <input class="radio-mark" type="radio" name="ticket-type" id="temporary">
+                                <span class="custom-mark"></span>
+                            </label>
+                            <label class="lbl">
+                                Combined Admission
+                                <input class="radio-mark" type="radio" name="ticket-type" id="combined">
+                                <span class="custom-mark"></span>
+                            </label>
+                        </fieldset>
+    
+                        <fieldset class="tickets-options tickets-amount">
+                            <legend class="form__title-wrapper">
+                                <h3 class="form__title">
+                                    Amount
+                                </h3>
+                            </legend>
+                            <label class="lbl lbl__num" for="basic">Basic 18+</label>
+                                <div class="order__ticket">
+                                    <button class="btn__amount" type="button">&minus;</button>
+                                    <input class="inp-number" type="number" name="ticket-amount" id="basic" min="1" max="100" value="1">
+                                    <button class="btn__amount" type="button">&plus;</button>
+                                </div>                            
+                            <label class="lbl lbl__num" for="senior">Senior 65+</label>
+                                <div class="order__ticket">
+                                    <button class="btn__amount" type="button">&minus;</button>
+                                    <input class="inp-number" type="number" name="ticket-amount" id="senior" min="1" max="100" value="1">
+                                    <button class="btn__amount" type="button">&plus;</button>
+                                </div>   
+                            <label class="lbl sum" for="total">
+                                Total €
+                                <input class="inp-number sum" type="number" name="ticket-amount" id="total" value="220" readonly>
+                            </label> 
+                        </fieldset>
+    
+                        <button class="btn__tickets" type="submit">
+                            Buy Now
+                        </button>
+                    </form>
+                </div>                
             </div>
         </div>
+
+        <div class="parallax"></div>
+
         <div
             class="section light-section contacts-section"
             id="contacts">

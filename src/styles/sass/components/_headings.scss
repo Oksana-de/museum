@@ -70,3 +70,9 @@
         line-height: 21px;
     }
 }
+
+.form__title {
+    margin: 0;
+    @include roboto-font($size: $font-middle, $line-height: $fontline-middle, $letter-spacing: 0);
+    font-weight: 700;
+}
