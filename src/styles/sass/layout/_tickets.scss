@@ -180,17 +180,14 @@
 
 .lbl {
     &.sum {
-        position: relative;
-        width: 100%;
+        @include flex;
         margin: 0 0 60px;
-        text-align: left;
     }
 }
 
 .inp-number {
     &.sum {
-        position: absolute;
-        top: -4px;
+        height: $fontline-middle;
     }
 }
 

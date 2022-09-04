@@ -1312,15 +1312,15 @@ body {
 }
 
 .lbl.sum {
-  position: relative;
-  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 0 60px;
-  text-align: left;
 }
 
 .inp-number.sum {
-  position: absolute;
-  top: -4px;
+  height: 33px;
 }
 
 .sum {
