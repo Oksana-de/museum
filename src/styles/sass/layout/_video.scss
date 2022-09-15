@@ -116,10 +116,10 @@
             border-radius: 50%;
             background-color: $light;
             cursor: pointer;
-            transition: opacity $transition-duration;
+            transition: background-color $transition-duration;
 
             &:hover {
-                opacity: .8;
+                background-color: $gold;
             }
         }
 
