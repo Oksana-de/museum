@@ -1,0 +1,29 @@
+.logo__link {
+    display: block;
+    @include link;
+    @include flex;
+    align-items: flex-start;    
+    transition: filter $transition-duration;
+
+    &:hover {
+        color: $light;
+        filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
+    }
+}
+
+.logo__icon  {
+    @include flex;
+    justify-content: end;
+    background-image: url(../assets/svg/logo.svg);
+    background-repeat: no-repeat;
+    background-size: 49px 26px;
+    background-position: left top;
+}
+
+.logo__txt {
+    margin: 0;
+    @include forum-font($color: $light);
+    font-size: $font-middle;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}

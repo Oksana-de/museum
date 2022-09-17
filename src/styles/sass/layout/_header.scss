@@ -4,56 +4,22 @@
     .wrapper {
         @include flex;
     }
-}
 
-.logo {
-    flex: 0 1 0;
-}
-
-.logo__wrapper {
-    @include flex;
-    width: 199px;
-    height: 33px;
-}
-
-.logo__link {
-    padding-right: 150px;
-    height: 150px;
-    @include link;
-    @include flex;
-    @include forum-font($color: $light);
-    font-size: $font-middle;
-    line-height: 150px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-
-    .logo-svg {
-        align-self: flex-start;
-
-        path {
-            transition: fill $transition-duration;
-        }
-    
-        rect {
-            transition: fill $transition-duration;
-        }
+    .logo__link {
+        width: calc(199px + 50px);
+        height: 150px;
+        padding-right: 50px;
     }
 
-    &:hover {
-        .logo-svg {
-            path {
-                fill: $gold;
-            }
-    
-            rect {
-                fill: $gold;
-            }
-        } 
+    .logo__icon {
+        margin-top: 59px;
+        width: calc(199px + 50px);
+        height: 33px;
     }
-}
 
-.logo__txt {
-    margin: 0;
+    .logo__txt {
+        margin-top: 59px;
+    }
 }
 
 .menu {

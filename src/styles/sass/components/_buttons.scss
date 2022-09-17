@@ -12,3 +12,50 @@
         opacity: .8;
     }
 }
+
+.btn {
+    display: block;
+    padding: 0;
+    border-style: none;
+    cursor: pointer;
+}
+
+.btn-close {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+
+    &::before,
+    &::after {
+        position: absolute;
+        top: calc((25px - 35px) / 2);
+        left: calc((25px - 1px) / 2);
+        content: "";
+        width: 1px;
+        height: 34px;
+        background-color: $dark-bg;
+        transition: background-color $transition-duration;
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+    }
+
+    &:hover::before,
+    &:hover::after {
+        background-color: $red-bg;
+    }
+}
+
+.btn-submit {
+    width: 220px;
+    height: 45px;
+    background-color: $red-bg;
+    @include roboto-font($color: $light, $size: $font-small, $line-height: $fontline-small, $letter-spacing: 0);
+    font-weight: 400;
+}

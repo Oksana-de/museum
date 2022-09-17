@@ -94,3 +94,13 @@
         margin: 0;
     }
 }
+
+.form-title {
+    margin: 0 0 109px;
+    @include forum-font($color: $gold);
+    font-weight: 400;
+    font-size: $font-form;
+    line-height: $fontline-form;
+    letter-spacing: -.0;
+    text-transform: uppercase;
+}

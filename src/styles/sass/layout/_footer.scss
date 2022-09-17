@@ -8,23 +8,29 @@
 .footer__info {
     @include flex($justify-content: flex-start);
 
-    .logo {
-        flex: 0 1 auto;
-        @include flex;
-        height: 265px;
-        padding-top: 75px;
-    }
-
     .logo__link {
-        height: 50px;
+        width: calc(195px + 50px);
+        height: calc(50px + 75px);
         margin-right: 97px;
+        padding-top: 75px;
         padding-right: 45px;
         align-self: flex-start;
     }
 
+    .logo__icon {
+        margin-top: 0;
+        width: calc(199px + 50px);
+        height: 50px;
+        background-position: left 9px;
+    }
+
+    .logo__txt {
+        align-self: center;
+    }
+
     .menu {
         max-width: none;        
-        padding: 87px 92px 0 0;
+        padding: 87px 92px 50px 0;
         align-self: flex-start;
     }
 
