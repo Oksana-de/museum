@@ -104,3 +104,42 @@
     letter-spacing: -.0;
     text-transform: uppercase;
 }
+
+.fieldset-title {
+    float: left;
+    width: 100%;
+    margin: 0 0 15px;
+    padding-bottom: 5px;
+    @include forum-font($color: $gold);
+    font-weight: 400;
+    font-size: $font-smaller;
+    line-height: 20px;
+    letter-spacing: .0em;
+    border-bottom: 2px solid $red-line;
+    text-transform: capitalize;
+}
+
+.overview-title {
+    margin: 0 0 2px;
+    @include roboto-font($color: #272727, $size: $font-big, $line-height: $fontline-big, $letter-spacing: .0em);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.overview-subtitle {
+    margin: 0 0 10px;
+    @include roboto-font($color: $red-line, $size: $font-small, $line-height: $fontline-small, $letter-spacing: .0);
+    font-style: normal;
+    font-weight: 500;
+    opacity: .9;
+}
+
+.card-txt {
+    @include roboto-font($color: #161615, $size: 12px, $line-height: 14px, $letter-spacing: .0);
+    font-style: normal;
+    font-weight: 400;
+
+    &.cvv-comment {
+        margin: 0;
+    }
+}

@@ -6,7 +6,7 @@
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(2, auto) calc(25px + 30px);
-    grid-template-rows: minmax(calc(25px + 20px + 30px), calc(25px + 36px + 30px)) 1fr;
+    grid-template-rows: minmax(calc(25px + 20px + 30px), calc(25px + 36px + 30px)) 663px;
     max-width: $desktop-1920;
     width: 100%;
     padding-bottom: 91px;
@@ -47,7 +47,16 @@
     
     .btn-submit {
         margin: 26px 0 0 auto;
+        cursor: auto;
     }
+}
+
+.input-field {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-style: none;
 }
 
 .place-order {
@@ -64,13 +73,518 @@
         background-size: 85px 41px;
         filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
     }
+
+    .input-data__wrapper {
+        margin-bottom: 20px;
+
+        &:nth-of-type(n+2),
+        .ticket-date,
+        .ticket-time {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: auto;
+                height: 100%;
+                padding-left: 15px;
+            }
+        }        
+    }
+
+    .ticket-name__wrapper {
+        
+        &::before {
+            content: url(../assets/svg/book-form/name-ico.svg);
+        }
+    }
+
+    .ticket-email__wrapper {
+        
+        &::before {
+            margin-top: -3px;
+            content: url(../assets/svg/book-form/email-ico.svg);
+        }
+    }
+
+    .ticket-tel__wrapper {
+        
+        &::before {
+            padding-top: 4px;
+            content: url(../assets/svg/book-form/tel-ico.svg);
+        }
+    }
+
+    .ticket-type__wrapper {
+        
+        &::before {
+            content: url(../assets/svg/book-form/ticket-ico.svg);
+        }
+    }
+
+    .input-datetime {
+        @include flex;
+    }
+
+    .input-data {
+        display: block;
+        width: 100%;
+        height: 45px;
+        padding: 13px 15px 12px 44px;
+        border: 1px solid $dark-bg;
+        outline: none;
+        transition: outline $transition-duration;
+        @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+        
+        &:hover {
+            outline: 3px solid $gold;
+            border-color: $gold;
+        }
+    }
+
+    .ticket-date {
+        width: calc((400px - 20px) / 2);
+        margin-right: 20px;
+
+        
+        &::before {
+            padding-top: 13px;
+            content: url(../assets/svg/book-form/date-ico.svg);
+        }
+    }
+
+    .ticket-time {
+        width: calc((400px - 20px) / 2);
+
+        &::before {
+            padding-top: 13px;
+            content: url(../assets/svg/book-form/time-ico.svg);
+        }
+    }
+
+// !======================
+    .ticket-date,
+    .ticket-time,
+    .ticket-type {
+        &::-webkit-calendar-picker-indicator {
+            -webkit-appearance: none;
+            margin: 0;
+            padding: 0;
+            content: url(../assets/svg/book-form/arrow-to-open.svg);
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+            z-index: 3;
+        }
+    }
+    
+    .ticket-type::-webkit-search-cancel-button {
+        display: none;
+      }
+// !======================    
+}
+
+.ticket-order {
+    padding: 10px 15px 15px;
+    border: 1px solid $dark-bg;
+
+    .category {
+        @include flex;
+        float: left;
+        width: 100%;
+        margin-bottom: 16px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .lbl-order {
+        float: left;
+        width: auto;
+        height: auto;
+        @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+        font-weight: 400;
+    }
+
+    .order__ticket {
+        width: 105px;
+        height: 25px;
+        margin-bottom: 0;
+        padding: 0;
+        border-style: none;
+    }
+
+    .btn__amount {
+        width: 35px;
+        height: 100%;
+        background-color: $dark-bg;
+        @include roboto-font($color: $light, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+        font-weight: 400;
+        border-style: none;
+        transition: color $transition-duration;
+
+        &:hover {
+            color: $gold;
+        }
+    }
+
+    .inp-number {
+        width: 35px;
+        height: 100%;
+        background-color: $light;
+        @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+        font-weight: 400;
+        border: 1px solid $dark-bg;
+        outline: none;
+    }
 }
 
 .confirm-order {
     grid-column: 2;
     grid-row: 2;
-    width: calc(530px + 1px * 2);
+    width: 530px;
+    height: 663px;
     margin-right: calc(-2px - 55px);
-    padding: 25px 30px;
+    padding: 25px calc(30px - 1px * 2);
     border: 1px solid $dark-bg;
+
+    .overview-data {
+        margin-bottom: calc(22px - 3px);
+        display: grid;
+        grid-template-columns: 15px 1fr 150px;
+        grid-template-rows: repeat(5, auto);
+        column-gap: 15px;
+
+        .overview-title {
+            grid-column: 1 / 3;
+            grid-row: 1;
+        }
+
+        .overview-subtitle {
+            grid-column: 1 / 3;
+            grid-row: 2;
+        }
+
+        .overview-poster {
+            grid-column: 3 / 4;
+            grid-row: 1 / 6;
+            width: 150px;
+            height: 120px;
+        }
+
+        .overview-ico {
+            width: 15px;
+            height: 15px;
+            margin-bottom: 5px;
+            align-self: center;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+        
+        .ticket-date-ico {
+            grid-column: 1 / 2;
+            grid-row: 3;
+            background-image: url(../assets/svg/book-form/date-ico.svg);
+        }
+
+        .ticket-time-ico {
+            grid-column: 1 / 2;
+            grid-row: 4;
+            background-image: url(../assets/svg/book-form/time-ico.svg);
+        }
+
+        .ticket-type-ico {
+            grid-column: 1 / 2;
+            grid-row: 5;
+            margin-bottom: 0;
+            background-image: url(../assets/svg/book-form/check_circle_outline.svg);
+        }
+
+        .overview-txt {
+            grid-column: 2 / 3;
+            margin: 0 0 5px;
+            @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+            font-weight: 300;           
+        }
+
+        .ticket-date-txt {
+            grid-row: 3;
+        }
+        .ticket-time-txt {
+            grid-row: 4;
+        }
+        .ticket-type-txt {
+            grid-row: 5;
+        }
+    }
+
+    .overview-order {
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 32px 1fr auto;
+        grid-template-rows: repeat(2, auto) 2px 48px;
+        column-gap: 10px;
+
+        .basic,
+        .senior {
+            margin: 0;
+            align-self: center;
+            @include roboto-font($color: $dark-bg, $size: $font-small, $line-height: $fontline-small, $letter-spacing: .0);
+            font-weight: 400;
+        }
+        
+        .basic {
+            margin-bottom: 5px;
+        }
+
+        .senior {
+            margin-bottom: 9px;
+        }
+
+        .ammount {
+            width: 32px;
+            height: 20px;
+            text-align: center;
+            background-color: $dark-bg;
+            color: $light;
+            @include roboto-font($color: #a4a4a3, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+            font-weight: 400;
+            border-radius: 5px;
+
+            &.basic {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            
+            &.senior {
+                grid-column: 1;
+                grid-row: 2;
+            }
+        }
+
+        .category {
+            &.basic {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            &.senior {
+                grid-column: 2;
+                grid-row: 2;
+            }
+        }
+
+        .category-price {
+            justify-self: end;
+
+            &.basic {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            &.senior {
+                grid-column: 3;
+                grid-row: 2;
+            }
+        }
+
+        .line {
+            grid-column: 1 / 4;
+            grid-row: 3;
+            width: 100%;
+            height: 2px;
+            background-color: $red-line;
+        }
+
+        .total {
+            grid-column: 1 /3;
+            grid-row: 4;
+            font-weight: 400;
+        }
+
+        .total-price {
+            grid-column: 3 / 4;
+            grid-row: 4;
+        }
+
+        .overview-title {
+            margin: 10px 0;
+        }
+
+    }
+}
+
+.payment-data {
+    .front-side {
+        position: relative;
+        padding: 15px 20px;
+        width: 360px;
+        height: 211px;
+        background-color: #bcbcbc;
+        border-radius: 5px;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 215px 1fr;
+        grid-template-areas:
+        "number logo"
+        "date logo"
+        "cardholder cardholder";
+
+        .input-field {
+            display: inline-flex;
+            justify-content: space-between;
+
+            .card-inp {
+                width: calc(100px - 28px);
+            }
+        }
+
+        .expire-date {
+            @include flex;
+            width: 100px;
+            float: left;
+            margin-right: calc(100% - 100px * 2);
+            
+            &:last-of-type {
+                margin-right: 0;
+            }
+            
+            .spinner {
+                @include flex;
+                flex-direction: column;
+                width: 28px;
+                height: 35px;
+                border: .5px solid #a4a4a3;
+
+                .spinner__btn {
+                    width: 100%;
+                    height: calc(100% / 2 - .5px);
+                    padding: 0;
+                    background-color: $light;
+                    border-style: none;
+                    background-repeat: no-repeat;
+                    background-size: 6px 4px;
+                    cursor: pointer;
+
+                    &.spin__up {
+                        background-image: url(../assets/svg/book-form/spin-up.svg);
+                        background-position: center calc(35px / 2 - .5px - 4px - 1.5px);
+                    }
+
+                    &.spin__down {
+                        background-image: url(../assets/svg/book-form/spin-down.svg);
+                        background-position: center 1.5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .back-side {
+        position: relative;
+        margin-top: calc(30px - 211px);
+        margin-left: 110px;
+        padding: 25px 0 15px;
+        width: 360px;
+        height: 211px;
+        background-color: #939393;
+        border-radius: 5px;
+
+        .line {
+            width: 100%;
+            height: 45px;
+            background-color: #161615;
+            margin: 0 0 15px;
+        }
+
+        .card-lbl {
+            width: 57px;
+            margin: 0 33px 5px auto;
+            text-align: center;
+        }
+
+        .card-inp {
+            width: 75px;
+            height: 35px;
+            margin: 0 20px 6px auto;
+            text-align: center;
+        }
+
+        .cvv-comment__wrapper {
+            width: 75px;
+            margin: 0 20px 0 auto;
+            padding: 0 calc((75px - 55px) / 2);            
+            text-align: left;
+
+            .cvv-comment {
+                font-size: 10px;
+                line-height: 12px;
+            }
+        }
+    }
+
+    .card-lbl {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .card-inp {
+        display: block;
+        height: 35px;
+        padding: 10px;
+        border: .5px solid #a4a4a3;
+        outline: none;
+
+        &::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        &#number {
+            width: 215px;
+        }
+
+        &#name {
+            width: 100%;
+        }
+    }
+
+    .card-sys__wrapper {
+        grid-area: logo;
+    }
+
+    .card-sys {
+        width: 55px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .visa {
+        height: 16px;
+        margin: 19px 0 15px auto;
+        background-image: url(../assets/img/book-form/book-visa.png);
+    }
+
+    .mc {
+        height: 32px;
+        margin: 0 0 0 auto;
+        background-image: url(../assets/img/book-form/book-mc.png);
+    }
+
+    .card-number {
+        grid-area: number;
+        margin-bottom: 10px;
+    }
+
+    .card-date {
+        grid-area: date;
+        margin-bottom: 10px;
+    }
+
+    .card-name {
+        grid-area: cardholder;
+    }
 }

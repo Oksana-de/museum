@@ -561,88 +561,160 @@
                 </p>
             </div>
 
-            <fieldset class="ticket-data">
-                <input type="date" name="" id="">
-                <input type="datetime" name="" id="">
-            
-                <input type="text" name="" id="">
-                <input type="email" name="" id="">
-                <input type="tel" name="" id="">
+            <fieldset class="ticket-data input-field">
+                <div class="input-datetime input-data__wrapper">
+                    <input type="date" name="" id="" class="ticket-date input-data" placeholder="Date">
+                    <input type="time" name="" id="" class="ticket-time input-data" placeholder="Time">
+                </div>
 
-                <input class="ticket-search" type="search" name="ticket" list="ticket-type" placeholder="Ticket Type">
-                <datalist class="ticket-datalist" id="ticket-type">
-                    <option class="ticket-list" value=" ">Permanent exhibition</option>
-                    <option class="ticket-list" value=" ">Temporary exhibition</option>
-                    <option class="ticket-list" value=" ">Combined Admission</option>
-                </datalist>
+                <div class="input-data__wrapper ticket-name__wrapper">
+                    <input type="text" name="" id="" class="ticket-name input-data" placeholder="Name">
+                </div>
+                <div class="input-data__wrapper ticket-email__wrapper">
+                    <input type="email" name="" id="" class="ticket-email input-data" placeholder="E-mail">
+                </div>
+                <div class="input-data__wrapper ticket-tel__wrapper">
+                    <input type="text" name="" id="" class="ticket-tel input-data" placeholder="Phone">
+                </div>
+
+                <div class="input-data__wrapper ticket-type__wrapper">
+                    <input class="ticket-type input-data" type="search" name="ticket" list="ticket-type" placeholder="Ticket Type">
+                    <datalist class="ticket-datalist" id="ticket-type">
+                        <option class="ticket-list" value=" ">Permanent exhibition</option>
+                        <option class="ticket-list" value=" ">Temporary exhibition</option>
+                        <option class="ticket-list" value=" ">Combined Admission</option>
+                    </datalist>
+                </div> 
             </fieldset>
 
-            <fieldset class="ticket-order">
-                <legend class="form__title-wrapper">
-                    <h3 class="form__title">
-                        Entry ticket
-                    </h3>
+            <fieldset class="ticket-order input-field">
+                <legend class="fieldset-title">
+                    Entry ticket
                 </legend>
-                <label class="lbl lbl__num" for="basic">Basic 18+</label>
+                <div class="category">
+                    <label class="lbl-order" for="basic">
+                        Basic 18+
+                    </label>
                     <div class="order__ticket">
                         <button class="btn__amount" type="button">&minus;</button>
-                        <input class="inp-number" type="number" name="ticket-amount" id="basic" min="1" max="100" value="1">
-                        <button class="btn__amount" type="button">&plus;</button>
-                    </div>                            
-                <label class="lbl lbl__num" for="senior">Senior 65+</label>
-                    <div class="order__ticket">
-                        <button class="btn__amount" type="button">&minus;</button>
-                        <input class="inp-number" type="number" name="ticket-amount" id="senior" min="1" max="100" value="1">
+                        <input class="inp-number" type="number" name="ticket-amount" id="basic" min="1" max="100" value="2">
                         <button class="btn__amount" type="button">&plus;</button>
                     </div>
+                </div>
+
+                <div class="category">
+                    <label class="lbl-order" for="senior">
+                        Senior 65+
+                    </label>
+                    <div class="order__ticket">
+                        <button class="btn__amount" type="button">&minus;</button>
+                        <input class="inp-number" type="number" name="ticket-amount" id="senior" min="1" max="100" value="2">
+                        <button class="btn__amount" type="button">&plus;</button>
+                    </div>
+                </div>
             </fieldset>
             
         </div>      
         <div class="confirm-order">
 
-            <div class="ticket-overview">
-
+            <div class="overview-data">
+                <h2 class="overview-title">
+                    Overview
+                </h2>
+                <h3 class="overview-subtitle">
+                    Tour to Louvre
+                </h3>
+                <img src="assets/img/book-form/book-poster.jpg" alt="poster" class="overview-poster">
+                <div class="ticket-date-ico overview-ico"></div>
+                <div class="ticket-time-ico overview-ico"></div>
+                <div class="ticket-type-ico overview-ico"></div>
+                <p class="ticket-date-txt overview-txt">
+                    Friday, August 19
+                </p>
+                <p class="ticket-time-txt overview-txt">
+                    16 &colon; 30
+                </p>
+                <p class="ticket-type-txt overview-txt">
+                    Temporary exhibition
+                </p>
             </div>
 
-            <div class="ticket-price">
+            <div class="overview-order">
+                <div class="ammount basic">2</div>
+                <p class="category basic">
+                    Basic (20 &#8364;)
+                </p>
+                <div class="category-price basic">40 &#8364;</div>
 
+                <div class="ammount senior">2</div>
+                <p class="category senior">
+                    Senior (10 &#8364;)
+                </p>
+                <div class="category-price senior">20 &#8364;</div>
+                <div class="line"></div>
+                <h2 class="total overview-title">Total:</h2>
+                <h2 class="total-price overview-title">60 &#8364;</h2>
             </div>
 
-            <fieldset  class="payment-data">
-                <label for="" class="">
-                    Card number
-                    <input type="number" name="" id="">
-                </label>
-
-                <label for="" class="">
-                    Expiration date
-
-                    <div class="expire-date">
-                        <input type="number" name="" id="">
-                        <div class="spinner">
-                            <button class="spinner__btn spin__up"></button>
-                            <button class="spinner__btn spin__down"></button>
+            <fieldset  class="payment-data input-field">
+                <div class="front-side">
+                    <div class="card-sys__wrapper">
+                        <div class="card-sys visa"></div>
+                        <div class="card-sys mc"></div>
+                    </div>
+                    <div class="card-number">
+                        <label class="card-lbl card-txt" for="number">
+                            Card number                        
+                        </label>
+                        <input type="number" name="" id="number" class="card-txt card-inp">
+                    </div>
+    
+                    <fieldset class="card-date input-field">
+                        <legend class="card-lbl card-txt">
+                            Expiration date
+                        </legend>
+                        <div class="expire-date">
+                            <input type="number" name="" id="" class="card-txt card-inp">
+                            <div class="spinner">
+                                <button type="button" class="spinner__btn spin__up"></button>
+                                <button type="button" class="spinner__btn spin__down"></button>
+                            </div>
                         </div>
+    
+                        <div class="expire-date">
+                            <input type="number" name="" id="" class="card-txt card-inp">
+                            <div class="spinner">
+                                <button type="button" class="spinner__btn spin__up"></button>
+                                <button type="button" class="spinner__btn spin__down"></button>
+                            </div>
+                        </div>
+                    </fieldset>                    
+                    <div class="card-name">
+                        <label class="card-lbl card-txt" for="name">
+                            Cardholder name
+                        </label>
+                        <input type="text" name="" id="name" class="card-txt card-inp">
                     </div>
 
-                    <div class="expire-date">
-                        <input type="number" name="" id="">
-                        <div class="spinner">
-                            <button class="spinner__btn spin__up"></button>
-                            <button class="spinner__btn spin__down"></button>
-                        </div>
+                </div>
+
+                <div class="back-side">
+                    <div class="line"></div>
+                    <label class="card-lbl card-txt" for="card-cvv">
+                        CVC/CVV
+                    </label>
+                    <input type="number" name="" id="card-cvv" class="card-txt card-inp">
+
+                    <div class="cvv-comment__wrapper">
+                        <p class="card-txt cvv-comment">
+                            The last
+                            <br>
+                            3 or 4 digits on back
+                            <br>
+                            of the card
+                        </p>
                     </div>
-                </label>
-
-                <label for="" class="">
-                    Cardholder name
-                    <input type="text" name="" id="">
-                </label>
-
-                <label for="" class="">
-                    7CVC/CVV
-                    <input type="number" name="" id="">
-                </label>
+                </div>
 
             </fieldset>
 
