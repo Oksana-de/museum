@@ -39,14 +39,13 @@
     grid-row: 1;
     width: 270px;
 
-    .form__title-wrapper {
+    .form__title {
         margin-bottom: 50px;
     }
 
     .lbl {
         padding-left: calc(23px + 17px);
         cursor: pointer;
-        transform: font-weight $transition-duration;    
 
         &:nth-of-type(n) {
             margin-bottom: 25px;
@@ -79,7 +78,7 @@
     grid-row: 1;
     width: 150px;
 
-    .form__title-wrapper {
+    .form__title {
         margin-bottom: 25px;
         text-align: right;
     }
@@ -152,7 +151,6 @@
     width: 19px;
     height: 38px;
     @include roboto-font($color: $dark, $size: $font-big, $line-height: $fontline-big, $letter-spacing: 0);
-    font-weight: 400;
     background-color: transparent;
     cursor: pointer;
     transition: font-weight $transition-duration;

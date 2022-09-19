@@ -1,7 +1,6 @@
 .section-title {
     margin: 0 0 25px;
     @include forum-font($color: $light);
-    font-weight: 400;
     font-size: $font-section;
     line-height: $fontline-section;
     letter-spacing: 5px;
@@ -42,7 +41,6 @@
 .tour__title {
     margin: 25px 0 22px;
     @include forum-font($color: $dark);
-    font-weight: 400;
     font-size: $font-big;
     line-height: 35px;
     letter-spacing: 5px;
@@ -78,7 +76,7 @@
 }
 
 .address-name {
-    margin: 0 0 50px;
+    margin: 0;
     @include roboto-font($size: $font-middle, $line-height: $fontline-middle, $letter-spacing: 0);
     font-style: normal;
     font-weight: 500;
@@ -90,6 +88,10 @@
     font-style: normal;
     font-weight: 300;
 
+    &:first-of-type {
+        margin-top: 50px;
+    }
+
     &:last-of-type {
         margin: 0;
     }
@@ -98,7 +100,6 @@
 .form-title {
     margin: 0 0 109px;
     @include forum-font($color: $gold);
-    font-weight: 400;
     font-size: $font-form;
     line-height: $fontline-form;
     letter-spacing: -.0;
@@ -111,7 +112,6 @@
     margin: 0 0 15px;
     padding-bottom: 5px;
     @include forum-font($color: $gold);
-    font-weight: 400;
     font-size: $font-smaller;
     line-height: 20px;
     letter-spacing: .0em;
@@ -137,7 +137,6 @@
 .card-txt {
     @include roboto-font($color: #161615, $size: 12px, $line-height: 14px, $letter-spacing: .0);
     font-style: normal;
-    font-weight: 400;
 
     &.cvv-comment {
         margin: 0;

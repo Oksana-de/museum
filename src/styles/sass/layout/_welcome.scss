@@ -32,7 +32,7 @@
     .btn {       
         height: 100%;
         padding: 0 64px;
-        @include flex;
+        @include flex($justify-content: center);
         @include link($link-color: $light, $link-hover: $light);
         @include roboto-font($color: $light);
         font-weight: 300;
@@ -63,7 +63,6 @@
         .page {
             margin: 0;
             @include roboto-font($color: $light);
-            font-weight: 400;
             font-size: $font-small;
             line-height: 120px;
         }

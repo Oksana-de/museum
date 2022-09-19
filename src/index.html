@@ -212,7 +212,7 @@
             class="section dark-section explore-section"
             id="explore">
             <div class="wrapper">
-                <article class="explore-info">
+                <div class="explore-info">
                     <div class="section-title__wrapper">
                         <h2 class="section-title underline">
                             Picture explore
@@ -232,8 +232,8 @@
                             The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.
                         </p>
                     </div>
-                </article>
-                <article class="explore-img">
+                </div>
+                <div class="explore-img">
                     <div class="exlore__slide-wrapper img__before">
                         <img src="assets/img/explore-slider/explore-before.jpg" alt="explore-before" class="explore__slide explore__before">
                     </div>
@@ -241,7 +241,7 @@
                         <img src="assets/img/explore-slider/explore-after.jpg" alt="explore-after" class="explore__slide explore__after">
                     </div>
                     <div class="explore-slider"></div>
-                </article>
+                </div>
             </div>
         </section>
         <section
@@ -359,10 +359,8 @@
                     <form action="/" method="post" target="_blank" class="tickets__form">
 
                         <fieldset class="tickets-options tickets-type">
-                            <legend class="form__title-wrapper">
-                                <h3 class="form__title">
-                                    Ticket Type
-                                </h3>
+                            <legend class="form__title">
+                                Ticket Type
                             </legend>
                             <label class="lbl">
                                 Permanent exhibition
@@ -382,26 +380,24 @@
                         </fieldset>
     
                         <fieldset class="tickets-options tickets-amount">
-                            <legend class="form__title-wrapper">
-                                <h3 class="form__title">
-                                    Amount
-                                </h3>
+                            <legend class="form__title">
+                                Amount
                             </legend>
                             <label class="lbl lbl__num" for="basic">Basic 18+</label>
                                 <div class="order__ticket">
                                     <button class="btn__amount" type="button">&minus;</button>
-                                    <input class="inp-number" type="number" name="ticket-amount" id="basic" min="1" max="100" value="1">
+                                    <input class="inp-number" type="number" name="ticket-amount" id="basic-ticket" min="1" max="100" value="1">
                                     <button class="btn__amount" type="button">&plus;</button>
                                 </div>                            
                             <label class="lbl lbl__num" for="senior">Senior 65+</label>
                                 <div class="order__ticket">
                                     <button class="btn__amount" type="button">&minus;</button>
-                                    <input class="inp-number" type="number" name="ticket-amount" id="senior" min="1" max="100" value="1">
+                                    <input class="inp-number" type="number" name="ticket-amount" id="senior-ticket" min="1" max="100" value="1">
                                     <button class="btn__amount" type="button">&plus;</button>
                                 </div>   
                             <label class="lbl sum" for="total">
                                 Total €
-                                <output class="inp-number sum" type="number" name="ticket-amount" id="total">220</output>
+                                <input class="inp-number sum" type="number" name="ticket-amount" id="total" value="220" disabled>
                             </label> 
                         </fieldset>
     
@@ -425,18 +421,16 @@
                     </h2>
                 </div>
 
-                <address itemscope itemtype="https://schema.org/Organization" class="contact-info">
-                    <h3 itemprop="name" class="address-name">
-                        Palais Royal</span>
+                <address itemscope itemtype="https://schema.org/Organization" class="contact-info address-name">
+                        Palais Royal
                         <br>
                         Musee du Louvre
-                    </h3>
                     <p itemscope itemtype="https://schema.org/PostalAddress" itemprop="adress" class="address-details">address: 
                         <span itemprop="postalCode">75001 </span>
                         <span itemprop="addressLocality">Paris, France</span>
                     </p>
                     <p class="address-details">phone: 
-                        <span itemprop="telephone"><a class="address-link" href="tel:+33(0) 1 40 20 50 50">+33(0) 1 40 20 50 50</a></span>
+                        <span itemprop="telephone"><a class="address-link" href="tel:+33(0)140205050">+33(0) 1 40 20 50 50</a></span>
                     </p>
                     <p class="address-details">mail: 
                         <span itemprop="email"><a class="address-link" href="mailto:info@louvre.fr">info@louvre.fr</a></span>
@@ -494,7 +488,7 @@
                         </li>
                     </ul>                    
                 </nav>
-                <article class="social">
+                <div class="social">
                     <ul class="social__list">
                         <li class="social__item">
                             <a href="https://www.youtube.com/user/louvre" target="_blank" class="social__link yt"></a>
@@ -512,15 +506,22 @@
                             <a href="https://www.pinterest.fr/museedulouvre" target="_blank" class="social__link pt"></a>
                         </li>
                     </ul>
-                </article>
+                </div>
             </div>
         </div>
         <div class="deco-line"></div>
         <div class="wrapper">
             <div class="copyright">
-                <p class="copyright__txt">
-                    <date>2022</date>
-                </p>
+                <time class="copyright__txt" datetime="2022">
+                    2022
+                </time>
+                <p>
+                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">
+                        <img style="border:0;width:88px;height:31px"
+                            src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                            alt="Valid CSS!" />
+                        </a>
+                    </p>
             </div>
             <div class="developer-contact">
                 <div class="developer">
@@ -528,18 +529,12 @@
                         Oksana Vovere
                     </p>
                 </div>
-                <ul class="social__list">
-                    <li class="social__item e-mail">
-                        <a href="mailto:oksana.vovere@gmail.com" target="_blank" class="developer__link">oksana.vovere@gmail.com</a>
-                    </li>
-                    <li class="social__item linkedin">
-                        <a href="https://linkedin.com/in/oksana-vovere-9a76569b" target="_blank" class="developer__link">https://linkedin.com</a>
-                    </li>
-                    <li class="social__item gh">
-                        <a href="https://github.com/Oksana-de" target="_blank" class="developer__link">https://github.com/Oksana-de</a>
-                    </li>
-                </ul>
-            </div>            
+                <address class="social__list">
+                    <a href="mailto:oksana.vovere@gmail.com" target="_blank" class="social__item e-mail developer__link">oksana.vovere@gmail.com</a>
+                    <a href="https://linkedin.com/in/oksana-vovere-9a76569b" target="_blank" class="social__item linkedin developer__link">https://linkedin.com</a>
+                    <a href="https://github.com/Oksana-de" target="_blank" class="social__item gh developer__link">https://github.com/Oksana-de</a>
+                </address>
+            </div>
         </div>
     </footer>
 
@@ -563,18 +558,18 @@
 
             <fieldset class="ticket-data input-field">
                 <div class="input-datetime input-data__wrapper">
-                    <input type="date" name="" id="" class="ticket-date input-data" placeholder="Date">
-                    <input type="time" name="" id="" class="ticket-time input-data" placeholder="Time">
+                    <input type="date" name="visitors-date" id="visitors-date" class="ticket-date input-data">
+                    <input type="time" name="visitors-time" id="visitors-time" class="ticket-time input-data">
                 </div>
 
                 <div class="input-data__wrapper ticket-name__wrapper">
-                    <input type="text" name="" id="" class="ticket-name input-data" placeholder="Name">
+                    <input type="text" name="visitors-name" id="visitors-name" class="ticket-name input-data" placeholder="Name">
                 </div>
                 <div class="input-data__wrapper ticket-email__wrapper">
-                    <input type="email" name="" id="" class="ticket-email input-data" placeholder="E-mail">
+                    <input type="email" name="visitors-email" id="visitors-email" class="ticket-email input-data" placeholder="E-mail">
                 </div>
                 <div class="input-data__wrapper ticket-tel__wrapper">
-                    <input type="text" name="" id="" class="ticket-tel input-data" placeholder="Phone">
+                    <input type="text" name="visitors-tel" id="visitors-tel" class="ticket-tel input-data" placeholder="Phone">
                 </div>
 
                 <div class="input-data__wrapper ticket-type__wrapper">
@@ -666,7 +661,7 @@
                         <label class="card-lbl card-txt" for="number">
                             Card number                        
                         </label>
-                        <input type="number" name="" id="number" class="card-txt card-inp">
+                        <input type="number" name="card-number" id="number" class="card-txt card-inp">
                     </div>
     
                     <fieldset class="card-date input-field">
@@ -674,7 +669,7 @@
                             Expiration date
                         </legend>
                         <div class="expire-date">
-                            <input type="number" name="" id="" class="card-txt card-inp">
+                            <input type="number" name="card-exiration-month" id="exiration-month" value="03" class="card-txt card-inp">
                             <div class="spinner">
                                 <button type="button" class="spinner__btn spin__up"></button>
                                 <button type="button" class="spinner__btn spin__down"></button>
@@ -682,7 +677,7 @@
                         </div>
     
                         <div class="expire-date">
-                            <input type="number" name="" id="" class="card-txt card-inp">
+                            <input type="number" name="card-exiration-year" id="card-exiration-year" value="2024" class="card-txt card-inp">
                             <div class="spinner">
                                 <button type="button" class="spinner__btn spin__up"></button>
                                 <button type="button" class="spinner__btn spin__down"></button>
@@ -693,17 +688,17 @@
                         <label class="card-lbl card-txt" for="name">
                             Cardholder name
                         </label>
-                        <input type="text" name="" id="name" class="card-txt card-inp">
+                        <input type="text" name="cardholder-name" id="name" class="card-txt card-inp">
                     </div>
 
                 </div>
 
                 <div class="back-side">
                     <div class="line"></div>
-                    <label class="card-lbl card-txt" for="card-cvv">
+                    <label class="card-lbl card-txt" for="cvv">
                         CVC/CVV
                     </label>
-                    <input type="number" name="" id="card-cvv" class="card-txt card-inp">
+                    <input type="number" name="card-cvv" id="cvv" class="card-txt card-inp">
 
                     <div class="cvv-comment__wrapper">
                         <p class="card-txt cvv-comment">

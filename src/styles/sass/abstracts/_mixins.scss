@@ -1,10 +1,12 @@
 @mixin forum-font($color: $dark) {
     font-family: $forum-family;
     color: $color;
+    font-weight: 400;
 }
 
 @mixin roboto-font($color: $dark, $size: $font-big, $line-height: $fontline-big, $letter-spacing: .05em) {
     font-family: $roboto-family;
+    font-weight: 400;
     font-size: $size;
     line-height: $line-height;
     letter-spacing: $letter-spacing;

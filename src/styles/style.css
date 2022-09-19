@@ -366,6 +366,7 @@ body {
   height: 100%;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
@@ -392,7 +393,6 @@ body {
 
 .musthave {
   position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   width: 1px;
   padding: 0;
@@ -436,6 +436,7 @@ body {
   margin: 0;
   font-family: "Forum", cursive;
   color: #ffffff;
+  font-weight: 400;
   font-size: 28px;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -476,6 +477,7 @@ body {
 .section-subtitle {
   margin: 0 0 75px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
@@ -506,6 +508,7 @@ body {
 .tour__subtitle {
   margin: 10px 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
@@ -524,6 +527,7 @@ body {
 .form__title {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0;
@@ -532,8 +536,9 @@ body {
 }
 
 .address-name {
-  margin: 0 0 50px;
+  margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0;
@@ -545,12 +550,16 @@ body {
 .address-details {
   margin: 0 0 25px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
   color: #000000;
   font-style: normal;
   font-weight: 300;
+}
+.address-details:first-of-type {
+  margin-top: 50px;
 }
 .address-details:last-of-type {
   margin: 0;
@@ -585,6 +594,7 @@ body {
 .overview-title {
   margin: 0 0 2px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0em;
@@ -596,6 +606,7 @@ body {
 .overview-subtitle {
   margin: 0 0 10px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
@@ -607,12 +618,12 @@ body {
 
 .card-txt {
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0;
   color: #161615;
   font-style: normal;
-  font-weight: 400;
 }
 .card-txt.cvv-comment {
   margin: 0;
@@ -670,11 +681,11 @@ body {
   height: 45px;
   background-color: #710707;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
   color: #ffffff;
-  font-weight: 400;
 }
 
 .header {
@@ -725,6 +736,7 @@ body {
   color: #ffffff;
   transition: color 0.5s;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 150px;
   letter-spacing: 2px;
@@ -772,12 +784,13 @@ body {
   padding: 0 64px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
   color: #ffffff;
   transition: color 0.5s;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
@@ -816,11 +829,11 @@ body {
 .welcome-section .pagination .page {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
   color: #ffffff;
-  font-weight: 400;
   font-size: 22px;
   line-height: 120px;
 }
@@ -948,10 +961,10 @@ body {
   width: 660px;
 }
 .explore-section .section-title__wrapper {
-  margin-bottom: 103px;
+  margin-bottom: 104px;
 }
 .explore-section .explore-info__txt-wrapper {
-  margin-bottom: 25px;
+  margin-bottom: 26px;
 }
 .explore-section .explore-info__txt-wrapper:last-of-type {
   margin-bottom: 0;
@@ -960,6 +973,7 @@ body {
 .explore-info__txt {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0.05em;
@@ -1313,13 +1327,12 @@ body {
   grid-row: 1;
   width: 270px;
 }
-.tickets-type .form__title-wrapper {
+.tickets-type .form__title {
   margin-bottom: 50px;
 }
 .tickets-type .lbl {
   padding-left: 40px;
   cursor: pointer;
-  transform: font-weight 0.5s;
 }
 .tickets-type .lbl:nth-of-type(n) {
   margin-bottom: 25px;
@@ -1345,7 +1358,7 @@ body {
   grid-row: 1;
   width: 150px;
 }
-.tickets-amount .form__title-wrapper {
+.tickets-amount .form__title {
   margin-bottom: 25px;
   text-align: right;
 }
@@ -1357,6 +1370,7 @@ body {
   display: block;
   position: relative;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
@@ -1402,6 +1416,7 @@ body {
   height: 38px;
   border-style: none;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
@@ -1421,11 +1436,11 @@ body {
   width: 19px;
   height: 38px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: 0;
   color: #000000;
-  font-weight: 400;
   background-color: transparent;
   cursor: pointer;
   transition: font-weight 0.5s;
@@ -1465,6 +1480,7 @@ body {
 
 .sum {
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0;
@@ -1486,6 +1502,7 @@ body {
   border-radius: 2px;
   background-color: #000000;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 2px;
@@ -1537,11 +1554,11 @@ body {
 .buy-form .section-subtitle {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0.05em;
   color: #710707;
-  font-weight: 400;
   letter-spacing: 0;
 }
 .buy-form .btn-submit {
@@ -1618,6 +1635,7 @@ body {
   outline: none;
   transition: outline 0.5s;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
@@ -1679,11 +1697,11 @@ body {
   width: auto;
   height: auto;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
   color: #030303;
-  font-weight: 400;
 }
 .ticket-order .order__ticket {
   width: 105px;
@@ -1697,11 +1715,11 @@ body {
   height: 100%;
   background-color: #030303;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
   color: #ffffff;
-  font-weight: 400;
   border-style: none;
   transition: color 0.5s;
 }
@@ -1713,11 +1731,11 @@ body {
   height: 100%;
   background-color: #ffffff;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
   color: #030303;
-  font-weight: 400;
   border: 1px solid #030303;
   outline: none;
 }
@@ -1781,6 +1799,7 @@ body {
   grid-column: 2/3;
   margin: 0 0 5px;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
@@ -1808,11 +1827,11 @@ body {
   margin: 0;
   align-self: center;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 26px;
   letter-spacing: 0;
   color: #030303;
-  font-weight: 400;
 }
 .confirm-order .overview-order .basic {
   margin-bottom: 5px;
@@ -1827,11 +1846,11 @@ body {
   background-color: #030303;
   color: #ffffff;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0;
   color: #a4a4a3;
-  font-weight: 400;
   border-radius: 5px;
 }
 .confirm-order .overview-order .ammount.basic {
@@ -1871,7 +1890,6 @@ body {
 .confirm-order .overview-order .total {
   grid-column: 1/3;
   grid-row: 4;
-  font-weight: 400;
 }
 .confirm-order .overview-order .total-price {
   grid-column: 3/4;
@@ -1984,7 +2002,7 @@ body {
 .payment-data .card-inp {
   display: block;
   height: 35px;
-  padding: 10px;
+  padding: 8px 10px 10px 8px;
   border: 0.5px solid #a4a4a3;
   outline: none;
 }
@@ -2182,11 +2200,6 @@ body {
   background-color: #666666;
 }
 
-.copyright {
-  flex: 1 1 0;
-  align-self: flex-start;
-}
-
 .developer-contact {
   flex: 0 1 auto;
 }
@@ -2195,10 +2208,23 @@ body {
   align-items: flex-start;
 }
 
+.copyright {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  align-self: stretch;
+}
+.copyright > p {
+  margin: 0;
+}
+
 .copyright__txt,
 .developer-name {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 22px;
   line-height: 22px;
   letter-spacing: 0.05em;
@@ -2212,6 +2238,8 @@ body {
 
 .copyright__txt {
   position: relative;
+  flex: 1 1 0;
+  align-self: flex-start;
 }
 .copyright__txt::before {
   content: "©";
@@ -2220,9 +2248,10 @@ body {
 
 .developer-contact .social__item {
   position: relative;
+  margin: 0 0 15px 0;
+  padding-left: 30px;
   width: 100%;
   height: 21px;
-  margin-bottom: 15px;
 }
 .developer-contact .social__item:last-of-type {
   margin-bottom: 0;
@@ -2241,6 +2270,8 @@ body {
 }
 .developer-contact .social__item::before {
   position: absolute;
+  top: 0;
+  left: 0;
   content: "";
   width: 20px;
   height: 20px;
@@ -2258,11 +2289,13 @@ body {
   color: #ffffff;
   transition: color 0.5s;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 18px;
   letter-spacing: 0.05em;
   color: #ffffff;
   font-weight: 100;
+  font-style: normal;
 }
 .developer__link:hover {
   color: #9d8665;
