@@ -1517,11 +1517,11 @@ body {
 }
 
 .buy-form {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
-  display: grid;
   grid-template-columns: repeat(2, auto) 55px;
   grid-template-rows: minmax(75px, 91px) 663px;
   max-width: 1440px;

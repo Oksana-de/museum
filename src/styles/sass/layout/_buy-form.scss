@@ -1,10 +1,10 @@
 .buy-form {
-    // display: none;
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
-    display: grid;
+    // display: grid;
     grid-template-columns: repeat(2, auto) calc(25px + 30px);
     grid-template-rows: minmax(calc(25px + 20px + 30px), calc(25px + 36px + 30px)) 663px;
     max-width: $desktop-1920;
