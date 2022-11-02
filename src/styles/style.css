@@ -1386,6 +1386,9 @@ body {
 .explore-section .explore-info__txt-wrapper {
   margin-bottom: 26px;
 }
+.explore-section .explore-info__txt-wrapper:nth-of-type(2) {
+  width: 92%;
+}
 .explore-section .explore-info__txt-wrapper:last-of-type {
   margin-bottom: 0;
 }
@@ -1442,6 +1445,7 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   background-image: url(../assets/svg/explore-slider.svg);
   z-index: 2;
   cursor: pointer;
@@ -1451,6 +1455,72 @@ body {
   opacity: 0.8;
 }
 
+@media (max-width: 1024px) {
+  .explore-section .wrapper {
+    display: block;
+  }
+  .explore-section .explore-info {
+    width: 100%;
+    margin-bottom: 62px;
+  }
+  .explore-section .section-title__wrapper {
+    margin-bottom: 83px;
+  }
+  .explore-section .explore-info__txt-wrapper {
+    margin-bottom: 0;
+  }
+  .explore-section .explore-info__txt-wrapper:nth-of-type(2) {
+    width: 100%;
+  }
+  .explore-section .explore-info__txt-wrapper:nth-of-type(3) .explore-info__txt {
+    line-height: 35px;
+  }
+  .explore-section .explore-info__txt-wrapper:last-of-type {
+    display: none;
+  }
+  .explore-info__txt {
+    font-size: 20px;
+    line-height: 39px;
+  }
+  .explore-img {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .explore-section .explore-info {
+    margin-bottom: 63px;
+  }
+  .explore-section .section-title__wrapper {
+    margin-bottom: 63px;
+  }
+  .explore-section .explore-info__txt-wrapper {
+    display: none;
+  }
+  .explore-section .explore-img {
+    margin: 0 auto;
+    width: 100%;
+    height: 705px;
+  }
+  .explore-section .explore-img .exlore__slide-wrapper.img__before {
+    width: 61.1111111111%;
+  }
+  .explore-section .explore-img .explore-slider {
+    left: calc(61.1111111111% - 19.5px);
+    background-image: url(../assets/svg/explore-slider-768px.svg);
+  }
+}
+@media (max-width: 420px) {
+  .explore-section .explore-img {
+    height: 368px;
+  }
+  .explore-section .explore-img .exlore__slide-wrapper.img__before {
+    width: 60.5263157895%;
+  }
+  .explore-section .explore-img .explore-slider {
+    width: 20px;
+    left: calc(60.5263157895% - 10px);
+  }
+}
 .video-section .wrapper {
   display: grid;
   grid-template-columns: repeat(2, auto);
