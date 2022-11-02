@@ -3,22 +3,18 @@
 
     .wrapper {
         @include flex;
+        height: 100%;
     }
 
     .logo__link {
         width: calc(199px + 50px);
-        height: 150px;
+        height: 33px;
         padding-right: 50px;
     }
 
     .logo__icon {
-        margin-top: 59px;
         width: calc(199px + 50px);
         height: 33px;
-    }
-
-    .logo__txt {
-        margin-top: 59px;
     }
 }
 
@@ -46,4 +42,88 @@
     @include roboto-font($color: $light, $size: $font-small, $line-height: 150px, $letter-spacing: 2px);
     font-weight: 100;
     text-transform: capitalize;
+}
+
+.burger-menue-btn {
+    display: none;
+    padding: 0;
+    width: 32px;
+    height: 18px;
+    background-image: url(../assets/svg/burger-menue-btn.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    transition: filter $transition-duration;
+
+    &:hover {
+        color: $light;
+        filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
+    }
+}
+
+@media (max-width: $desktop-1024) {
+    .header {
+        height: 130px;
+    }
+    
+    .menu {
+        display: none;
+        // flex: 1 1 0;
+        // max-width: 775px;
+        // flex-direction: column;
+    }
+
+    .burger-menue-btn {
+        display: block;
+    }
+    
+    .menu__list {
+        @extend %not-list;
+        @include flex;
+    }
+    
+    .menu__item {
+        padding-right: 20px;
+    
+        &:last-of-type {
+            padding-right: 0;
+        }
+    }
+    
+    .menu__link {
+        display: block;
+        @include link;
+        @include roboto-font($color: $light, $size: $font-small, $line-height: 150px, $letter-spacing: 2px);
+        font-weight: 100;
+        text-transform: capitalize;
+    }
+}
+
+@media (max-width: $tablet) {
+    .header {
+        height: 110px;
+
+        .logo__link {
+            height: 41px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .header {
+        height: 90px;
+
+        .logo__icon {
+            width: calc(54px + 83px + 5px + 20px);
+            height: 20px;
+        }
+
+        .logo__link {
+            width: calc(54px + 83px + 5px + 20px);
+            height: 20px;
+            padding-right: 20px;
+        }
+    }
 }

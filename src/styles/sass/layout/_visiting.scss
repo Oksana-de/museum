@@ -31,3 +31,60 @@
     object-fit: cover;
     object-position: top center;
 }
+
+@media (max-width: $desktop-1024) {
+    .visiting-section {
+        .section-title {
+            margin: 0;
+        }
+    }
+
+    .tours {
+        padding-top: 83px;
+        grid-template-columns: repeat(auto-fill, 330px);
+        column-gap: 0;
+        row-gap: 60px;
+        justify-content: space-evenly;
+    }
+    
+    .tour {
+        width: 330px;
+        height: 345px;
+    }
+    
+    .tour__img-wrapper {
+        width: 330px;
+        height: 215px;
+    }
+}
+
+@media (max-width: $tablet) {
+
+    .tours {
+        padding-top: 63px;
+        padding-bottom: 40px;
+        grid-template-columns: repeat(auto-fill, 280px);
+        row-gap: 40px;
+    }
+    
+    .tour {
+        width: 280px;
+        height: 301px;
+    }
+    
+    .tour__img-wrapper {
+        width: 280px;
+        height: 180px;
+    }
+}
+// !=====================
+@media (max-width: $mobile) {
+
+    .tours {
+        padding-bottom: 0;
+    }
+    
+    .tour {
+        height: 295px;
+    }
+}

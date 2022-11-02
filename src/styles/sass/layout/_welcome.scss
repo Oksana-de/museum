@@ -3,9 +3,14 @@
 
     .wrapper {
         position: relative;
+        height: 810px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
 
-        & > *:not(.welcome__slider) {
+        & > *:not(.welcome__slider-wrapper) {
             position: relative;
+            z-index: 1;
         }
     }
 
@@ -16,8 +21,12 @@
         @include flex($justify-content: flex-start, $align-items: flex-start);
     }
 
+    .section-subtitle__wrapper {
+        margin: 0 0 75px;
+    }
+
     .btn__wrapper {
-        margin-bottom: 152px;
+        flex: 1 1 100%;
         width: 360px;
         height: 75px;
         cursor: pointer;
@@ -30,14 +39,12 @@
     }
 
     .btn {       
-        height: 100%;
-        padding: 0 64px;
         @include flex($justify-content: center);
         @include link($link-color: $light, $link-hover: $light);
         @include roboto-font($color: $light);
         font-weight: 300;
         font-size: $font-small;
-        line-height: $fontline-small;
+        line-height: 75px;
         letter-spacing: 2px;
         background-color: $red-bg;
         border-radius: 10px;
@@ -45,6 +52,9 @@
     }
 
     .pagination {
+        position: absolute;
+        bottom: 0;
+        right: 0;
         margin: 0 0 0 auto;
         padding: 0 75px 0 74px;
         width: 600px;
@@ -118,23 +128,32 @@
     }
 }
 
+.welcome__slider-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1000px;
+    height: 810px; 
+}
+
 .welcome__slider {
     position: absolute;
     @extend %not-list;
     top: 0;
-    left: calc(100% - 1000px);
-    width: 1000px;
-    height: 750px;
+    right: 0;
+    width: 100%;
+    height: calc(100% - 120px / 2);
     overflow: hidden;
     z-index: 0;
 }
 
 .welcome__img {
     display: none;
+    width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-position: right top;
-    background-size: cover;
+    background-size: contain;
     animation: $transition-duration ease-in-out;
 
     &.active {
@@ -160,4 +179,193 @@
 
 .img-05 {
     background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-05.jpg);
+}
+
+@media (max-width: $desktop-1024) {
+    .welcome-section {    
+        .wrapper {
+            height: 585px;            
+        }
+    
+        .section-title__wrapper {
+            padding-top: 50px;
+        }
+
+        .section-title {
+            line-height: 90px;
+        }
+
+        .section-subtitle__wrapper {
+            margin: 0 0 50px;
+        }
+    
+        .btn__wrapper {
+            width: 300px;
+            height: 60px;
+        }
+    
+        .btn {       
+            font-size: 20px;
+            line-height: 60px;
+        }
+    
+        .pagination {
+            width: 100%;
+            padding-left: 224px;
+    
+            .page__num {
+                width: 71px;
+            }
+    
+            .page {
+                font-size: 20px;
+                line-height: 40px;
+            }
+    
+            .bullets__list {
+                width: 160px;
+                height: 12px;
+            }
+    
+            .bullet__item {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+    .welcome__slider-wrapper {
+        width: 700px;
+        height: 585px; 
+    }
+}
+
+@media (max-width: $tablet) {
+    .welcome-section {    
+        .wrapper {
+            height: 585px;
+            position: static;
+            height: auto;
+            display: block;
+    
+            & > *:not(.btn__wrapper) {
+                position: static;
+            }            
+        }
+    
+        .section-title__wrapper {
+            display: block;
+            margin: 0 auto;
+            padding-top: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .section-title {
+            line-height: 60px;
+        }
+
+        .section-subtitle__wrapper {
+            margin: 0 0 50px;
+            height: 20px;
+            text-align: center;
+        }
+    
+        .btn__wrapper {
+            display: none;
+        }
+
+        .pagination {
+            position: static;
+            height: 100px;
+            margin: 0 auto;
+            padding: 0 1px 0 0;
+            max-width: 401px;
+        }
+    }
+
+    .welcome__slider-wrapper {
+        position: static;
+        width: 100%;
+        height: auto; 
+    }
+    
+    .welcome__slider {
+        position: static;
+        height: 546px;
+    }
+
+    .img-01 {
+        background-image: url(../assets/img/welcome-slider/img-01.jpg);
+    }
+    
+    .img-02 {
+        background-image: url(../assets/img/welcome-slider/img-02.jpg);
+    }
+    
+    .img-03 {
+        background-image: url(../assets/img/welcome-slider/img-03.jpg);
+    }
+    
+    .img-04 {
+        background-image: url(../assets/img/welcome-slider/img-04.jpg);
+    }
+    
+    .img-05 {
+        background-image: url(../assets/img/welcome-slider/img-05.jpg);
+    }
+}
+
+@media (max-width: $mobile) {
+    .welcome-section {
+        .section-title__wrapper {
+            margin-bottom: 25px;
+            padding: 5px 0 0;
+        }
+
+        .section-title {
+            line-height: 40px;
+        }
+
+        .section-subtitle__wrapper {
+            height: 20px;
+        }
+
+        .pagination {
+            margin: 0 auto;
+            padding: 20px 0;
+            width: 230px;
+            height: 80px;
+    
+            .page__num {
+                width: 50px;
+            }
+    
+            .page {
+                font-size: 16px;
+            }
+    
+            .bullets__list {
+                width: 75px;
+                height: 7px;
+            }
+    
+            .bullet__item {
+                width: 7px;
+                height: 7px;
+            }
+
+            .arrows {
+                width: 55px;
+            }
+    
+            .arrow {
+                width: 20px;
+            }
+        }
+    }
+    
+    .welcome__slider {
+        height: 285px;
+    }
 }

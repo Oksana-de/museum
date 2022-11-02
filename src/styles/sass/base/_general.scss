@@ -18,6 +18,14 @@ body {
 
 .section {
     padding: $padding-basic;
+
+    @media (max-width: $desktop-1024) {
+        padding: 60px 0;
+    }
+
+    @media (max-width: $tablet) {
+        padding: 40px 0;
+    }
 }
 
 .dark-section {
@@ -32,6 +40,18 @@ body {
     max-width: $desktop-1920;
     width: $width-basic;
     margin: $margin-basic;
+
+    @media (max-width: $desktop-1024) {
+        max-width: $desktop-1024;
+    }
+
+    @media (max-width: $tablet) {
+        max-width: $tablet;
+    }
+
+    @media (max-width: $mobile) {
+        max-width: $mobile;
+    }
 }
   
 .musthave {
