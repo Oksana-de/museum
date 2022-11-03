@@ -15,6 +15,7 @@
     }
 
     .section-title__wrapper {
+        margin-bottom: 25px;
         border-style: none;
         padding-top: 150px;
         width: 598px;
@@ -255,7 +256,7 @@
     
         .section-title__wrapper {
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 25px;
             padding-top: 0;
             width: 100%;
             text-align: center;
