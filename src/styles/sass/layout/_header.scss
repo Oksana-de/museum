@@ -66,14 +66,17 @@
 @media (max-width: $desktop-1024) {
     .header {
         height: 130px;
+
+        .menu {
+            display: none;
+        }
     }
     
-    .menu {
-        display: none;
+    // .menu {
         // flex: 1 1 0;
         // max-width: 775px;
         // flex-direction: column;
-    }
+    // }
 
     .burger-menue-btn {
         display: block;

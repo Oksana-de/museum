@@ -27,11 +27,67 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
     }
 
     .address-link {
         @include link($link-color: $dark, $link-hover: $gold);
+    }
+}
+
+@media (max-width: $desktop-1024) {
+    .contacts-section {
+        padding-bottom: 62px;
+
+        .wrapper {
+            grid-template-columns: 274px 1fr;
+            grid-template-rows: min-content minmax(min-content, 454px);
+            column-gap: 16px;
+        
+            .section-title__wrapper {
+                margin-bottom: calc(75px + 3px + 5px);
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .contacts-section {
+        padding-bottom: 67px;
+
+        .wrapper {
+            grid-template-columns: 100%;
+            grid-template-rows: min-content min-content minmax(min-content, 476px);
+        
+            .section-title__wrapper {
+                margin-bottom: calc(60px + 3px);
+            }
+
+            .contact-info {
+                grid-column: 1;
+                grid-row: 2;
+                max-width: 100%;
+            }
+
+            .map {
+                grid-column: 1;
+                grid-row: 3;                
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .contacts-section {
+        padding-bottom: 40px;
+
+        .wrapper {
+            grid-template-rows: min-content min-content minmax(min-content, 248px);
+        
+            .section-title__wrapper {
+                margin-bottom: calc(60px + 3px);
+            }
+        }
     }
 }
