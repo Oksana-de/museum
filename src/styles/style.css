@@ -2571,18 +2571,23 @@ body {
   top: 0;
   left: 0;
   z-index: 10;
-  grid-template-columns: repeat(2, auto) 55px;
-  grid-template-rows: minmax(75px, 91px) 663px;
   max-width: 1440px;
   width: 100%;
   padding-bottom: 91px;
   background-color: #ffffff;
 }
+.buy-form.show {
+  display: block;
+}
+.buy-form .buy-form__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 20px;
+}
 .buy-form .btn-close {
-  grid-column: 1/4;
-  grid-row: 1;
-  margin: 30px 30px 0 0;
-  justify-self: end;
+  margin: 30px 30px 36px auto;
 }
 .buy-form .section-title__wrapper {
   margin: 0 0 15px;
@@ -2624,17 +2629,14 @@ body {
 }
 
 .place-order {
-  grid-column: 1;
-  grid-row: 2;
-  margin: 0 40px 0 auto;
   width: 400px;
-  justify-self: end;
 }
 .place-order .logo__icon {
   margin-top: 0;
   width: 85px;
   height: 41px;
-  background-size: 85px 41px;
+  background-size: cover;
+  background-position: center;
   filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
 }
 .place-order .input-data__wrapper {
@@ -2675,6 +2677,15 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.place-order .input-datetime > *::after {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 44px;
+  right: 15px;
+  padding: 4px 0;
+  background-color: #ffffff;
+}
 .place-order .input-data {
   display: block;
   width: 100%;
@@ -2702,12 +2713,18 @@ body {
   padding-top: 13px;
   content: url(../assets/svg/book-form/date-ico.svg);
 }
+.place-order .ticket-date::after {
+  content: "Date";
+}
 .place-order .ticket-time {
   width: 190px;
 }
 .place-order .ticket-time::before {
   padding-top: 13px;
   content: url(../assets/svg/book-form/time-ico.svg);
+}
+.place-order .ticket-time::after {
+  content: "Time";
 }
 .place-order .ticket-date::-webkit-calendar-picker-indicator,
 .place-order .ticket-time::-webkit-calendar-picker-indicator,
@@ -2736,7 +2753,7 @@ body {
   align-items: center;
   float: left;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 19px;
 }
 .ticket-order .category:last-of-type {
   margin-bottom: 0;
@@ -2790,12 +2807,9 @@ body {
 }
 
 .confirm-order {
-  grid-column: 2;
-  grid-row: 2;
   width: 530px;
   height: 663px;
-  margin-right: -57px;
-  padding: 25px 28px;
+  padding: 25px 30px;
   border: 1px solid #030303;
 }
 .confirm-order .overview-data {
@@ -2816,8 +2830,8 @@ body {
 .confirm-order .overview-data .overview-poster {
   grid-column: 3/4;
   grid-row: 1/6;
-  width: 150px;
-  height: 120px;
+  width: 100%;
+  height: auto;
 }
 .confirm-order .overview-data .overview-ico {
   width: 15px;
@@ -2842,10 +2856,11 @@ body {
   grid-column: 1/2;
   grid-row: 5;
   margin-bottom: 0;
+  align-self: center;
   background-image: url(../assets/svg/book-form/check_circle_outline.svg);
 }
 .confirm-order .overview-data .overview-txt {
-  grid-column: 2/3;
+  grid-column: 2/4;
   margin: 0 0 5px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -3021,11 +3036,11 @@ body {
   width: 100%;
   height: 45px;
   background-color: #161615;
-  margin: 0 0 15px;
+  margin: 1px 0 15px;
 }
 .payment-data .back-side .card-lbl {
   width: 57px;
-  margin: 0 33px 5px auto;
+  margin: 0 30px 6px auto;
   text-align: center;
 }
 .payment-data .back-side .card-inp {
@@ -3042,7 +3057,7 @@ body {
 }
 .payment-data .back-side .cvv-comment__wrapper .cvv-comment {
   font-size: 10px;
-  line-height: 12px;
+  line-height: 11px;
 }
 .payment-data .card-lbl {
   display: block;
@@ -3095,6 +3110,133 @@ body {
   grid-area: cardholder;
 }
 
+@media (max-width: 1024px) {
+  .buy-form .btn-close {
+    margin: 30px 27px 20px auto;
+  }
+  .ticket-order .category {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .buy-form {
+    max-width: 590px;
+    width: 100%;
+    padding-bottom: 40px;
+    gap: 42px;
+  }
+  .buy-form .buy-form__wrapper {
+    flex-direction: column;
+    gap: 44px;
+    margin: 0 30px;
+  }
+  .buy-form .btn-close {
+    margin: 30px 30px 25px auto;
+  }
+  .buy-form .section-title__wrapper {
+    margin-bottom: 18px;
+  }
+  .buy-form .section-subtitle__wrapper {
+    margin-bottom: 38px;
+  }
+  .buy-form .place-order {
+    width: 100%;
+  }
+  .buy-form .place-order .input-datetime {
+    gap: 28px;
+  }
+  .buy-form .place-order .ticket-date,
+.buy-form .place-order .ticket-time {
+    margin: 0;
+    width: 50%;
+  }
+  .buy-form .confirm-order {
+    width: 100%;
+    padding: 25px 15px;
+  }
+  .buy-form .confirm-order .overview-order {
+    margin-bottom: 15px;
+  }
+  .buy-form .confirm-order .overview-data .ticket-type-ico {
+    align-self: flex-start;
+  }
+  .buy-form .confirm-order .payment-data .back-side {
+    margin-top: -183px;
+    margin-left: 140px;
+  }
+  .buy-form .btn-submit {
+    margin: 24px 0 0 auto;
+    font-size: 20px;
+    line-height: 23px;
+  }
+  .ticket-order .category {
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 590px) {
+  .buy-form .confirm-order {
+    height: 100%;
+  }
+  .buy-form .confirm-order .payment-data {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .buy-form .confirm-order .payment-data .card-param {
+    position: static;
+    margin: 0 auto;
+    width: 330px;
+    height: 209px;
+  }
+}
+@media (max-width: 445px) {
+  .buy-form .section-title__wrapper {
+    height: 100%;
+    margin-bottom: 15px;
+  }
+  .buy-form .section-title {
+    font-size: 32px;
+    line-height: 35px;
+  }
+}
+@media (max-width: 420px) {
+  .buy-form .section-title__wrapper {
+    height: 100%;
+    margin-bottom: 15px;
+  }
+  .buy-form .section-title {
+    font-size: 32px;
+    line-height: 35px;
+  }
+  .buy-form .buy-form__wrapper {
+    gap: 40px;
+  }
+  .buy-form .place-order .input-datetime {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .buy-form .place-order .input-datetime > * {
+    width: 100%;
+  }
+  .buy-form .confirm-order .overview-data {
+    grid-template-columns: 15px 1fr 120px;
+  }
+  .buy-form .confirm-order .overview-data .overview-poster {
+    width: 100%;
+    height: auto;
+  }
+  .buy-form .confirm-order .overview-data .ticket-time-txt {
+    margin-bottom: 6px;
+  }
+  .buy-form .btn-submit {
+    margin: 40px 0 0 auto;
+    font-size: 20px;
+    line-height: 23px;
+  }
+  .ticket-order .category {
+    margin-bottom: 19px;
+  }
+}
 .parallax {
   width: 100%;
   height: 400px;

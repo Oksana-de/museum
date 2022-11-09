@@ -4,19 +4,25 @@
     top: 0;
     left: 0;
     z-index: 10;
-    // display: grid;
-    grid-template-columns: repeat(2, auto) calc(25px + 30px);
-    grid-template-rows: minmax(calc(25px + 20px + 30px), calc(25px + 36px + 30px)) 663px;
     max-width: $desktop-1920;
     width: 100%;
     padding-bottom: 91px;
     background-color: $light;
 
+    &.show {
+        display: block;
+    }
+
+    .buy-form__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin: 0 20px;
+    }
+
     .btn-close {
-        grid-column: 1 / 4;
-        grid-row: 1;
-        margin: 30px 30px 0 0;
-        justify-self: end;
+        margin: 30px 30px 36px auto;
     }
 
     .section-title__wrapper {
@@ -59,17 +65,14 @@
 }
 
 .place-order {
-    grid-column: 1;
-    grid-row: 2;
-    margin: 0 40px 0 auto;
     width: 400px;
-    justify-self: end;
 
     .logo__icon {
         margin-top: 0;
         width: 85px;
         height: 41px;
-        background-size: 85px 41px;
+        background-size: cover;
+        background-position: center;
         filter: invert(56%) sepia(6%) saturate(2019%) hue-rotate(356deg) brightness(96%) contrast(85%);
     }
 
@@ -115,8 +118,7 @@
         }
     }
 
-    .ticket-type__wrapper {
-        
+    .ticket-type__wrapper {        
         &::before {
             content: url(../assets/svg/book-form/ticket-ico.svg);
         }
@@ -124,6 +126,16 @@
 
     .input-datetime {
         @include flex;
+
+        & > *::after{            
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 44px;
+            right: 15px;
+            padding: 4px 0;
+            background-color: $light;
+        }
     }
 
     .input-data {
@@ -151,6 +163,10 @@
             padding-top: 13px;
             content: url(../assets/svg/book-form/date-ico.svg);
         }
+
+        &::after {
+            content: "Date";
+        }
     }
 
     .ticket-time {
@@ -159,6 +175,10 @@
         &::before {
             padding-top: 13px;
             content: url(../assets/svg/book-form/time-ico.svg);
+        }
+
+        &::after {
+            content: "Time";
         }
     }
 
@@ -192,7 +212,7 @@
         @include flex;
         float: left;
         width: 100%;
-        margin-bottom: 16px;
+        margin-bottom: 19px;
 
         &:last-of-type {
             margin-bottom: 0;
@@ -238,12 +258,9 @@
 }
 
 .confirm-order {
-    grid-column: 2;
-    grid-row: 2;
     width: 530px;
     height: 663px;
-    margin-right: calc(-2px - 55px);
-    padding: 25px calc(30px - 1px * 2);
+    padding: 25px 30px;
     border: 1px solid $dark-bg;
 
     .overview-data {
@@ -266,8 +283,8 @@
         .overview-poster {
             grid-column: 3 / 4;
             grid-row: 1 / 6;
-            width: 150px;
-            height: 120px;
+            width: 100%;
+            height: auto;
         }
 
         .overview-ico {
@@ -296,11 +313,12 @@
             grid-column: 1 / 2;
             grid-row: 5;
             margin-bottom: 0;
+            align-self: center;
             background-image: url(../assets/svg/book-form/check_circle_outline.svg);
         }
 
         .overview-txt {
-            grid-column: 2 / 3;
+            grid-column: 2 / 4;
             margin: 0 0 5px;
             @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
             font-weight: 300;           
@@ -490,12 +508,12 @@
             width: 100%;
             height: 45px;
             background-color: #161615;
-            margin: 0 0 15px;
+            margin: 1px 0 15px;
         }
 
         .card-lbl {
             width: 57px;
-            margin: 0 33px 5px auto;
+            margin: 0 30px 6px auto;
             text-align: center;
         }
 
@@ -514,7 +532,7 @@
 
             .cvv-comment {
                 font-size: 10px;
-                line-height: 12px;
+                line-height: 11px;
             }
         }
     }
@@ -579,5 +597,188 @@
 
     .card-name {
         grid-area: cardholder;
+    }
+}
+
+@media (max-width: $desktop-1024) {
+    .buy-form {    
+        .btn-close {
+            margin: 30px 27px 20px auto;
+        }
+    }
+
+    .ticket-order {            
+        .category {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .buy-form {    
+        max-width: 590px;
+        width: 100%;
+        padding-bottom: 40px;
+        gap: 42px;
+
+        .buy-form__wrapper {
+            flex-direction: column;
+            gap: 44px;
+            margin: 0 30px;
+        }
+
+        .btn-close {
+            margin: 30px 30px 25px auto;
+        }
+
+        .section-title__wrapper {
+            margin-bottom: 18px;
+        }
+
+        .section-subtitle__wrapper {
+            margin-bottom: 38px;
+        }
+
+        .place-order {
+            width: 100%;
+
+            .input-datetime {
+                gap: 28px;
+            }
+
+            .ticket-date,
+            .ticket-time {
+                margin: 0;
+                width: 50%;
+            }
+        }
+
+        .confirm-order {
+            width: 100%;
+            padding: 25px 15px;
+
+            .overview-order {
+                margin-bottom: 15px;
+            }
+
+            .overview-data {
+                .ticket-type-ico {
+                    align-self: flex-start;
+                }
+            }
+
+            .payment-data {
+                .back-side {
+                    margin-top: calc(30px - 213px);
+                    margin-left: 140px;
+                }
+            }
+        }
+
+        .btn-submit {
+            margin: 24px 0 0 auto;
+            font-size: 20px;
+            line-height: 23px;
+        }
+    }
+
+    .ticket-order {            
+        .category {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+@media (max-width: 590px) {
+    .buy-form {
+        .confirm-order {
+            height: 100%;
+
+            .payment-data {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+
+                .card-param {
+                    position: static;
+                    margin: 0 auto;
+                    width: 330px;
+                    height: 209px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 445px) {
+    .buy-form {    
+
+        .section-title__wrapper {
+            height: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            line-height: 35px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .buy-form {    
+
+
+        .section-title__wrapper {
+            height: 100%;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            line-height: 35px;
+        }
+
+        .buy-form__wrapper {
+            gap: 40px;
+        }
+
+        .place-order {
+            .input-datetime {
+                flex-direction: column;
+                gap: 20px;
+
+                & > * {
+                    width: 100%;
+                }
+            }
+        }
+
+        .confirm-order {
+            .overview-data {
+                grid-template-columns: 15px 1fr 120px;
+
+                .overview-poster {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .ticket-time-txt {
+                    margin-bottom: 6px;
+                }
+            }
+        }
+
+        .btn-submit {
+            margin: 40px 0 0 auto;
+            font-size: 20px;
+            line-height: 23px;
+        }
+    }
+
+    .ticket-order {            
+        .category {
+            margin-bottom: 19px;
+        }
     }
 }
