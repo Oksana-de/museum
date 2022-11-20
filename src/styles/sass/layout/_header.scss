@@ -54,7 +54,7 @@
     padding: 0;
     width: 32px;
     height: 18px;
-    background-image: url(../assets/svg/burger-menu-btn.svg);
+    background-image: url(../../assets/svg/burger-menu-btn.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -95,7 +95,7 @@
                 & ~ .burger-menu-btn {
                     width: 25px;
                     height: 25px;
-                    background-image: url(../assets/svg/burger-menu-btn-close.svg);
+                    background-image: url(../../assets/svg/burger-menu-btn-close.svg);
                     background-position: center;
                 }
     
@@ -128,7 +128,7 @@
                         width: 12px;
                         height: 12px;
                         content: "";
-                        background-image: url(../assets/svg/arrow-nav.svg);
+                        background-image: url(../../assets/svg/arrow-nav.svg);
                         background-repeat: no-repeat;
                         background-size: contain;
                         background-position: top right;
@@ -181,7 +181,7 @@
                         width: 12px;
                         height: 12px;
                         content: "";
-                        background-image: url(../assets/svg/arrow-nav.svg);
+                        background-image: url(../../assets/svg/arrow-nav.svg);
                         background-repeat: no-repeat;
                         background-size: contain;
                         background-position: top right;                        

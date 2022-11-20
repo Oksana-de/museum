@@ -42,7 +42,7 @@
         height: 220px;
         top: calc(50% - 220px / 2);
         left: calc(50% - 220px / 2);
-        background-image: url(../assets/svg/play-btn.svg);
+        background-image: url(../../assets/svg/play-btn.svg);
         transition: opacity $transition-duration;
 
         &:hover {
@@ -68,7 +68,7 @@
     .play-control {
         width: 23px;
         height: 31px;
-        background-image: url(../assets/svg/play-control.svg);
+        background-image: url(../../assets/svg/play-control.svg);
         transition: filter $transition-duration;
 
         &:hover {
@@ -79,7 +79,7 @@
     .volume-control {
         width: 38px;
         height: 31px;
-        background-image: url(../assets/svg/volume.svg);
+        background-image: url(../../assets/svg/volume.svg);
         transition: filter $transition-duration;
 
         &:hover {
@@ -90,7 +90,7 @@
     .full-screen {
         width: 35px;
         height: 35px;
-        background-image: url(../assets/svg/full-screen.svg);
+        background-image: url(../../assets/svg/full-screen.svg);
         transition: filter $transition-duration;
 
         &:hover {
@@ -212,11 +212,11 @@
         }
 
         &.left {
-            background-image: url(../assets/svg/stroke-left.svg);
+            background-image: url(../../assets/svg/stroke-left.svg);
         }
 
         &.right {
-            background-image: url(../assets/svg/stroke-right.svg);
+            background-image: url(../../assets/svg/stroke-right.svg);
         }
     }
 }

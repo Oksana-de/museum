@@ -120,11 +120,11 @@
         }
 
         .arrow__left {
-            background-image: url(../assets/svg/arrow-left.svg);
+            background-image: url(../../assets/svg/arrow-left.svg);
         }
 
         .arrow__right {
-            background-image: url(../assets/svg/arrow-right.svg);
+            background-image: url(../../assets/svg/arrow-right.svg);
         }
     }
 }
@@ -163,23 +163,23 @@
 }
 
 .img-01 {
-    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-01.jpg);
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../../assets/img/welcome-slider/img-01.jpg);
 }
 
 .img-02 {
-    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-02.jpg);
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../../assets/img/welcome-slider/img-02.jpg);
 }
 
 .img-03 {
-    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-03.jpg);
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../../assets/img/welcome-slider/img-03.jpg);
 }
 
 .img-04 {
-    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-04.jpg);
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../../assets/img/welcome-slider/img-04.jpg);
 }
 
 .img-05 {
-    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../assets/img/welcome-slider/img-05.jpg);
+    background-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 16.19%, rgba(0,0,0,0) 30.73%),url(../../assets/img/welcome-slider/img-05.jpg);
 }
 
 @media (max-width: $desktop-1024) {
@@ -298,23 +298,23 @@
     }
 
     .img-01 {
-        background-image: url(../assets/img/welcome-slider/img-01.jpg);
+        background-image: url(../../assets/img/welcome-slider/img-01.jpg);
     }
     
     .img-02 {
-        background-image: url(../assets/img/welcome-slider/img-02.jpg);
+        background-image: url(../../assets/img/welcome-slider/img-02.jpg);
     }
     
     .img-03 {
-        background-image: url(../assets/img/welcome-slider/img-03.jpg);
+        background-image: url(../../assets/img/welcome-slider/img-03.jpg);
     }
     
     .img-04 {
-        background-image: url(../assets/img/welcome-slider/img-04.jpg);
+        background-image: url(../../assets/img/welcome-slider/img-04.jpg);
     }
     
     .img-05 {
-        background-image: url(../assets/img/welcome-slider/img-05.jpg);
+        background-image: url(../../assets/img/welcome-slider/img-05.jpg);
     }
 }
 

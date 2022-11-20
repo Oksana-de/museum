@@ -98,7 +98,7 @@
     .ticket-name__wrapper {
         
         &::before {
-            content: url(../assets/svg/book-form/name-ico.svg);
+            content: url(../../assets/svg/book-form/name-ico.svg);
         }
     }
 
@@ -106,7 +106,7 @@
         
         &::before {
             margin-top: -3px;
-            content: url(../assets/svg/book-form/email-ico.svg);
+            content: url(../../assets/svg/book-form/email-ico.svg);
         }
     }
 
@@ -114,13 +114,13 @@
         
         &::before {
             padding-top: 4px;
-            content: url(../assets/svg/book-form/tel-ico.svg);
+            content: url(../../assets/svg/book-form/tel-ico.svg);
         }
     }
 
     .ticket-type__wrapper {        
         &::before {
-            content: url(../assets/svg/book-form/ticket-ico.svg);
+            content: url(../../assets/svg/book-form/ticket-ico.svg);
         }
     }
 
@@ -161,7 +161,7 @@
         
         &::before {
             padding-top: 13px;
-            content: url(../assets/svg/book-form/date-ico.svg);
+            content: url(../../assets/svg/book-form/date-ico.svg);
         }
 
         &::after {
@@ -174,7 +174,7 @@
 
         &::before {
             padding-top: 13px;
-            content: url(../assets/svg/book-form/time-ico.svg);
+            content: url(../../assets/svg/book-form/time-ico.svg);
         }
 
         &::after {
@@ -190,7 +190,7 @@
             -webkit-appearance: none;
             margin: 0;
             padding: 0;
-            content: url(../assets/svg/book-form/arrow-to-open.svg);
+            content: url(../../assets/svg/book-form/arrow-to-open.svg);
             width: 17px;
             height: 17px;
             cursor: pointer;
@@ -300,13 +300,13 @@
         .ticket-date-ico {
             grid-column: 1 / 2;
             grid-row: 3;
-            background-image: url(../assets/svg/book-form/date-ico.svg);
+            background-image: url(../../assets/svg/book-form/date-ico.svg);
         }
 
         .ticket-time-ico {
             grid-column: 1 / 2;
             grid-row: 4;
-            background-image: url(../assets/svg/book-form/time-ico.svg);
+            background-image: url(../../assets/svg/book-form/time-ico.svg);
         }
 
         .ticket-type-ico {
@@ -314,7 +314,7 @@
             grid-row: 5;
             margin-bottom: 0;
             align-self: center;
-            background-image: url(../assets/svg/book-form/check_circle_outline.svg);
+            background-image: url(../../assets/svg/book-form/check_circle_outline.svg);
         }
 
         .overview-txt {
@@ -481,12 +481,12 @@
                     cursor: pointer;
 
                     &.spin__up {
-                        background-image: url(../assets/svg/book-form/spin-up.svg);
+                        background-image: url(../../assets/svg/book-form/spin-up.svg);
                         background-position: center calc(35px / 2 - .5px - 4px - 1.5px);
                     }
 
                     &.spin__down {
-                        background-image: url(../assets/svg/book-form/spin-down.svg);
+                        background-image: url(../../assets/svg/book-form/spin-down.svg);
                         background-position: center 1.5px;
                     }
                 }
@@ -576,13 +576,13 @@
     .visa {
         height: 16px;
         margin: 19px 0 15px auto;
-        background-image: url(../assets/img/book-form/book-visa.png);
+        background-image: url(../../assets/img/book-form/book-visa.png);
     }
 
     .mc {
         height: 32px;
         margin: 0 0 0 auto;
-        background-image: url(../assets/img/book-form/book-mc.png);
+        background-image: url(../../assets/img/book-form/book-mc.png);
     }
 
     .card-number {

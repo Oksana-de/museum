@@ -82,23 +82,23 @@
 }
 
 .yt {
-    background-image: url(../assets/svg/yt.svg);
+    background-image: url(../../assets/svg/yt.svg);
 }
 
 .ig {
-    background-image: url(../assets/svg/ig.svg);
+    background-image: url(../../assets/svg/ig.svg);
 }
 
 .fb {
-    background-image: url(../assets/svg/fb.svg);
+    background-image: url(../../assets/svg/fb.svg);
 }
 
 .tt {
-    background-image: url(../assets/svg/tt.svg);
+    background-image: url(../../assets/svg/tt.svg);
 }
 
 .pt {
-    background-image: url(../assets/svg/pt.svg);
+    background-image: url(../../assets/svg/pt.svg);
 }
 
 .deco-line {
@@ -163,7 +163,7 @@
         &.e-mail {
             &::before {
                 filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
-                background-image: url(../assets/svg/e-mail.svg);
+                background-image: url(../../assets/svg/e-mail.svg);
             }
 
         } 
@@ -171,14 +171,14 @@
         &.linkedin {
             &::before {
                 filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
-                background-image: url(../assets/svg/linkedin.svg);
+                background-image: url(../../assets/svg/linkedin.svg);
             }            
         }
         
         &.gh {
             &::before {
                 filter: invert(86%) sepia(93%) saturate(24%) hue-rotate(170deg) brightness(113%) contrast(100%);
-                background-image: url(../assets/svg/gh.svg);
+                background-image: url(../../assets/svg/gh.svg);
             }            
         }
 
