@@ -228,12 +228,12 @@ SliderWelcome.prototype.thumbsSwitcher = function(): void {
     }))
 }
 
-const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, 3000, directionSlidesClasses);
-sliderWelcome.stopSlider();
-sliderWelcome.startSlider();
+// const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, 3000, directionSlidesClasses);
+// sliderWelcome.stopSlider();
+// sliderWelcome.startSlider();
 
-sliderWelcome.detectDirectionToSlide(sliderWelcome.direction);
-sliderWelcome.thumbsSwitcher();
+// sliderWelcome.detectDirectionToSlide(sliderWelcome.direction);
+// sliderWelcome.thumbsSwitcher();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
 

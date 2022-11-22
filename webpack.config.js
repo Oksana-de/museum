@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const tourPages = 6;
+const tourPages = 7;
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
