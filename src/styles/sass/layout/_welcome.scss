@@ -340,6 +340,32 @@
         height: 546px;
     }
 
+    .welcome__img {
+        width: calc(100% - 40px);
+
+        &.active-slide {
+            left: 20px;
+        }
+    }
+
+    @keyframes from-left {
+        0% {
+            left: -100%;
+        }
+        100% {
+            left: 20px;
+        }
+    }
+      
+    @keyframes from-right {
+        0% {
+            left: 100%;
+        }
+        100% {
+            left: 20px;
+        }
+    }
+
     .img-01 {
         background-image: url(../../assets/img/welcome-slider/img-01.jpg);
     }
