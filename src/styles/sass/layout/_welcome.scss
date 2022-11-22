@@ -150,6 +150,7 @@
 
 .welcome__img {
     display: none;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
@@ -157,8 +158,50 @@
     background-size: contain;
     animation: $transition-duration ease-in-out;
 
-    &.active {
+    &.active-slide {
         display: flex;
+        left: 0;
+    }
+
+    &.backstage-slide {
+        display: flex;
+        left: -100%;
+    }
+  
+    &.show-from-left {
+        animation-name: from-left;
+    }
+  
+    &.show-from-right {
+        animation-name: from-right;
+    }   
+    
+    &.hide-to-right {
+        animation-name: from-right;
+        animation-direction: reverse;
+    }
+    
+    &.hide-to-left {
+        animation-name: from-left;
+        animation-direction: reverse;
+    }
+}
+  
+@keyframes from-left {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+  
+@keyframes from-right {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: 0;
     }
 }
 
