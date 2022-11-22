@@ -29,13 +29,17 @@
     &::before,
     &::after {
         position: absolute;
-        top: calc((25px - 35px) / 2);
+        top: 26px;
         left: calc((25px - 1px) / 2);
         content: "";
         width: 1px;
         height: 34px;
         background-color: $dark-bg;
         transition: background-color $transition-duration;
+
+        @media (max-width: $desktop-1024) {
+            top: 26px;        
+        }
     }
 
     &::before {
