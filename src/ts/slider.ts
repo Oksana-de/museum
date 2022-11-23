@@ -67,22 +67,21 @@ Slider.prototype.cancelClassNames = function(position: number): void {
     });
 }
 
-Slider.prototype.startInfinitieSlider = function(position: number): void {    
+Slider.prototype.runSlider = function(position: number): void {    
     this.timeoutID = setTimeout(() => {
         this.cancelClassNames(this.currentSlidePosition);
         this.defineCurrentSlidePosition(position);
-        this.playSlide(this.currentSlidePosition);        
+        this.playInfiniteSlider(this.currentSlidePosition);        
     }, this.speed);
 }
 
-Slider.prototype.playSlide = function(position: number): void {
+Slider.prototype.playInfiniteSlider = function(position: number): void {
     this.assignClassNames(position);                   
-    this.startInfinitieSlider(position);
+    this.runSlider(position);
 }
 
 Slider.prototype.detectDirectionToSlide = function(direction: string): void {
     this.direction = direction;
-    this.playSlide(this.currentSlidePosition)
 }
 
 Slider.prototype.stopSlider = function(): void {
@@ -100,7 +99,7 @@ Slider.prototype.switchDirection = function(): void {
             :  Object.keys(this.dynamicSlidesClasses)[0];
 
             this.defineCurrentSlidePosition(this.currentSlidePosition);
-            this.playSlide(this.currentSlidePosition);
+            this.playInfiniteSlider(this.currentSlidePosition);
     });
 }
 
@@ -170,13 +169,14 @@ SliderWelcome.prototype.thumbsSwitcher = function(): void {
                 ? (Array.from(this.bullets).indexOf(element.target) - 1 + this.slides.length) % this.slides.length
                 : Array.from(this.bullets).indexOf(element.target);
 
-            this.playSlide(this.currentSlidePosition);
+            this.playInfiniteSlider(this.currentSlidePosition);
         }  
     }))
 }
 
 const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, 3000, directionSlidesClasses);
 sliderWelcome.detectDirectionToSlide(Object.keys(sliderWelcome.dynamicSlidesClasses)[0]);
+sliderWelcome.playInfiniteSlider(sliderWelcome.currentSlidePosition);
 sliderWelcome.preventEventWhileAnimate();
 
 sliderWelcome.stopSlider();
@@ -185,94 +185,3 @@ sliderWelcome.switchDirection();
 sliderWelcome.thumbsSwitcher();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
-
-// TODO: version of the slider for the Video-Section
-// const visibleSlidesFromLeft = ['first-slide', 'middle-slide', 'last-slide', 'backstage-slide'];
-// const slidesAnimationFromLeft = ['first-slide-from-left', 'middle-slide-from-left', 'last-slide-from-left', 'backstage-slide-from-left'];
-// const visibleSlidesFromRight = ['backstage-slide', 'first-slide', 'middle-slide', 'last-slide'];
-// const slidesAnimationFromRight = ['backstage-slide-from-right', 'first-slide-from-right', 'middle-slide-from-right', 'last-slide-from-right'];
-
-// const sliderAreaPortfolioSection = document.querySelector('.portfolio-section .slider__area');
-// const slides = document.querySelectorAll('.portfolio-section .slide');
-
-// const portfolioSlider = new SliderPortfolio(sliderAreaPortfolioSection, slides, 3000, visibleSlidesFromRight, visibleSlidesFromLeft, slidesAnimationFromRight, slidesAnimationFromLeft);
-
-// portfolioSlider.stopSlider();
-// portfolioSlider.startSlider();
-// portfolioSlider.detectDirectionToSlide(portfolioSlider.direction);
-// portfolioSlider.swipeMouseDownDetect();
-// portfolioSlider.swipeMouseUpDetect();
-
-// function SliderPortfolio(sliderArea, slides, timeoutDuration, rightClassNamesArray, leftClassNamesArray, rightAnimationClassNamesArray, leftAnimationClassNamesArray) {
-//     Slider.call(this, sliderArea, slides, timeoutDuration, rightClassNamesArray, leftClassNamesArray, rightAnimationClassNamesArray, leftAnimationClassNamesArray);
-
-//     this.surface = sliderArea;
-//     this.startX = 0;
-//     this.startY = 0;
-//     this.distX = 0;
-//     this.distY = 0;
-//     this.startTime = 0;
-//     this.elapsedTime = 0;
-//     this.threshold = 150;
-//     this.restraint = 100;
-//     this.allowedTime = 300;
-// }
-// SliderPortfolio.prototype = Object.create(Slider.prototype);
-// Object.defineProperty(SliderPortfolio.prototype, 'constructor', {
-//     value: SliderPortfolio,
-//     enumerable: false,
-//     writable: true
-// });
-
-// SliderPortfolio.prototype.swipeMouseDownDetect = function() {
-    
-//     this.surface.addEventListener('mousedown', (e) => {
-//         if (this.isUnabled) {
-//             this.startX = e.pageX;
-//             this.startY = e.pageY;
-//             this.startTime = new Date().getTime();
-//             e.preventDefault();
-//         }
-//     })
-// }
-
-// SliderPortfolio.prototype.swipeMouseUpDetect = function() {
-//     this.surface.addEventListener('mouseup', (e) => {
-//         this.distX = e.pageX - this.startX;
-//         this.distY = e.pageY - this.startY;
-//         this.elapsedTime = new Date().getTime() - this.startTime;
-
-//         if (this.elapsedTime <= this.allowedTime) {
-//             if (Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint) {
-//                 if (this.distX < 0) {
-//                     if (this.isUnabled && this.direction === 'fromLeft') {    
-//                         this.direction = 'fromRight';
-
-//                         this.removeSlidesFromLeft(this.currentSlidePosition);
-//                         this.addSlidesFromRight(this.currentSlidePosition);
-//                     } else { 
-//                         this.direction = 'fromRight';
-
-//                         this.removeSlidesFromRight(this.currentSlidePosition);
-//                         this.defineCurrentSlidePosition(this.currentSlidePosition + 1);
-//                         this.addSlidesFromRight(this.currentSlidePosition);
-//                     }
-//                 } else {
-//                     if (this.isUnabled && this.direction === 'fromRight') {    
-//                         this.direction = 'fromLeft';
-
-//                         this.removeSlidesFromRight(this.currentSlidePosition);
-//                         this.addSlidesFromLeft(this.currentSlidePosition);
-//                     } else {   
-//                         this.direction = 'fromLeft';
-
-//                         this.removeSlidesFromLeft(this.currentSlidePosition);
-//                         this.defineCurrentSlidePosition(this.currentSlidePosition - 1);
-//                         this.addSlidesFromLeft(this.currentSlidePosition);
-//                     }
-//                 }
-//             }  
-//             e.preventDefault();
-//         }
-//     })
-// }    
