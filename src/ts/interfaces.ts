@@ -1,35 +1,35 @@
-interface dynamicSlidesClassesInterface {
-    toLeft: {
-        pointer: string[],
-        animation: string[]
-    },
-    toRight: {
-        pointer: string[],
-        animation: string[]
-    }
+interface ClassNamesObj {
+    pointer: string[],
+    animation: string[]
+}
+
+
+interface DynamicSlidesClasses {
+    toLeft: ClassNamesObj,
+    toRight: ClassNamesObj
 }
 
 interface SliderInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
-    direction: string,
-    isUnabled: boolean,
-    timeoutID: number,
     speed: number,
+    dynamicSlidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
-    dynamicSlidesClasses: dynamicSlidesClassesInterface,
+    isUnabled: boolean,
+    direction: string,
+    timeoutID: number,
     numberOfVisibleSlides: number 
 }
 
 interface SliderWelcomeInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
-    direction: string,
-    isUnabled: boolean,
-    timeoutID: number,
     speed: number,
+    dynamicSlidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
-    dynamicSlidesClasses: dynamicSlidesClassesInterface,
+    isUnabled: boolean,
+    direction: string,
+    timeoutID: number,
     numberOfVisibleSlides: number,
     bullets: NodeListOf<Element>,
     indexOfSlideWelcome: number

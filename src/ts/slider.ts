@@ -5,8 +5,9 @@ const currentSlide: HTMLParagraphElement | null = document.querySelector('.welco
 const totalSlides: HTMLParagraphElement | null = document.querySelector('.welcome-section .last-page');
 
 let elementTarget: HTMLElement;
+let classNamesObj: ClassNamesObj;
 
-const directionSlidesClasses: dynamicSlidesClassesInterface = {
+const directionSlidesClasses: DynamicSlidesClasses = {
     toLeft: {
         pointer: ['backstage-slide', 'active-slide'],
         animation: ['hide-to-left', 'show-from-right']
@@ -22,79 +23,83 @@ const Slider = function(
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
     speed: number,
-    dynamicSlidesClasses: dynamicSlidesClassesInterface
+    dynamicSlidesClasses: DynamicSlidesClasses
 ) {
     this.sliderArea = sliderArea,
     this.slides = slides,
-    this.direction,
-    this.isUnabled = false,
-    this.timeoutID,
     this.speed = speed,
-    this.currentSlidePosition = 0,
     this.dynamicSlidesClasses = dynamicSlidesClasses,
+    this.currentSlidePosition = 0,
+    this.isUnabled = false,
+    this.direction,
+    this.timeoutID,
     // TODO: in the slider for video-section needed
     this.numberOfVisibleSlides
 }
 
-Slider.prototype.changeCurrentSlidePosition = function(position: number): number {
+Slider.prototype.defineCurrentSlidePosition = function(position: number): number {
     this.currentSlidePosition = (position + this.slides.length) % this.slides.length;
     return this.currentSlidePosition;
 }
 
+Slider.prototype.preventEventWhileAnimate = function(): void {
+    [...this.slides].map(sl => sl.addEventListener('animationend', (): boolean => {
+        return this.isUnabled = true;
+    }));
+}
+
+Slider.prototype.assignClassNames = function(direction: string, position: number): void {
+    classNamesObj = this.dynamicSlidesClasses[direction];
+
+    classNamesObj.pointer.map((className: string, index: number) => {
+        this.slides[(position + index) % this.slides.length].classList.add(className, classNamesObj.animation[index])
+    });
+}
+
+Slider.prototype.cancelClassNames = function(direction: string, position: number): void {
+    classNamesObj = this.dynamicSlidesClasses[direction];
+
+    classNamesObj.pointer.map((className: string, index: number) => {
+        this.slides[(position + index) % this.slides.length].classList.remove(className, classNamesObj.animation[index])
+    });
+}
+
 Slider.prototype.addSlidesFromRight = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[0];
-
-    this.dynamicSlidesClasses[this.direction].pointer.forEach((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.add(className, this.dynamicSlidesClasses[this.direction].animation[index]);
-
-        this.slides[(position + index) % this.slides.length].addEventListener('animationend', () => {
-            this.isUnabled = true;
-        });
-    });
+    this.assignClassNames(this.direction, position);
 }
 
 Slider.prototype.addSlidesFromLeft = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[1];
-
-    this.dynamicSlidesClasses[this.direction].pointer.forEach((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.add(className, this.dynamicSlidesClasses[this.direction].animation[index]);
-
-        this.slides[(position + index) % this.slides.length].addEventListener('animationend', () => {
-            this.isUnabled = true;
-        });
-    });
+    this.assignClassNames(this.direction, position);
 }
 
 Slider.prototype.removeSlidesFromRight = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[0];
 
     this.isUnabled = false;
-    this.dynamicSlidesClasses[this.direction].pointer
-        .forEach((className: string, index: number) => this.slides[(position + index) % this.slides.length].classList
-            .remove(className, this.dynamicSlidesClasses[this.direction].animation[index]));
+    this.cancelClassNames(this.direction, position);
 }
 
 Slider.prototype.removeSlidesFromLeft = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[1];   
 
     this.isUnabled = false;
-    this.dynamicSlidesClasses[this.direction].pointer
-        .forEach((className: string, index: number) => this.slides[(position + index) % this.slides.length].classList
-            .remove(className, this.dynamicSlidesClasses[this.direction].animation[index]));
+    this.cancelClassNames(this.direction, position);
 }
 
-Slider.prototype.moveSlidesToLeft = function(position: number): void {
+Slider.prototype.moveSlidesToLeft = function(position: number): void {    
     this.timeoutID = setTimeout(() => {
         this.removeSlidesFromRight(this.currentSlidePosition);
-        this.changeCurrentSlidePosition(position + 1);
+        this.defineCurrentSlidePosition(position + 1);
         this.playPreviouseSlide(this.currentSlidePosition);        
     }, this.speed);
 }
 
-Slider.prototype.moveSlidesToRight = function(position: number): void {
+Slider.prototype.moveSlidesToRight = function(position: number): void { 
     this.timeoutID = setTimeout(() => {
         this.removeSlidesFromLeft(this.currentSlidePosition);
-        this.changeCurrentSlidePosition(position - 1);
+        this.defineCurrentSlidePosition(position - 1);
         this.playNextSlide(this.currentSlidePosition);        
     }, this.speed);
 }
@@ -117,7 +122,7 @@ Slider.prototype.detectDirectionToSlide = function(param: string): void {
 
 Slider.prototype.stopSlider = function(): void {
     this.sliderArea.addEventListener('mouseenter', () => {
-        clearTimeout(this.timeoutID);
+        clearTimeout(this.timeoutID);        
     });
 }
 
@@ -125,12 +130,12 @@ Slider.prototype.startSlider = function(): void {
     this.sliderArea.addEventListener('mouseleave', () => {
         if (this.isUnabled && this.direction === Object.keys(this.dynamicSlidesClasses)[0]) {
             this.removeSlidesFromRight(this.currentSlidePosition);
-            this.changeCurrentSlidePosition(this.currentSlidePosition - 1);
+            this.defineCurrentSlidePosition(this.currentSlidePosition - 1);
             this.playNextSlide(this.currentSlidePosition);
         }
         if (this.isUnabled && this.direction === Object.keys(this.dynamicSlidesClasses)[1]) {
             this.removeSlidesFromLeft(this.currentSlidePosition);
-            this.changeCurrentSlidePosition(this.currentSlidePosition + 1);
+            this.defineCurrentSlidePosition(this.currentSlidePosition + 1);
             this.playPreviouseSlide(this.currentSlidePosition);
         }
     });
@@ -157,10 +162,7 @@ SliderWelcome.prototype.removeSlidesFromLeft = function(position: number): void 
     this.direction = Object.keys(this.dynamicSlidesClasses)[1];
 
     this.isUnabled = false;
-    this.dynamicSlidesClasses[this.direction].pointer
-        .forEach((className: string, index: number) => this.slides[(position + index) % this.slides.length].classList
-            .remove(className, this.dynamicSlidesClasses[this.direction].animation[index]));
-
+    this.cancelClassNames(this.direction, position);
     this.bullets[position].classList.remove('active');
 }
 
@@ -168,45 +170,26 @@ SliderWelcome.prototype.removeSlidesFromRight = function(position: number): void
     this.direction = Object.keys(this.dynamicSlidesClasses)[0];
 
     this.isUnabled = false;
-    this.dynamicSlidesClasses[this.direction].pointer
-        .forEach((className: string, index: number) => this.slides[(position + index) % this.slides.length].classList
-            .remove(className, this.dynamicSlidesClasses[this.direction].animation[index]));
-
+    this.cancelClassNames(this.direction, position);
     this.bullets[(position + 1) % this.slides.length].classList.remove('active');
 }
 
 SliderWelcome.prototype.addSlidesFromLeft = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[1];
 
-    this.dynamicSlidesClasses[this.direction].pointer.forEach((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.add(className, this.dynamicSlidesClasses[this.direction].animation[index]);
-        
-        this.bullets[(position + index) % this.slides.length].classList.remove('active');
-        this.bullets[position].classList.add('active');
-
-        currentSlide!.textContent = `${(position + 1).toString().padStart(2, '0')}`;
-
-        this.slides[(position + index) % this.slides.length].addEventListener('animationend', () => {
-            this.isUnabled = true;
-        });
-    });
+    this.assignClassNames(this.direction, position);
+    this.bullets[(position + 1) % this.slides.length].classList.remove('active');
+    this.bullets[position].classList.add('active');
+    currentSlide!.textContent = `${(position + 1).toString().padStart(2, '0')}`;
 }
 
 SliderWelcome.prototype.addSlidesFromRight = function(position: number): void {
     this.direction = Object.keys(this.dynamicSlidesClasses)[0];
 
-    this.dynamicSlidesClasses[this.direction].pointer.forEach((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.add(className, this.dynamicSlidesClasses[this.direction].animation[index]);
-        
-        this.bullets[position].classList.remove('active');
-        this.bullets[(position + 1) % this.slides.length].classList.add('active');
-
-        currentSlide!.textContent = `${((position + index) % this.slides.length + 1).toString().padStart(2, '0')}`;
-
-        this.slides[(position + index) % this.slides.length].addEventListener('animationend', () => {
-            this.isUnabled = true;
-        });
-    });
+    this.assignClassNames(this.direction, position);
+    this.bullets[position].classList.remove('active');
+    this.bullets[(position + 1) % this.slides.length].classList.add('active');
+    currentSlide!.textContent = `${((position + 1) % this.slides.length + 1).toString().padStart(2, '0')}`;
 }
 
 SliderWelcome.prototype.thumbsSwitcher = function(): void {
@@ -222,18 +205,20 @@ SliderWelcome.prototype.thumbsSwitcher = function(): void {
             clearTimeout(this.timeoutID);
 
             this.removeSlidesFromRight(this.currentSlidePosition);
-            this.changeCurrentSlidePosition(this.indexOfSlideWelcome - 1);
+            this.defineCurrentSlidePosition(this.indexOfSlideWelcome - 1);
             this.playPreviouseSlide(this.currentSlidePosition);
         }  
     }))
 }
 
-// const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, 3000, directionSlidesClasses);
-// sliderWelcome.stopSlider();
-// sliderWelcome.startSlider();
+const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, 3000, directionSlidesClasses);
+sliderWelcome.detectDirectionToSlide(sliderWelcome.direction);
+sliderWelcome.preventEventWhileAnimate();
 
-// sliderWelcome.detectDirectionToSlide(sliderWelcome.direction);
-// sliderWelcome.thumbsSwitcher();
+sliderWelcome.stopSlider();
+sliderWelcome.startSlider();
+
+sliderWelcome.thumbsSwitcher();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
 
@@ -305,7 +290,7 @@ totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '
 //                         this.direction = 'fromRight';
 
 //                         this.removeSlidesFromRight(this.currentSlidePosition);
-//                         this.changeCurrentSlidePosition(this.currentSlidePosition + 1);
+//                         this.defineCurrentSlidePosition(this.currentSlidePosition + 1);
 //                         this.addSlidesFromRight(this.currentSlidePosition);
 //                     }
 //                 } else {
@@ -318,7 +303,7 @@ totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '
 //                         this.direction = 'fromLeft';
 
 //                         this.removeSlidesFromLeft(this.currentSlidePosition);
-//                         this.changeCurrentSlidePosition(this.currentSlidePosition - 1);
+//                         this.defineCurrentSlidePosition(this.currentSlidePosition - 1);
 //                         this.addSlidesFromLeft(this.currentSlidePosition);
 //                     }
 //                 }
