@@ -3,6 +3,10 @@ interface ClassNamesObj {
     animation: string[]
 }
 
+interface SlidesClasses {
+    toLeft: string[],
+    toRight: string[]
+}
 
 interface DynamicSlidesClasses {
     toLeft: ClassNamesObj,
@@ -13,11 +17,13 @@ interface SliderInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
     speed: number,
-    dynamicSlidesClasses: DynamicSlidesClasses,
+    slidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
+    visibleSlides:Element[],
     timeoutID: number,
+    isInfinite: boolean,
     numberOfVisibleSlides: number 
 }
 
@@ -25,12 +31,16 @@ interface SliderWelcomeInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
     speed: number,
-    dynamicSlidesClasses: DynamicSlidesClasses,
+    slidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
+    visibleSlides: Element[],
     timeoutID: number,
+    isInfinite: boolean,
+
     numberOfVisibleSlides: number,
     bullets: NodeListOf<Element>,
+    arrows: NodeListOf<Element>,
     indexOfSlideWelcome: number
 }
