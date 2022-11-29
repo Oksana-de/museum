@@ -8,7 +8,12 @@ const totalSlides: HTMLParagraphElement | null = document.querySelector('.welcom
 let elementTarget: HTMLElement;
 let classNamesObj: ClassNamesObj;
 
-const slidesClasses: SlidesClasses = {
+const slidesWelcomeClasses: SlidesClasses = {
+    toLeft: ['hide-to-left', 'show-from-right'],
+    toRight: ['hide-to-right', 'show-from-left']
+}
+
+const slidesVideoClasses: SlidesClasses = {
     toLeft: ['hide-to-left', 'show-from-right'],
     toRight: ['hide-to-right', 'show-from-left']
 }
@@ -306,7 +311,7 @@ SliderWelcome.prototype.touchEndDetect = function() {
     })
 }
 
-const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesClasses, sliderWelcomeArea);
+const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesWelcomeClasses, sliderWelcomeArea);
 sliderWelcome.arrowsSwitcher();
 sliderWelcome.bulletsSwitcher();
 sliderWelcome.detectSwipe();
