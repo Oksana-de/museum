@@ -16,13 +16,13 @@ interface DynamicSlidesClasses {
 interface SliderInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
-    speed: number,
+    bullets: NodeListOf<Element>,
+    arrows: NodeListOf<Element>,
     slidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
     visibleSlides:Element[],
-    timeoutID: number,
     isInfinite: boolean,
     numberOfVisibleSlides: number 
 }
@@ -30,17 +30,13 @@ interface SliderInterface {
 interface SliderWelcomeInterface {
     sliderArea: Element | null,
     slides: NodeListOf<Element>,
-    speed: number,
+    bullets: NodeListOf<Element>,
+    arrows: NodeListOf<Element>,
     slidesClasses: DynamicSlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
     visibleSlides: Element[],
-    timeoutID: number,
     isInfinite: boolean,
-
     numberOfVisibleSlides: number,
-    bullets: NodeListOf<Element>,
-    arrows: NodeListOf<Element>,
-    indexOfSlideWelcome: number
 }
