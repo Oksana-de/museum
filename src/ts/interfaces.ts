@@ -14,7 +14,6 @@ interface DynamicSlidesClasses {
 }
 
 interface SliderInterface {
-    sliderArea: Element | null,
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
@@ -28,7 +27,6 @@ interface SliderInterface {
 }
 
 interface SliderWelcomeInterface {
-    sliderArea: Element | null,
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
@@ -39,4 +37,14 @@ interface SliderWelcomeInterface {
     visibleSlides: Element[],
     isInfinite: boolean,
     numberOfVisibleSlides: number,
+    sliderSurface: Element | null,
+    startX: number,
+    startY: number,
+    distX: number,
+    distY: number,
+    startTime: number,
+    elapsedTime: number,
+    threshold: number,
+    restraint: number,
+    allowedTime: number
 }

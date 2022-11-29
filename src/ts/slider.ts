@@ -15,13 +15,11 @@ const slidesClasses: SlidesClasses = {
 
 const Slider = function(
     this: SliderInterface,
-    sliderArea: Element | null,
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
     slidesClasses: DynamicSlidesClasses
 ) {
-    this.sliderArea = sliderArea,
     this.slides = slides,
     this.bullets = bullets,
     this.arrows =arrows,
@@ -95,8 +93,8 @@ Slider.prototype.moveSlide = function(target: Element, index: number): void {
         bullets[this.defineNextSlidePosition(this.currentSlidePosition)].classList.add('active');
     }   
 
-    [... this.visibleSlides].map((slide, index) => {
-        slide.classList.add('active-slide', this.slidesClasses[this.direction][index]);
+    [... this.visibleSlides].map((slide, slideIndex) => {
+        slide.classList.add('active-slide', this.slidesClasses[this.direction][slideIndex]);
         slide.addEventListener('animationend', this.setAnimation);
     });
 }
@@ -105,12 +103,22 @@ Slider.prototype.arrowsSwitcher = function(): void {
     currentSlide!.textContent = `${(this.currentSlidePosition + 1).toString().padStart(2, '0')}`;
 
     [...this.arrows].forEach((arrow, index) => arrow.addEventListener('click', (event: Event) => {
+        
        if (this.isUnabled === false) {
             this.toggleState();
             this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
             this.moveSlide(event.target, index);
         }
-    }))    
+    })); 
+
+    [...this.arrows].forEach((arrow, index) => arrow.addEventListener('touchstart', (event: TouchEvent) => {
+        
+       if (this.isUnabled === false) {
+            this.toggleState();
+            this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+            this.moveSlide(event.target, index);
+        }
+    }));    
 }
 
 Slider.prototype.bulletsSwitcher = function(): void {
@@ -121,7 +129,16 @@ Slider.prototype.bulletsSwitcher = function(): void {
             this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
             this.moveSlide(event.target, index);
         }        
-    }))
+    }));
+
+    [...this.bullets].forEach((bullet, index) => bullet.addEventListener('touchstart', (event: TouchEvent) => {
+
+        if (this.isUnabled === false && event.target instanceof HTMLElement && !event.target.classList.contains('active')) {
+            this.toggleState();
+            this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+            this.moveSlide(event.target, index);
+        }        
+    }));
 }
 
 // * Infinite Slider
@@ -188,13 +205,24 @@ Slider.prototype.switchDirection = function(): void {
 
 const SliderWelcome = function (
     this: SliderWelcomeInterface,
-    sliderArea: Element | null,
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
-    slidesClasses: DynamicSlidesClasses) {
+    slidesClasses: DynamicSlidesClasses,
+    sliderSurface: Element | null
+) {
 
-    Slider.call(this, sliderArea, slides, bullets, arrows, slidesClasses);
+    Slider.call(this, slides, bullets, arrows, slidesClasses);
+    this.sliderSurface = sliderSurface,
+    this.startX = 0;
+    this.startY = 0;
+    this.distX = 0;
+    this.distY = 0;
+    this.startTime = 0;
+    this.elapsedTime = 0;
+    this.threshold = 150;
+    this.restraint = 100;
+    this.allowedTime = 300;
 }
 
 SliderWelcome.prototype = Object.create(Slider.prototype);
@@ -205,8 +233,83 @@ Object.defineProperty(SliderWelcome.prototype, 'constructor', {
     writable: true
 });
 
-const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(sliderWelcomeArea, slidesWelcome, bullets, arrows, slidesClasses);
+SliderWelcome.prototype.detectSwipe = function(): void {  
+    this.mouseDownDetect();
+    this.mouseUpDetect();
+}
+
+SliderWelcome.prototype.mouseDownDetect = function(): void {        
+    this.sliderSurface.addEventListener('mousedown', (event: MouseEvent) => {
+        if (!this.isUnabled) {          
+            this.startX = event.pageX;
+            this.startY = event.pageY;
+            this.startTime = new Date().getTime();
+            event.preventDefault();
+        }
+    })
+}
+
+SliderWelcome.prototype.mouseUpDetect = function() {
+    this.sliderSurface.addEventListener('mouseup', (event: MouseEvent) => {
+        this.distX = event.pageX - this.startX;
+        this.distY = event.pageY - this.startY;
+        this.elapsedTime = new Date().getTime() - this.startTime;        
+
+        if (this.elapsedTime <= this.allowedTime) {
+            if (Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint && this.isUnabled === false) {
+                this.toggleState();
+                this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+
+                this.distX < 0
+                    ? this.moveSlide(event.target, 0)
+                    : this.moveSlide(event.target, 1);
+            }  
+            event.preventDefault();
+        }
+    })
+}
+
+
+SliderWelcome.prototype.detectTouch = function(): void {  
+    this.touchStartDetect();
+    this.touchEndDetect();
+}
+
+SliderWelcome.prototype.touchStartDetect = function(): void {        
+    this.sliderSurface.addEventListener('touchstart', (event: TouchEvent) => {    
+        if (!this.isUnabled) {          
+            this.startX = event.changedTouches[0].pageX;
+            this.startY = event.changedTouches[0].pageY;
+            this.startTime = new Date().getTime();
+            event.preventDefault();
+        }
+    })
+}
+
+SliderWelcome.prototype.touchEndDetect = function() {
+    this.sliderSurface.addEventListener('touchend', (event: TouchEvent) => {
+        this.distX = event.changedTouches[0].pageX - this.startX;
+        this.distY = event.changedTouches[0].pageY - this.startY;
+        this.elapsedTime = new Date().getTime() - this.startTime;        
+
+        if (this.elapsedTime <= this.allowedTime) {
+            if (Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint && this.isUnabled === false) {
+                this.toggleState();
+                this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+
+                this.distX < 0
+                    ? this.moveSlide(event.target, 0)
+                    : this.moveSlide(event.target, 1);
+            }  
+            event.preventDefault();
+        }
+    })
+}
+
+const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesClasses, sliderWelcomeArea);
 sliderWelcome.arrowsSwitcher();
 sliderWelcome.bulletsSwitcher();
+sliderWelcome.detectSwipe();
+sliderWelcome.detectTouch();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
