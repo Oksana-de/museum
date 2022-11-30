@@ -140,15 +140,15 @@
                 }
 
                 &.to-show {
-                    animation: from-left ease-in-out 0.5s;
+                    animation: menu-from-left ease .5s;
                 }
             
                 &.to-hide {
-                    animation: from-left reverse ease-in-out 0.5s;
+                    animation: menu-from-left reverse ease .5s;
                 }
             }
             
-            @keyframes from-left {
+            @keyframes menu-from-left {
                 from {
                     left: -100%;
                 }
