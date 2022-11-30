@@ -5,17 +5,26 @@ const arrows: NodeListOf<HTMLElement> = document.querySelectorAll('.welcome-sect
 const currentSlide: HTMLParagraphElement | null = document.querySelector('.welcome-section .current-page');
 const totalSlides: HTMLParagraphElement | null = document.querySelector('.welcome-section .last-page');
 
+const slidesVideo: NodeListOf<Element> = document.querySelectorAll('.video-section .video__item');
+const bulletsVideo: NodeListOf<HTMLElement> = document.querySelectorAll('.video-section .bullet__item');
+const arrowsVideo: NodeListOf<HTMLElement> = document.querySelectorAll('.video-section .stroke');
+
 let elementTarget: HTMLElement;
-let classNamesObj: ClassNamesObj;
 
 const slidesWelcomeClasses: SlidesClasses = {
-    toLeft: ['hide-to-left', 'show-from-right'],
-    toRight: ['hide-to-right', 'show-from-left']
+    animation: {
+        toLeft: ['hide-to-left', 'show-from-right'],
+        toRight: ['hide-to-right', 'show-from-left']
+    },
+    position: ['first']
 }
 
 const slidesVideoClasses: SlidesClasses = {
-    toLeft: ['hide-to-left', 'show-from-right'],
-    toRight: ['hide-to-right', 'show-from-left']
+    animation: {
+        toLeft: ['hide-to-left', 'first-from-right', 'second-from-right', 'show-from-right'],
+        toRight: ['hide-to-right', 'first-to-right', 'second-to-right', 'show-from-left']
+    },
+    position: ['first', 'second', 'third']
 }
 
 const Slider = function(
@@ -23,7 +32,7 @@ const Slider = function(
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
-    slidesClasses: DynamicSlidesClasses
+    slidesClasses: SlidesClasses
 ) {
     this.slides = slides,
     this.bullets = bullets,
@@ -37,11 +46,20 @@ const Slider = function(
     this.numberOfVisibleSlides = 1
 }
 
+Slider.prototype.setVisibleSlides = function(): NodeListOf<Element> {
+    this.visibleSlides = [this.slides[this.currentSlidePosition]];
+    for (let i = 1; i < this.numberOfVisibleSlides; i++) {
+        this.visibleSlides.push(this.slides[this.slideIndex(this.currentSlidePosition + i)]);
+    }
+
+    return this.visibleSlides;
+}
+
 Slider.prototype.toggleState = function(): boolean {
     this.isUnabled = !this.isUnabled;
    
     return this.isUnabled;
-};
+}
 
 Slider.prototype.setAnimation = (func: string): string => {
     return `this.${func}.bind(this)`;
@@ -54,8 +72,8 @@ Slider.prototype.slideIndex = function(index: number): number {
 
 Slider.prototype.defineNextSlidePosition = function(position: number): number {
     let nextSlidePosition: number = position;
-    nextSlidePosition = this.direction === Object.keys(this.slidesClasses)[0]
-        ? this.slideIndex(position + 1)
+    nextSlidePosition = this.direction === Object.keys(this.slidesClasses.animation)[0]
+        ? this.slideIndex(position + this.numberOfVisibleSlides)
         : this.slideIndex(position - 1);
 
     return nextSlidePosition;
@@ -63,9 +81,15 @@ Slider.prototype.defineNextSlidePosition = function(position: number): number {
 
 Slider.prototype.assignAnimationClasses = function(event: Event): void {
     [...this.visibleSlides].map((slide: Element, index: number): void => {
-        index === 0
-        ? slide.classList.remove('active-slide', this.slidesClasses[this.direction][index])
-        : slide.classList.remove(this.slidesClasses[this.direction][index]);
+        if (this.direction === Object.keys(this.slidesClasses.animation)[0]) {
+            index === 0
+                ? slide.classList.remove('active-slide', this.slidesClasses.animation[this.direction][index], this.slidesClasses.position[index])
+                : slide.classList.remove(this.slidesClasses.animation[this.direction][index], this.slidesClasses.position[index]);
+        } else {
+            index === this.numberOfVisibleSlides - 1
+                ? slide.classList.remove('active-slide', this.slidesClasses.animation[this.direction][index], this.slidesClasses.position[index])
+                : slide.classList.remove(this.slidesClasses.animation[this.direction][index], this.slidesClasses.position[index]);
+        }
 
         slide.removeEventListener('animationend', this.setAnimation);
     })    
@@ -73,39 +97,47 @@ Slider.prototype.assignAnimationClasses = function(event: Event): void {
     this.setAnimation = () => 'stop';
 
     if (!event) {
-        this.currentSlidePosition = [... this.slides].indexOf([...this.visibleSlides][1]);
-        this.visibleSlides = this.visibleSlides.slice(1);
+        this.direction === Object.keys(this.slidesClasses.animation)[0]
+            ? this.currentSlidePosition = [... this.slides].indexOf([...this.visibleSlides][1])
+            : this.currentSlidePosition = [... this.slides].indexOf([...this.visibleSlides][this.numberOfVisibleSlides])
+
+        this.visibleSlides = this.setVisibleSlides();  
+        
+        [... this.visibleSlides].map((slide, slidePosition) => {            
+            slide.classList.add(this.slidesClasses.position[slidePosition]);            
+        });
         this.toggleState();        
     }
 }
 
 Slider.prototype.moveSlide = function(target: Element, index: number): void {
-    bullets[this.currentSlidePosition].classList.remove('active');
+    this.bullets[this.currentSlidePosition].classList.remove('active');
 
     if (target.classList.contains('bullet__item')) {
         this.currentSlidePosition < index
-        ? this.direction = Object.keys(this.slidesClasses)[0]
-        : this.direction = Object.keys(this.slidesClasses)[1];
+        ? this.direction = Object.keys(this.slidesClasses.animation)[0]
+        : this.direction = Object.keys(this.slidesClasses.animation)[1];
 
         this.visibleSlides.push(this.slides[index]);
 
-        currentSlide!.textContent = `${(index + 1).toString().padStart(2, '0')}`;
         target.classList.add('active');
     } else {
-        this.direction = Object.keys(this.slidesClasses)[index];
+        this.direction = Object.keys(this.slidesClasses.animation)[index];
         this.visibleSlides.push(this.slides[this.defineNextSlidePosition(this.currentSlidePosition)]);
-        currentSlide!.textContent = `${(this.defineNextSlidePosition(this.currentSlidePosition) + 1).toString().padStart(2, '0')}`;
-        bullets[this.defineNextSlidePosition(this.currentSlidePosition)].classList.add('active');
+
+        this.direction === Object.keys(this.slidesClasses.animation)[0]
+            ? this.bullets[(this.currentSlidePosition + 1 + this.slides.length) % this.slides.length].classList.add('active')
+            : this.bullets[(this.currentSlidePosition - 1 + this.slides.length) % this.slides.length].classList.add('active');
     }   
 
     [... this.visibleSlides].map((slide, slideIndex) => {
-        slide.classList.add('active-slide', this.slidesClasses[this.direction][slideIndex]);
+        slide.classList.add('active-slide', this.slidesClasses.animation[this.direction][slideIndex]);
         slide.addEventListener('animationend', this.setAnimation);
     });
 }
 
 Slider.prototype.arrowsSwitcher = function(): void {
-    currentSlide!.textContent = `${(this.currentSlidePosition + 1).toString().padStart(2, '0')}`;
+    this.visibleSlides = this.setVisibleSlides();    
 
     [...this.arrows].forEach((arrow, index) => arrow.addEventListener('click', (event: Event) => {
         
@@ -146,74 +178,12 @@ Slider.prototype.bulletsSwitcher = function(): void {
     }));
 }
 
-// * Infinite Slider
-Slider.prototype.defineCurrentSlidePosition = function(position: number): number {
-    position = this.direction === Object.keys(this.slidesClasses)[0]
-        ? position + 1
-        : position - 1;
-
-    this.currentSlidePosition = (position + this.slides.length) % this.slides.length;
-    return this.currentSlidePosition;
-}
-
-Slider.prototype.assignClassNames = function(position: number): void {
-    classNamesObj = this.slidesClasses[this.direction];
-    classNamesObj.pointer.map((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.add(className, classNamesObj.animation[index]);
-    });
-}
-
-Slider.prototype.cancelClassNames = function(position: number): void {
-    classNamesObj = this.slidesClasses[this.direction];
-
-    classNamesObj.pointer.map((className: string, index: number) => {
-        this.slides[(position + index) % this.slides.length].classList.remove(className, classNamesObj.animation[index])
-    });
-}
-
-Slider.prototype.startInfiniteSlider = function(): void {
-    this.isInfinite = true;
-    this.sliderArea.addEventListener('mouseenter', this.pauseSlider.bind(this));
-    this.sliderArea.addEventListener('mouseleave', this.switchDirection.bind(this));
-    this.playInfiniteSlider(this.currentSlidePosition);
-}
-
-Slider.prototype.playInfiniteSlider = function(position: number): void {
-    this.assignClassNames(position);                   
-    this.runSlider(position);
-}
-
-Slider.prototype.runSlider = function(position: number): void {    
-    this.timeoutID = setTimeout(() => {
-        this.cancelClassNames(this.currentSlidePosition);
-        this.defineCurrentSlidePosition(position);
-        this.playInfiniteSlider(this.currentSlidePosition);        
-    }, this.speed);
-}
-
-Slider.prototype.pauseSlider = function(): void {    
-    clearTimeout(this.timeoutID);
-}
-
-Slider.prototype.switchDirection = function(): void {   
-    this.cancelClassNames(this.currentSlidePosition);
-
-    this.direction = this.direction ===  Object.keys(this.slidesClasses)[0]
-        ?  Object.keys(this.slidesClasses)[1]
-        :  Object.keys(this.slidesClasses)[0];
-
-    this.defineCurrentSlidePosition(this.currentSlidePosition);
-    this.playInfiniteSlider(this.currentSlidePosition);
-}
-
-//* End of the Infinite Slider
-
 const SliderWelcome = function (
     this: SliderWelcomeInterface,
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
-    slidesClasses: DynamicSlidesClasses,
+    slidesClasses: SlidesClasses,
     sliderSurface: Element | null
 ) {
 
@@ -237,6 +207,42 @@ Object.defineProperty(SliderWelcome.prototype, 'constructor', {
     enumerable: false,
     writable: true
 });
+
+SliderWelcome.prototype.detectActiveSlide = function(position: number): string {
+    return currentSlide!.textContent = `${(position + 1).toString().padStart(2, '0')}`;
+}
+
+SliderWelcome.prototype.moveSlide = function(target: Element, index: number): void {
+    this.bullets[this.currentSlidePosition].classList.remove('active');
+    
+
+    if (target.classList.contains('bullet__item')) {
+        this.currentSlidePosition < index
+        ? this.direction = Object.keys(this.slidesClasses.animation)[0]
+        : this.direction = Object.keys(this.slidesClasses.animation)[1];
+
+        this.visibleSlides.push(this.slides[index]);
+        this.detectActiveSlide(index);
+
+        target.classList.add('active');
+    } else {
+        this.direction = Object.keys(this.slidesClasses.animation)[index];
+        this.visibleSlides.push(this.slides[this.defineNextSlidePosition(this.currentSlidePosition)]);
+
+        if (this.direction === Object.keys(this.slidesClasses.animation)[0]) {
+            this.bullets[(this.currentSlidePosition + 1 + this.slides.length) % this.slides.length].classList.add('active');
+            this.detectActiveSlide((this.currentSlidePosition + 1 + this.slides.length) % this.slides.length);
+        } else {
+            this.bullets[(this.currentSlidePosition - 1 + this.slides.length) % this.slides.length].classList.add('active');
+            this.detectActiveSlide((this.currentSlidePosition - 1 + this.slides.length) % this.slides.length);
+        }
+    }   
+
+    [... this.visibleSlides].map((slide, slideIndex) => {
+        slide.classList.add('active-slide', this.slidesClasses.animation[this.direction][slideIndex]);
+        slide.addEventListener('animationend', this.setAnimation);
+    });
+}
 
 SliderWelcome.prototype.detectSwipe = function(): void {  
     this.mouseDownDetect();
@@ -274,7 +280,6 @@ SliderWelcome.prototype.mouseUpDetect = function() {
     })
 }
 
-
 SliderWelcome.prototype.detectTouch = function(): void {  
     this.touchStartDetect();
     this.touchEndDetect();
@@ -311,10 +316,38 @@ SliderWelcome.prototype.touchEndDetect = function() {
     })
 }
 
+// !!!
+const SliderVideo = function (
+    this: SliderWelcomeInterface,
+    slides: NodeListOf<Element>,
+    bullets: NodeListOf<Element>,
+    arrows: NodeListOf<Element>,
+    slidesClasses: SlidesClasses
+) {
+
+    Slider.call(this, slides, bullets, arrows, slidesClasses);
+    this.numberOfVisibleSlides = 3
+}
+
+SliderVideo.prototype = Object.create(Slider.prototype);
+
+Object.defineProperty(SliderVideo.prototype, 'constructor', {
+    value: SliderVideo,
+    enumerable: false,
+    writable: true
+});
+
+
+
 const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesWelcomeClasses, sliderWelcomeArea);
+sliderWelcome.detectActiveSlide(sliderWelcome.currentSlidePosition);
 sliderWelcome.arrowsSwitcher();
 sliderWelcome.bulletsSwitcher();
 sliderWelcome.detectSwipe();
 sliderWelcome.detectTouch();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
+
+const sliderVideo = new (SliderVideo as SliderInterface)(slidesVideo, bulletsVideo, arrowsVideo, slidesVideoClasses);
+sliderVideo.arrowsSwitcher();
+sliderVideo.bulletsSwitcher();
