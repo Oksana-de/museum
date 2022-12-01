@@ -27,6 +27,14 @@ const slidesVideoClasses: SlidesClasses = {
     position: ['first', 'second', 'third']
 }
 
+const slidesVideoClassesSmallScreen: SlidesClasses = {
+    animation: {
+        toLeft: ['hide-to-left', 'first-from-right', 'show-from-right'],
+        toRight: ['hide-to-right', 'first-to-right', 'show-from-left']
+    },
+    position: ['first', 'second']
+}
+
 const Slider = function(
     this: SliderInterface,
     slides: NodeListOf<Element>,
@@ -43,10 +51,12 @@ const Slider = function(
     this.direction = 'toLeft',
     this.visibleSlides = [this.slides[this.currentSlidePosition]],
     this.isInfinite = false,
-    this.numberOfVisibleSlides = 1
+    this.numberOfVisibleSlides
 }
 
 Slider.prototype.setVisibleSlides = function(): NodeListOf<Element> {
+    this.numberOfVisibleSlides = this.slidesClasses.position.length;
+
     this.visibleSlides = [this.slides[this.currentSlidePosition]];
     for (let i = 1; i < this.numberOfVisibleSlides; i++) {
         this.visibleSlides.push(this.slides[this.slideIndex(this.currentSlidePosition + i)]);
@@ -79,7 +89,7 @@ Slider.prototype.defineNextSlidePosition = function(position: number): number {
     return nextSlidePosition;
 }
 
-Slider.prototype.assignAnimationClasses = function(event: Event): void {
+Slider.prototype.assignAnimationClasses = function(event: Event): void {    
     [...this.visibleSlides].map((slide: Element, index: number): void => {
         if (this.direction === Object.keys(this.slidesClasses.animation)[0]) {
             index === 0
@@ -136,7 +146,7 @@ Slider.prototype.moveSlide = function(target: Element, index: number): void {
     });
 }
 
-Slider.prototype.arrowsSwitcher = function(): void {
+Slider.prototype.arrowsSwitcher = function(): void {   
     this.visibleSlides = this.setVisibleSlides();    
 
     [...this.arrows].forEach((arrow, index) => arrow.addEventListener('click', (event: Event) => {
@@ -337,7 +347,46 @@ Object.defineProperty(SliderVideo.prototype, 'constructor', {
     writable: true
 });
 
+SliderVideo.prototype.detectScreenSize = function(): SlidesClasses {
+    this.slides = slidesVideo;
+    if (window.screen.width <= 768) {
+        this.slidesClasses = slidesVideoClassesSmallScreen;
 
+        if (this.screenSize !== 'small') {
+            reassignClasses(this.slidesClasses, this.slides);
+            this.screenSize = 'small';
+            return this.slidesClasses;           
+        }
+
+        return this.slidesClasses;
+
+    } else {
+        this.slidesClasses = slidesVideoClasses;
+
+        if (this.screenSize !== 'big') {
+            reassignClasses(this.slidesClasses, this.slides);
+            this.screenSize = 'big';
+            return this.slidesClasses;            
+        }
+        return this.slidesClasses;
+    }
+
+    function reassignClasses(classes: SlidesClasses, slides: NodeListOf<Element>): void {
+        classes.position.length === 2
+        ? [...slides].map((slide) => {
+            slide.classList.contains('third')
+                ? slide.classList.remove('active-slide', 'third')
+                : ''
+        })
+        : [...slides].map((slide, slideIndex) => {
+            slide.classList.contains('second') 
+                ? [...slides][(slideIndex + 1 + slides.length) % slides.length].classList.add('active-slide', 'third')
+                :'';
+            });
+    }
+    
+    return this.slidesClasses;
+}
 
 const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesWelcomeClasses, sliderWelcomeArea);
 sliderWelcome.detectActiveSlide(sliderWelcome.currentSlidePosition);
@@ -349,5 +398,8 @@ sliderWelcome.detectTouch();
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
 
 const sliderVideo = new (SliderVideo as SliderInterface)(slidesVideo, bulletsVideo, arrowsVideo, slidesVideoClasses);
+sliderVideo.detectScreenSize();
+window.onresize = sliderVideo.detectScreenSize;
+
 sliderVideo.arrowsSwitcher();
 sliderVideo.bulletsSwitcher();

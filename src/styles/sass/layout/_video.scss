@@ -474,6 +474,68 @@
                 left: 100%;
             }      
         }
+
+        &.hide-to-left {
+            animation-name: video-item-hide;
+        }
+    
+        &.first-from-right {
+            animation-name: video-item-first-from-right;
+        }
+        
+        &.second-from-right {
+            animation-name: '';
+        }        
+    
+        &.show-from-right {
+            animation-name: video-item-show;
+        }
+    
+        &.hide-to-right {
+            animation-name: video-item-first-from-right;
+            animation-direction: reverse;
+        }
+    
+        &.first-to-right {
+            animation-name: video-item-show;
+            animation-direction: reverse;
+        }
+
+        &.second-to-right {
+            animation-name: '';
+        }
+    
+        &.show-from-left {
+            animation-name: video-item-hide;
+            animation-direction: reverse;
+        }
+    
+        @keyframes video-item-hide {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: calc(-1 * ((100% - $video-items-gap-768) / 2 + $video-items-gap-768));
+            }        
+        }
+    
+        @keyframes video-item-show {
+            0% {
+                left: calc(100% + $video-items-gap-768);
+            }
+            100% {
+                left: calc(100% - (100% - $video-items-gap-768) / 2);
+            }        
+        }
+    
+        @keyframes video-item-first-from-right {
+            0% {
+                left: calc((100% - $video-items-gap-768) / 2 + $video-items-gap-768);
+            }
+            100% {
+                left: 0;
+            }        
+        }
     }   
 
     .video__slider-pagination {
