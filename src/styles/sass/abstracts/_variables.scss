@@ -1,0 +1,53 @@
+// Screen
+$desktop-1920: 1440px;
+$desktop-1024: 1024px;
+$tablet: 768px;
+$mobile: 420px;
+
+// Basic Layout
+$margin-basic: 0 auto;
+$padding-basic: 75px 0;
+$width-basic: calc(100% - 40px);
+
+// Fonts
+$forum-family: 'Forum', cursive;
+$roboto-family: 'Roboto', sans-serif;
+
+// Font-sizes
+$font-section: 80px;
+$font-form: 50px;
+$font-big: 32px;
+$font-middle: 28px;
+$font-btn: 24px;
+$font-small: 22px;
+$font-smaller: 18px;
+
+$fontline-section: 90px;
+$fontline-form: 55px;
+$fontline-middle: 33px;
+$fontline-big: 38px;
+$fontline-btn: 28px;
+$fontline-small: 26px;
+$fontline-smaller: 21px;
+
+// Colors
+$dark-bg: #030303;
+$red-bg: #710707;
+$gold: #9d8665;
+$gold-active: #7e6c51;
+$dark: #000000;
+$light: #ffffff;
+$filler: #666666;
+$controls: #B3B3B3;
+$controls-hover: #989898;
+$bullet-unvisited: #999999;
+$bullet-unvisited-active: #333333;
+$bullet-hover: #710707;
+$pagination-active: #d2b183;
+$pagination-hover: #9d8665;
+$highlight-gold: #caaa7d;
+$light-grey: #c4c4c4;
+$red-line: #740c11;
+
+// Animation
+$transition-duration: .5s;

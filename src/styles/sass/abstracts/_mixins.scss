@@ -1,0 +1,38 @@
+@mixin forum-font($color: $dark) {
+    font-family: $forum-family;
+    color: $color;
+    font-weight: 400;
+}
+
+@mixin roboto-font($color: $dark, $size: $font-big, $line-height: $fontline-big, $letter-spacing: .05em) {
+    font-family: $roboto-family;
+    font-weight: 400;
+    font-size: $size;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+    color: $color;
+}
+
+@mixin flex($justify-content: space-between, $align-items: center) {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin link($link-color: $light, $link-hover: $gold) {
+    text-decoration: none;
+    color: $link-color;
+    transition: color $transition-duration;
+  
+    &:hover {
+        color: $link-hover;       
+    }
+}
+
+// @media (max-width: $desktop-1024) {
+//     @mixin roboto-font($color: $dark, $size: $font-big, $line-height: $fontline-big, $letter-spacing: .05em) {
+//         font-size: $font-btn;
+//         line-height: $fontline-btn;
+//     }
+// }
