@@ -35,7 +35,7 @@
     letter-spacing: -.01px;
 }
 
-.explore-img {
+.slider {
     flex: 1 1 auto;
     position: relative;
     margin-top: 15px;
@@ -44,31 +44,28 @@
     align-self: baseline;
     overflow: hidden;
 
-    .exlore__slide-wrapper {
+    .slide {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top left;
-        overflow: hidden;
 
-        &.img__before {
-            width: 440px;
+        &.after {
+            width: calc(440 / 720 * 100%);
+            overflow: hidden;
+            z-index: 2;
+        }
+        &.before {
             z-index: 1;
         }
-        &.img__after {
-            z-index: 0;
+
+        .slide__img {
+            width: 720px;
+            height: 100%;
         }
     }
 
-    .explore__before,
-    .explore__after {
-        height: 100%;
-    }
-
-    .explore-slider {
+    .divider {
         position: absolute;
         top: 0;
         left: calc(440px - 39px / 2);
@@ -78,7 +75,7 @@
         background-position: center;
         background-size: cover;
         background-image: url(../../assets/svg/explore-slider.svg);
-        z-index: 2;
+        z-index: 3;
         cursor: pointer;
         transition: opacity $transition-duration;
         
@@ -127,7 +124,7 @@
         line-height: 39px;
     }
     
-    .explore-img {
+    .slider {
         margin: 0 auto;
     }
 }
@@ -147,18 +144,12 @@
             display: none;
         }
 
-        .explore-img {
+        .slider {
             margin: 0 auto;        
-            width: 100%;
+            width: 728px;
             height: 705px;
 
-            .exlore__slide-wrapper {        
-                &.img__before {
-                    width: calc(440px / 720px * 100%);
-                }
-            }
-
-            .explore-slider {
+            .divider {
                 left: calc(440px / 720px * 100% - 39px / 2);
                 background-image: url(../../assets/svg/explore-slider-768px.svg);
             }
@@ -168,20 +159,14 @@
 
 @media (max-width: $mobile) {
     .explore-section {
-        .explore-img {
+        .slider {
+            width: 380px;
             height: 368px;
-
-            .exlore__slide-wrapper {        
-                &.img__before {
-                    width: calc(230px / 380px * 100%);
-                }
-            }
     
             .explore-slider {
                 width: 20px;
                 left: calc(230px / 380px * 100% - 20px / 2);
             }
         }
-    }
-    
+    }    
 }
