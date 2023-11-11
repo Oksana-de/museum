@@ -1,7 +1,7 @@
 const container: HTMLDivElement | null = document.querySelector('.explore-section .slider');
 const picture: HTMLDivElement | null = document.querySelector('.explore-section .slider .after');
-
 const divider: HTMLDivElement | null = document.querySelector('.explore-section .divider');
+
 const dividersHorisontalOffset: number = Math.round(divider!.clientWidth / 2);
 
 let pictureWidth: number;
