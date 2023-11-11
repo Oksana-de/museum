@@ -4,8 +4,11 @@ const divider: HTMLDivElement | null = document.querySelector('.explore-section 
 
 const dividersHorisontalOffset: number = Math.round(divider!.clientWidth / 2);
 
-let pictureWidth: number;
+let cursorX: number;
+let containerWidth: number;
 let isClicked: boolean = false;
+
+// ----------- Mouse Events -------------- //
 
 divider!.addEventListener('mousedown', function(event: MouseEvent): void {
     event.preventDefault();
@@ -14,14 +17,10 @@ divider!.addEventListener('mousedown', function(event: MouseEvent): void {
     container?.addEventListener('mousemove', function slideMove(event: MouseEvent): void | boolean {
         if (!isClicked) return false;
 
-        pictureWidth = event.clientX - container.offsetLeft;
+        containerWidth = container.clientWidth;
+        cursorX = event.clientX - container.offsetLeft;
 
-        if (pictureWidth > 0 && pictureWidth < container.clientWidth - 1) {
-            picture!.style.width = `${pictureWidth}px`;
-            divider!.style.left = `${pictureWidth - dividersHorisontalOffset}px`;
-        } else {
-            isClicked = false;
-        }
+        cursorParams(cursorX, containerWidth);
     })  
 })
 
@@ -36,15 +35,22 @@ divider!.addEventListener('touchstart', function(event: TouchEvent): void {
     container?.addEventListener('touchmove', function slideMove(event: TouchEvent): void | boolean {
         if (!isClicked) return false;
 
-        pictureWidth = event.touches[0].clientX - container.offsetLeft;
+        containerWidth = container.clientWidth;
+        cursorX = event.touches[0].clientX - container.offsetLeft;
 
-        if (pictureWidth > 0 && pictureWidth < container.clientWidth - 1) {
-            picture!.style.width = `${pictureWidth}px`;
-            divider!.style.left = `${pictureWidth - dividersHorisontalOffset}px`;
-        } else {
-            isClicked = false;
-        }
+        cursorParams(cursorX, containerWidth);
     })  
 })
 
 container?.addEventListener('touchend', (): boolean => isClicked = false);
+
+// ------------- Function for calculating the cursor position -------------//
+
+function cursorParams(paramX: number, containerWidth: number): void {
+    if (paramX > 0 && paramX < containerWidth - 1) {
+        picture!.style.width = `${paramX}px`;
+        divider!.style.left = `${paramX - dividersHorisontalOffset}px`;
+    } else {
+        isClicked = false;
+    }
+}
