@@ -21,6 +21,21 @@ picturesArray.map((picture) => {
     pictureInnerWrapper?.append(img);
 });
 
+// ----------- Animation for appearance each of the Element --------- //
+const ioObserver: IntersectionObserver = new IntersectionObserver (entries => {
+    entries.map(entry => {
+        entry.intersectionRatio > 0 ?
+        entry.target.classList.add('appearance') :
+        entry.target.classList.remove('appearance');
+    })
+})
+
+const gallerysPictures: NodeListOf<HTMLImageElement> = document.querySelectorAll('.picture-inner-wrapper .picture-gal');
+
+gallerysPictures.forEach(gallerysImage => ioObserver.observe(gallerysImage));
+
+// -------- Helper Function ------- //
+
 function shuffle(array: number[]) {
     let currentIndex: number = array.length;
     let randomIndex: number;
