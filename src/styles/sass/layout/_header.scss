@@ -81,7 +81,7 @@
             position: absolute;
             top: 130px;
             left: -20px;
-            z-index: 2;
+            z-index: 4;
             padding: 35px 0 35px 55px;
             width: 297px;
             height: 585px;
@@ -138,7 +138,24 @@
                 & ~ .welcome-section .btn__wrapper {
                     display: none;
                 }
-            }            
+
+                &.to-show {
+                    animation: menu-from-left ease .5s;
+                }
+            
+                &.to-hide {
+                    animation: menu-from-left reverse ease .5s;
+                }
+            }
+            
+            @keyframes menu-from-left {
+                from {
+                    left: -100%;
+                }
+                to {
+                    left: -20px;
+                }        
+            }
         }
 
         .burger-menu-btn {
@@ -170,23 +187,6 @@
             
         }
     }
-
-    .to-show {
-        animation: from-left ease 0.5s;
-    }
-
-    .to-hide {
-        animation: from-left reverse ease 0.5s;
-    }
-    
-    @keyframes from-left {
-        from {
-            left: -100%;
-        }
-        to {
-            left: -20px;
-        }        
-    }
 }
 
 @media (max-width: $tablet) {
@@ -202,6 +202,7 @@
             padding: 35px 55px;
             width: calc(100% + 40px);
             height: auto;
+            overflow: hidden;
     
             .menu__link {
                 position: relative;

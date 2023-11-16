@@ -1,23 +1,16 @@
-interface ClassNamesObj {
-    pointer: string[],
-    animation: string[]
-}
-
-interface SlidesClasses {
+interface AnimationClassNamesObj {
     toLeft: string[],
     toRight: string[]
 }
-
-interface DynamicSlidesClasses {
-    toLeft: ClassNamesObj,
-    toRight: ClassNamesObj
+interface SlidesClasses {
+    animation: AnimationClassNamesObj,
+    position: string[]
 }
-
 interface SliderInterface {
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
-    slidesClasses: DynamicSlidesClasses,
+    slidesClasses: SlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
@@ -25,12 +18,11 @@ interface SliderInterface {
     isInfinite: boolean,
     numberOfVisibleSlides: number 
 }
-
 interface SliderWelcomeInterface {
     slides: NodeListOf<Element>,
     bullets: NodeListOf<Element>,
     arrows: NodeListOf<Element>,
-    slidesClasses: DynamicSlidesClasses,
+    slidesClasses: SlidesClasses,
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,

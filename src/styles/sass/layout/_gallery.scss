@@ -35,8 +35,13 @@
     overflow: hidden;
 
     .picture-gal {
+        position: relative;
+        left: 0;
         width: calc((100% - 72px) / 3);
         height: auto;
+        opacity: 0;
+        transform: translateY(10%) scale(0.95);
+        transition: $transition-duration ease-in-out;
 
         &:first-of-type {
             margin-top: 50px;
@@ -57,6 +62,11 @@
         &:nth-child(3) {
             margin-top: 50px;
         }
+    }
+
+    .appearance {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
