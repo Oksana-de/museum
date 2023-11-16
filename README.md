@@ -1,9 +1,27 @@
-# Museum website
-The **Museum** website is my implementation of the landing page for the [**Louvre**](https://www.louvre.fr/en).
+# Museum
+The **Museum** website is my implementation of the landing page for the [**Louvre**](https://museum-landing.netlify.app).
 
-<!-- TODO:
-1) render content for the gallery section from JSON;
-2) layout of the pictures in gallery section with margin-top 50px for the first and the third collumns;
-3) edit my contact-info; -->
+This landing page has an adaptive and responsive PixelPerfect layout.
 
-<!-- --> upon completion of the fixed-layout application, all its pages and sections should be PixelPerfect at a screen resolution of 1920px and look good (no horizontal scrollbars) when the resolution is changed up to 1024px. -->
+Styles were written using the **SCSS** preprocessor, functionality was implemented using **TypeScript**, and **Webpack** was used to build the project.
+
+1. [Section Welcome](#1-section-welcome)
+2. [Section Video](#2-section-video-playlist)
+3. [Section Gallery](#3-section-gallery)
+4. [Booking ticket form](#4-booking-ticket-form)
+5. [Parallax](#5-parallax)
+6. [Section Visiting. Google Street View](#6-section-visiting-google-street-view)
+
+#### 1. Section Welcome
+
+#### 2. Section Video
+
+#### 3. Section Gallery
+
+#### 4. Booking ticket form
+`TODO`
+
+#### 5. Parallax
+
+#### 6. Section Visiting. Google Street View
+`TODO`
