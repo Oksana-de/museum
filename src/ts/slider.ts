@@ -1,36 +1,28 @@
+// ================ Slider for Welcome Section =============== //
 const sliderWelcomeArea: Element | null = document.querySelector('.welcome-section .welcome__slider');
 const slidesWelcome: NodeListOf<Element> = document.querySelectorAll('.welcome-section .welcome__img');
+
 const bullets: NodeListOf<HTMLElement> = document.querySelectorAll('.welcome-section .bullet__item');
 const arrows: NodeListOf<HTMLElement> = document.querySelectorAll('.welcome-section .arrow');
+
 const currentSlide: HTMLParagraphElement | null = document.querySelector('.welcome-section .current-page');
 const totalSlides: HTMLParagraphElement | null = document.querySelector('.welcome-section .last-page');
 
-const slidesVideo: NodeListOf<Element> = document.querySelectorAll('.video-section .video__item');
-const bulletsVideo: NodeListOf<HTMLElement> = document.querySelectorAll('.video-section .bullet__item');
-const arrowsVideo: NodeListOf<HTMLElement> = document.querySelectorAll('.video-section .stroke');
-
+// ================ Slider Logic =============== //
 let elementTarget: HTMLElement;
 
-const slidesWelcomeClasses: SlidesClasses = {
+const simpleSliderClasses: SlidesClasses = {
     animation: {
-        toLeft: ['hide-to-left', 'show-from-right'],
-        toRight: ['hide-to-right', 'show-from-left']
+        forward: ['hide-to-left', 'show-from-right'],
+        backward: ['hide-to-right', 'show-from-left']
     },
     position: ['first']
 }
 
-const slidesVideoClasses: SlidesClasses = {
+const doubleSliderClasses: SlidesClasses = {
     animation: {
-        toLeft: ['hide-to-left', 'first-from-right', 'second-from-right', 'show-from-right'],
-        toRight: ['hide-to-right', 'first-to-right', 'second-to-right', 'show-from-left']
-    },
-    position: ['first', 'second', 'third']
-}
-
-const slidesVideoClassesSmallScreen: SlidesClasses = {
-    animation: {
-        toLeft: ['hide-to-left', 'first-from-right', 'show-from-right'],
-        toRight: ['hide-to-right', 'first-to-right', 'show-from-left']
+        backward: ['hide-to-left', 'first-from-right', 'show-from-right'],
+        forward: ['hide-to-right', 'first-to-right', 'show-from-left']
     },
     position: ['first', 'second']
 }
@@ -48,7 +40,7 @@ const Slider = function(
     this.slidesClasses = slidesClasses,
     this.currentSlidePosition = 0,
     this.isUnabled = false,
-    this.direction = 'toLeft',
+    this.direction = 'backward',
     this.visibleSlides = [this.slides[this.currentSlidePosition]],
     this.isInfinite = false,
     this.numberOfVisibleSlides
@@ -56,21 +48,18 @@ const Slider = function(
 
 Slider.prototype.setVisibleSlides = function(): NodeListOf<Element> {
     this.numberOfVisibleSlides = this.slidesClasses.position.length;
-
     this.visibleSlides = [this.slides[this.currentSlidePosition]];
     for (let i = 1; i < this.numberOfVisibleSlides; i++) {
         this.visibleSlides.push(this.slides[this.slideIndex(this.currentSlidePosition + i)]);
     }
-
-    return this.visibleSlides;
+    return this.visibleSlides;   
 }
 
 Slider.prototype.toggleState = function(): boolean {
-    this.isUnabled = !this.isUnabled;
-   
+    this.isUnabled = !this.isUnabled;   
     return this.isUnabled;
 }
-
+ 
 Slider.prototype.setAnimation = (func: string): string => {
     return `this.${func}.bind(this)`;
 }
@@ -129,11 +118,10 @@ Slider.prototype.moveSlide = function(target: Element, index: number): void {
         : this.direction = Object.keys(this.slidesClasses.animation)[1];
 
         this.visibleSlides.push(this.slides[index]);
-
         target.classList.add('active');
     } else {
         this.direction = Object.keys(this.slidesClasses.animation)[index];
-        this.visibleSlides.push(this.slides[this.defineNextSlidePosition(this.currentSlidePosition)]);
+        this.visibleSlides.push(this.slides[this.defineNextSlidePosition(this.currentSlidePosition)]);        
 
         this.direction === Object.keys(this.slidesClasses.animation)[0]
             ? this.bullets[(this.currentSlidePosition + 1 + this.slides.length) % this.slides.length].classList.add('active')
@@ -169,12 +157,14 @@ Slider.prototype.arrowsSwitcher = function(): void {
 }
 
 Slider.prototype.bulletsSwitcher = function(): void {
-    [...this.bullets].forEach((bullet, index) => bullet.addEventListener('click', (event: Event) => {
+    this.visibleSlides = this.setVisibleSlides();  
+
+    [...this.bullets].forEach((bullet, index) => bullet.addEventListener('click', (event: Event) => {     
 
         if (this.isUnabled === false && event.target instanceof HTMLElement && !event.target.classList.contains('active')) {
             this.toggleState();
             this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
-            this.moveSlide(event.target, index);
+            this.moveSlide(event.target, index);            
         }        
     }));
 
@@ -188,6 +178,7 @@ Slider.prototype.bulletsSwitcher = function(): void {
     }));
 }
 
+// ================ Slider instance for the Welcome Section =============== //
 const SliderWelcome = function (
     this: SliderWelcomeInterface,
     slides: NodeListOf<Element>,
@@ -196,7 +187,6 @@ const SliderWelcome = function (
     slidesClasses: SlidesClasses,
     sliderSurface: Element | null
 ) {
-
     Slider.call(this, slides, bullets, arrows, slidesClasses);
     this.sliderSurface = sliderSurface,
     this.startX = 0;
@@ -223,8 +213,7 @@ SliderWelcome.prototype.detectActiveSlide = function(position: number): string {
 }
 
 SliderWelcome.prototype.moveSlide = function(target: Element, index: number): void {
-    this.bullets[this.currentSlidePosition].classList.remove('active');
-    
+    this.bullets[this.currentSlidePosition].classList.remove('active');    
 
     if (target.classList.contains('bullet__item')) {
         this.currentSlidePosition < index
@@ -326,69 +315,7 @@ SliderWelcome.prototype.touchEndDetect = function() {
     })
 }
 
-// !!!
-const SliderVideo = function (
-    this: SliderWelcomeInterface,
-    slides: NodeListOf<Element>,
-    bullets: NodeListOf<Element>,
-    arrows: NodeListOf<Element>,
-    slidesClasses: SlidesClasses
-) {
-
-    Slider.call(this, slides, bullets, arrows, slidesClasses);
-    this.numberOfVisibleSlides = 3
-}
-
-SliderVideo.prototype = Object.create(Slider.prototype);
-
-Object.defineProperty(SliderVideo.prototype, 'constructor', {
-    value: SliderVideo,
-    enumerable: false,
-    writable: true
-});
-
-SliderVideo.prototype.detectScreenSize = function(): SlidesClasses {
-    this.slides = slidesVideo;
-    if (window.screen.width <= 768) {
-        this.slidesClasses = slidesVideoClassesSmallScreen;
-
-        if (this.screenSize !== 'small') {
-            reassignClasses(this.slidesClasses, this.slides);
-            this.screenSize = 'small';
-            return this.slidesClasses;           
-        }
-
-        return this.slidesClasses;
-
-    } else {
-        this.slidesClasses = slidesVideoClasses;
-
-        if (this.screenSize !== 'big') {
-            reassignClasses(this.slidesClasses, this.slides);
-            this.screenSize = 'big';
-            return this.slidesClasses;            
-        }
-        return this.slidesClasses;
-    }
-
-    function reassignClasses(classes: SlidesClasses, slides: NodeListOf<Element>): void {
-        classes.position.length === 2
-        ? [...slides].map((slide) => {
-            slide.classList.contains('third')
-                ? slide.classList.remove('active-slide', 'third')
-                : ''
-        })
-        : [...slides].map((slide, slideIndex) => {
-            slide.classList.contains('second') 
-                ? [...slides][(slideIndex + 1 + slides.length) % slides.length].classList.add('active-slide', 'third')
-                :'';
-            });
-    }
-    
-    return this.slidesClasses;
-}
-
-const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, slidesWelcomeClasses, sliderWelcomeArea);
+const sliderWelcome = new (SliderWelcome as SliderWelcomeInterface)(slidesWelcome, bullets, arrows, simpleSliderClasses, sliderWelcomeArea);
 sliderWelcome.detectActiveSlide(sliderWelcome.currentSlidePosition);
 sliderWelcome.arrowsSwitcher();
 sliderWelcome.bulletsSwitcher();
@@ -397,9 +324,131 @@ sliderWelcome.detectTouch();
 
 totalSlides!.textContent = `${[...slidesWelcome].length.toString().padStart(2, '0')}`;
 
-const sliderVideo = new (SliderVideo as SliderInterface)(slidesVideo, bulletsVideo, arrowsVideo, slidesVideoClasses);
-sliderVideo.detectScreenSize();
-window.onresize = sliderVideo.detectScreenSize;
+// ================ Slider instance for the Video Section =============== //
+// let videoPlayer: HTMLVideoElement | null = document.querySelector('.video-section .active-slide .video__item');
 
-sliderVideo.arrowsSwitcher();
-sliderVideo.bulletsSwitcher();
+// function updateVideoPlayer(): HTMLVideoElement | null {
+//     videoPlayer = document.querySelector('.video-section .active-slide .video__item');
+
+//     return videoPlayer;
+// };
+// const btnPlayMain: HTMLButtonElement | null = document.querySelector('.video-section .play-main');
+// const btnPlayControlPanel: HTMLButtonElement | null = document.querySelector('.video-section .play-control');
+// const btnPauseCuntrolPanel: HTMLButtonElement | null = document.querySelector('.videp-section .pause-control');
+
+// [btnPlayMain, btnPlayControlPanel, videoPlayer].map((control: HTMLButtonElement | HTMLVideoElement | null): void => control?.addEventListener('click',
+//     (event: Event): void => {
+//         videoPlayer?.paused && event.target != videoPlayer ?
+//         playVideo() :
+//         pauseVideo();
+//     })
+// )
+
+// function playVideo(): void {
+//     btnPlayMain?.classList.add('hide');
+//     btnPlayControlPanel?.classList.add('pause-control');
+//     videoPlayer?.play();
+// }
+
+// function pauseVideo() {
+//     btnPlayMain?.classList.remove('hide');
+//     btnPlayControlPanel?.classList.remove('pause-control');
+//     videoPlayer?.pause();
+// }
+
+// const sliderVideoMain = new(Slider as SliderInterface)(slidesVideo, bulletsVideo, arrowsVideo, simpleSliderClasses);
+
+// sliderVideoMain.arrowsSwitcher();
+// sliderVideoMain.bulletsSwitcher();
+
+// const SliderVideo = function (
+//     this: SliderWelcomeInterface,
+//     slides: NodeListOf<Element>,
+//     bullets: NodeListOf<Element>,
+//     arrows: NodeListOf<Element>,
+//     slidesClasses: SlidesClasses,
+//     sliderSurface: Element | null
+// ) { 
+//     Slider.call(this, slides, bullets, arrows, slidesClasses);
+//     this.numberOfVisibleSlides = 3
+// }
+
+// SliderVideo.prototype = Object.create(Slider.prototype);
+
+// Object.defineProperty(SliderVideo.prototype, 'constructor', {
+//     value: SliderVideo,
+//     enumerable: false,
+//     writable: true
+// });
+
+// SliderVideo.prototype.arrowsSwitcher = function(): void {   
+//     this.visibleSlides = this.setVisibleSlides();    
+
+//     [...this.arrows].forEach((arrow, index) => arrow.addEventListener('click', (event: Event) => {
+
+//         updateVideoPlayer();
+
+//         if (this.isUnabled === false) {
+//             this.toggleState();
+//             this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+//             this.moveSlide(event.target, index);
+//         }
+//     })); 
+
+//     [...this.arrows].forEach((arrow, index) => arrow.addEventListener('touchstart', (event: TouchEvent) => {
+        
+//        if (this.isUnabled === false) {
+//             this.toggleState();
+//             this.setAnimation = (event: Event) => this.setAnimation(this.assignAnimationClasses(event));
+//             this.moveSlide(event.target, index);
+//         }
+//     }));    
+// }
+
+// SliderVideo.prototype.detectScreenSize = function(): SlidesClasses {
+//     this.slides = slidesVideoThumb;
+//     if (window.screen.width <= 768) {
+//         this.slidesClasses = doubleSliderClasses;
+
+//         if (this.screenSize !== 'small') {
+//             reassignClasses(this.slidesClasses, this.slides);
+//             this.screenSize = 'small';
+//             return this.slidesClasses;           
+//         }
+
+//         return this.slidesClasses;
+
+//     } else {
+//         this.slidesClasses = tripleSliderClasses;
+
+//         if (this.screenSize !== 'big') {
+//             reassignClasses(this.slidesClasses, this.slides);
+//             this.screenSize = 'big';
+//             return this.slidesClasses;            
+//         }
+//         return this.slidesClasses;
+//     }
+
+//     function reassignClasses(classes: SlidesClasses, slides: NodeListOf<Element>): void {
+//         classes.position.length === 2
+//         ? [...slides].map((slide) => {
+//             slide.classList.contains('third')
+//                 ? slide.classList.remove('active-slide', 'third')
+//                 : ''
+//         })
+//         : [...slides].map((slide, slideIndex) => {
+//             slide.classList.contains('second') 
+//                 ? [...slides][(slideIndex + 1 + slides.length) % slides.length].classList.add('active-slide', 'third')
+//                 :'';
+//             });
+//     }
+    
+//     return this.slidesClasses;
+// }
+
+// const sliderVideo = new (SliderVideo as SliderInterface)(slidesVideoThumb, bulletsVideo, arrowsVideo, tripleSliderClasses);
+// sliderVideo.detectScreenSize();
+// window.onresize = sliderVideo.detectScreenSize;
+
+// sliderVideo.arrowsSwitcher();
+// sliderVideo.bulletsSwitcher();
