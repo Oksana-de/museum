@@ -1,0 +1,29 @@
+{
+    "video": [
+        {
+            "id": "zp1BXPX8jcU",
+            "src": "assets/video/video0.mp4",
+            "poster": "assets/img/video-slider/poster0.jpg"
+        },        
+        {
+            "id": "Vi5D6FKhRmo",
+            "src": "assets/video/video1.mp4",
+            "poster": "assets/img/video-slider/poster1.jpg"
+        },
+        {
+            "id": "NOhDysLnTvY",
+            "src": "assets/video/video2.mp4",
+            "poster": "assets/img/video-slider/poster2.jpg"
+        },
+        {
+            "id": "aWmJ5DgyWPI",
+            "src": "assets/video/video3.mp4",
+            "poster": "assets/img/video-slider/poster3.jpg"
+        },
+        {
+            "id": "2OR0OCr6uRE",
+            "src": "assets/video/video4.mp4",
+            "poster": "assets/img/video-slider/poster4.jpg"
+        }    
+    ]
+}

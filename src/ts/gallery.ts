@@ -1,4 +1,4 @@
-import data from './data.json';
+import data from '../assets/data/gallery.json';
 
 const numberOfPictures: number = data.gallery.length;
 const pictureInnerWrapper: HTMLElement | null = document.querySelector('.picture-inner-wrapper');
