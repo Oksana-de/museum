@@ -293,63 +293,79 @@
                     </h2>
                 </div>
                 <div class="video__player-wrapper">
-                    <img src="assets/img/main-video.jpg" alt="main-video" class="video-poster">
+                    <div class="video-poster">
+                        <video
+                            class="video__item"
+                            src="assets/video/video0.mp4"
+                            poster="assets/img/video-slider/poster0.jpg">
+                        </video>
+                    </div>
                     <button class="player-btn play-main"></button>
-                </div>
-                <div class="video__controls-wrapper">
-                    <button class="player-btn play-control"></button>
-                    <input class="range-bar play-duration-control" type="range" name="play-duration" id="play-duration" value="53.5" min="1" max="100" step="1">
-                    <button class="player-btn volume-control"></button>
-                    <input class="range-bar play-volume-control" type="range" name="play-volume" id="play-volume" value="43" min="1" max="100" step="1">
-                    <button class="player-btn full-screen"></button>
-                </div>
-                <div class="video__slider-wrapper">
-                    <div class="video__item active-slide first">
+                    <div class="video__controls-wrapper">
+                        <button class="player-btn play-control"></button>
+                        <input class="range-bar play-duration-control" type="range" name="play-duration" id="play-duration" value="0" min="0" max="1" step="0.01">
+                        <button class="player-btn volume-control"></button>
+                        <input class="range-bar play-volume-control" type="range" name="play-volume" id="play-volume" value="0.43" min="0" max="1" step="0.01">
+                        <button class="player-btn full-screen"></button>
+                    </div>
+                </div>                
+                <ul class="video__thumbnails">
+                    <li class="video__thumb active-slide first">
+                        <!-- <div id="playFirst"></div> -->
                         <iframe class="video__frame"
                             src="https://www.youtube.com/embed/zp1BXPX8jcU" 
                             title="YouTube video player" 
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            frameborder="0"
+                            allow="autoplay;encrypted-media" 
                             allowfullscreen>
                         </iframe>
-                    </div>
-                    <div class="video__item active-slide second">
+                    </li>
+                    <li class="video__thumb active-slide second">
+                        <!-- <div id="playSecond"></div> -->
                         <iframe class="video__frame"
                             src="https://www.youtube.com/embed/Vi5D6FKhRmo" 
                             title="YouTube video player" 
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            frameborder="0"
+                            allow="autoplay;encrypted-media" 
                             allowfullscreen>
                         </iframe>
-                    </div>
-                    <div class="video__item active-slide third">
+                    </li>
+                    <li class="video__thumb active-slide third">
+                        <!-- <div id="playThird"></div> -->
                         <iframe class="video__frame"
                             src="https://www.youtube.com/embed/NOhDysLnTvY" 
                             title="YouTube video player" 
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            frameborder="0"
+                            allow="autoplay;encrypted-media" 
                             allowfullscreen>
                         </iframe>
-                    </div>
-                    <div class="video__item">
+                    </li>
+                    <li class="video__thumb">
+                        <!-- <div id="playFoгrth"></div> -->
                         <iframe class="video__frame" 
                             src="https://www.youtube.com/embed/aWmJ5DgyWPI" 
                             title="YouTube video player" 
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            frameborder="0"
+                            allow="autoplay;encrypted-media"  
                             allowfullscreen>
                         </iframe>
-                    </div>
-                    <div class="video__item">
+                    </li>
+                    <li class="video__thumb">
+                        <!-- <div id="playFifth"></div> -->
                         <iframe class="video__frame" 
                             src="https://www.youtube.com/embed/2OR0OCr6uRE" 
                             title="YouTube video player" 
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            frameborder="0"
+                            allow="autoplay;encrypted-media"  
                             allowfullscreen>
                         </iframe>
-                    </div>
-                </div>
+                    </li>
+                </ul>
                 <ul class="video__slider-pagination">
                     <li class="stroke left"></li>
                     <li class="bullet__item active"></li>

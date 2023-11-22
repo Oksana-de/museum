@@ -1,6 +1,6 @@
 interface AnimationClassNamesObj {
-    toLeft: string[],
-    toRight: string[]
+    forward: string[],
+    backward: string[]
 }
 interface SlidesClasses {
     animation: AnimationClassNamesObj,
@@ -14,7 +14,7 @@ interface SliderInterface {
     currentSlidePosition: number,
     isUnabled: boolean,
     direction: string,
-    visibleSlides:Element[],
+    visibleSlides: Element[],
     isInfinite: boolean,
     numberOfVisibleSlides: number 
 }

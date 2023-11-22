@@ -43,6 +43,14 @@ const plugins = () => {
                 {
                     from: path.resolve(__dirname, './src/assets/img/gallery'),
                     to: path.resolve(__dirname, 'dist/assets/img/gallery')
+                },
+                {
+                    from: path.resolve(__dirname, './src/assets/img/video-slider'),
+                    to: path.resolve(__dirname, 'dist/assets/img/video-slider')
+                },
+                {
+                    from: path.resolve(__dirname, './src/assets/video'),
+                    to: path.resolve(__dirname, 'dist/assets/video')
                 }
             ]
         })
