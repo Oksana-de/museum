@@ -173,10 +173,78 @@
         }
     }
 
-    .ticket-type__wrapper {        
-        &::before {
-            content: url(../../assets/svg/book-form/ticket-ico.svg);
+    .ticket-type__wrapper {
+        position: relative;
+
+        .input-data {
+            position: relative;  
+            cursor: pointer;
+            z-index: 2;
+    
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: auto;
+                height: 100%;
+                padding-left: 15px;
+                padding-top: 12px;
+                content: url(../../assets/svg/book-form/ticket-ico.svg);
+            }
+    
+            &::after {
+                position: absolute;
+                bottom: 12px;
+                left: 45px;
+                content: attr(data-content);
+            }
+    
+            .btn.ticket-type {
+                position: absolute;
+                top: 14px;
+                right: 15px;
+                width: 17px;
+                height: 17px;
+                margin: 0;
+                padding: 0;
+                background-image: url(../../assets/svg/book-form/arrow-open.svg);
+                cursor: pointer;
+
+                &.close {
+                    background-image: url(../../assets/svg/book-form/arrow-close.svg);                   
+                }
+            }
         }
+
+        .tickets-options {
+            display: none;
+
+            &.show {
+                display: block;            
+            }
+        }
+    }
+
+    .tickets-type {
+        position: absolute;
+        top: calc(45px + 3px + 6px + 12px);
+        left: 0;
+        margin-top: -20px;
+        width: calc(100%);
+        background-color: $light;
+        border: 1px solid #030303;
+        z-index: 1;       
+    
+        .lbl {
+            margin: 0;
+            padding: 12px 42px 13px;
+            height: 45px;
+            @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+
+            &:hover {
+                background-color: $hover-option;
+            }
+        }        
     }
 
     .input-datetime {
@@ -196,7 +264,7 @@
     .input-data {
         display: block;
         width: 100%;
-        height: 45px;
+        height: 47px;
         padding: 13px 15px 12px 44px;
         border: 1px solid $dark-bg;
         outline: none;
@@ -245,7 +313,7 @@
             -webkit-appearance: none;
             margin: 0;
             padding: 0;
-            content: url(../../assets/svg/book-form/arrow-to-open.svg);
+            content: url(../../assets/svg/book-form/arrow-open.svg);
             width: 17px;
             height: 17px;
             cursor: pointer;
@@ -260,13 +328,30 @@
 }
 
 .ticket-order {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+    justify-content: space-between;
     padding: 10px 15px 15px;
     border: 1px solid $dark-bg;
+
+    .fieldset-title {
+        grid-column: 1/3
+    }
 
     .category {
         @include flex;
         float: left;
         width: 100%;
+        margin-bottom: 19px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .lbl {
+        @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
         margin-bottom: 19px;
 
         &:last-of-type {
@@ -287,6 +372,12 @@
         margin-bottom: 0;
         padding: 0;
         border-style: none;
+        justify-self: flex-end;
+        @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+
+        .amount-value {
+            @include roboto-font($color: $dark-bg, $size: $font-smaller, $line-height: $fontline-smaller, $letter-spacing: .0);
+        }
     }
 
     .btn__amount {
@@ -467,17 +558,21 @@
         }
 
         .total {
-            grid-column: 1 /3;
-            grid-row: 4;
-        }
-
-        .total-price {
-            grid-column: 3 / 4;
+            grid-column: 1 / 4;
             grid-row: 4;
         }
 
         .overview-title {
+            width: auto;
             margin: 10px 0;
+            justify-self: stretch;
+            justify-content: space-between;
+            @include roboto-font($color: $dark-bg, $size: $font-big, $line-height: normal, $letter-spacing: 0);
+
+            .total-price {
+                text-align: right;
+                font-weight: 500;
+            }
         }
 
     }

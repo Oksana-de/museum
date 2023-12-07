@@ -24,7 +24,7 @@
     flex: 1 1 auto;
     display: grid;
     grid-template-columns: repeat(2, auto);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr 1fr;
     justify-content: space-between;
     align-self: stretch;
 }
@@ -129,7 +129,7 @@
     }
 }
 
-.inp-number {
+.amount-value {
     padding: 0;
     width: 60px;
     height: 38px;
@@ -178,14 +178,22 @@
 
 .lbl {
     &.sum {
+        grid-column: 1/3;
+        grid-row: 2;
+        width: auto;
+        justify-self: flex-end;
         @include flex;
         margin: 0 0 60px;
     }
 }
 
-.inp-number {
+.amount-value {
     &.sum {
+        display: block;
+        width: auto;
+        padding-left: 10px;
         height: $fontline-middle;
+        text-align: left;
     }
 }
 
@@ -198,7 +206,7 @@
 
 .btn__tickets {
     grid-column: 1 / 3;
-    grid-row: 2;
+    grid-row: 3;
     justify-self: end;
     align-self: start;
     width: 175px;
@@ -232,14 +240,14 @@
                 background-position: center;
             }
         }
+
+        .tickets-type {
+            display: none;        
+        }
     }
     
     .tickets__form {
         grid-template-columns: 1fr;
-    }
-
-    .tickets-type {
-        display: none;        
     }
     
     .tickets-amount {    
@@ -269,7 +277,7 @@
         }
     }
     
-    .inp-number {
+    .amount-value {
         &.sum {
             text-align: start;
         }
@@ -322,7 +330,7 @@
         }
     }
     
-    .inp-number {
+    .amount-value {
         &.sum {
             text-align: start;
         }
@@ -389,7 +397,7 @@
         line-height: 19px;
     }
     
-    .inp-number {
+    .amount-value {
         &.sum {
             font-size: 16px;
             line-height: 19px;
