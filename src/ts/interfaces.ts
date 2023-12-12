@@ -40,3 +40,43 @@ interface SliderWelcomeInterface {
     restraint: number,
     allowedTime: number
 }
+
+// ========== Interfaces for Tickets Section ============== //
+interface ProductsCart {
+    category: string,
+    products: Array<Product>,
+    sum: number
+}
+
+interface Product {
+    productType: string,
+    price: number,
+    amount: number
+}
+
+interface ChangeInput {
+    inputElement: HTMLInputElement,
+    checkedCategory?: number,
+    productName: string,
+    productAmount: number
+}
+
+interface EventsSet {
+    [eventName: string]: Function
+}
+
+interface TicketsForm {
+    ticketForm: HTMLFormElement | null;
+    categoryComponent: HTMLLabelElement[] | undefined;
+    eventsSet: EventsSet;
+}
+
+interface MediatorForTicketsForm extends TicketsForm {
+    subscribe: Function,
+    publish: Function,
+    unsubscribe: Function
+    installTo: Function
+}
+interface Subscriber {
+    [eventName: string]: Function[]    
+}
