@@ -6,4 +6,4 @@ import './ts/video-section.ts';
 import './ts/custom-video-player.ts';
 import './ts/explore-slider.ts';
 import './ts/gallery.ts';
-import './ts/ticket-form.ts';
+import './ts/tickets.ts';

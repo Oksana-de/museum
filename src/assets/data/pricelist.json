@@ -1,0 +1,61 @@
+{
+    "pricelist": [
+        {
+            "id": "1",
+            "category": {
+                "name": "permanent",
+                "label": "Permanent exhibition"
+            },
+            "products": [
+                {
+                    "name": "basic",
+                    "price": 20,
+                    "label": "Basic 18+"
+                },
+                {
+                    "name": "senior",
+                    "price": 10,
+                    "label": "Senior 65+"
+                }
+            ]
+        },        
+        {
+            "id": "2",
+            "category": {
+                "name": "temporary",
+                "label": "Temporary exhibition"
+            },
+            "products": [
+                {
+                    "name": "basic",
+                    "price": 25,
+                    "label": "Basic 18+"
+                },
+                {
+                    "name": "senior",
+                    "price": 12.5,
+                    "label": "Senior 65+"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "category": {
+                "name": "combined",
+                "label": "Combined Admission"
+            },
+            "products": [
+                {
+                    "name": "basic",
+                    "price": 40,
+                    "label": "Basic 18+"
+                },
+                {
+                    "name": "senior",
+                    "price": 20,
+                    "label": "Senior 65+"
+                }
+            ]
+        }  
+    ]
+}
