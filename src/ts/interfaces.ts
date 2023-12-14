@@ -42,6 +42,15 @@ interface SliderWelcomeInterface {
 }
 
 // ========== Interfaces for Tickets Section ============== //
+interface ProductElements {
+    productName: HTMLElement,
+    price: HTMLElement,
+    amount: HTMLElement,
+    priceForProduct: HTMLElement
+}
+interface DOMDisplayCart {
+    [key: string]: HTMLElement | ProductElements[],
+}
 interface ProductsCart {
     category: string,
     products: Array<Product>,
