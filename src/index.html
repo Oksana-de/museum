@@ -416,46 +416,12 @@
                             <legend class="form__title">
                                 Ticket Type
                             </legend>
-                            <!-- <label class="lbl">
-                                Permanent exhibition
-                                <input
-                                    class="radio-mark"
-                                    type="radio"
-                                    name="ticket-type"
-                                    value="permanent"
-                                    id="categoryPermanent"
-                                    checked="checked"
-                                >
-                                <span class="custom-mark"></span>
-                            </label>
-                            <label class="lbl">
-                                Temporary exhibition
-                                <input class="radio-mark" type="radio" name="ticket-type" value="temporary" id="categoryTemporary">
-                                <span class="custom-mark"></span>
-                            </label>
-                            <label class="lbl">
-                                Combined Admission
-                                <input class="radio-mark" type="radio" name="ticket-type" value="combined" id="categoryCombined">
-                                <span class="custom-mark"></span>
-                            </label> -->
                         </fieldset>
     
                         <fieldset class="tickets-options tickets-amount">
                             <legend class="form__title">
                                 Amount
-                            </legend>
-                            <!-- <label class="lbl lbl__num" for="basic">Basic 18+</label>
-                                <div class="order__ticket">
-                                    <button class="btn__amount" type="button">&minus;</button>
-                                    <input class="amount-value" type="number" name="basic" id="basic-ticket" min="0" max="20" value="0">
-                                    <button class="btn__amount" type="button">&plus;</button>
-                                </div>                            
-                            <label class="lbl lbl__num" for="senior">Senior 65+</label>
-                                <div class="order__ticket">
-                                    <button class="btn__amount" type="button">&minus;</button>
-                                    <input class="amount-value" type="number" name="senior" id="senior-ticket" min="0" max="20" value="0">
-                                    <button class="btn__amount" type="button">&plus;</button>
-                                </div>    -->                             
+                            </legend>                         
                         </fieldset>
 
                         <label class="lbl sum" for="total">
@@ -615,8 +581,29 @@
         
                     <fieldset class="ticket-data input-field">
                         <div class="input-datetime input-data__wrapper">
-                            <input type="date" name="visitors-date" id="visitors-date" class="ticket-date input-data">
-                            <input type="time" name="visitors-time" id="visitors-time" class="ticket-time input-data">
+                            <input type="date" name="visitors-date" id="visitors-date" class="ticket-date input-data ico info">
+                            <input type="time" name="visitors-time" id="visitors-time" class="ticket-time input-data ico info" list="time-to-book">
+                            <datalist id="time-to-book">
+                                <option value="09:00"></option>
+                                <option value="09:30"></option>
+                                <option value="10:00"></option>
+                                <option value="10:30"></option>
+                                <option value="11:00"></option>
+                                <option value="11:30"></option>
+                                <option value="12:00"></option>
+                                <option value="12:30"></option>
+                                <option value="13:00"></option>
+                                <option value="13:30"></option>
+                                <option value="14:00"></option>
+                                <option value="14:30"></option>
+                                <option value="15:00"></option>
+                                <option value="15:30"></option>
+                                <option value="16:00"></option>
+                                <option value="16:30"></option>
+                                <option value="17:00"></option>
+                                <option value="17:30"></option>
+                                <option value="18:00"></option>
+                            </datalist>
                         </div>
         
                         <div class="input-data__wrapper ticket-name__wrapper">
@@ -626,7 +613,16 @@
                             <input type="email" name="visitors-email" id="visitors-email" class="ticket-email input-data" placeholder="E-mail">
                         </div>
                         <div class="input-data__wrapper ticket-tel__wrapper">
-                            <input type="text" name="visitors-tel" id="visitors-tel" class="ticket-tel input-data" placeholder="Phone">
+                            <input type="tel"
+                                name="visitors-tel"
+                                id="visitors-tel"
+                                class="ticket-tel input-data"
+                                placeholder="Phone"
+                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                minlength="10"
+                                maxlength="14"
+                                title="Enter a phone number consisting of 10 - 14 digits without separators"
+                            >
                         </div>
         
                         <div class="ticket-type__wrapper">
@@ -635,25 +631,6 @@
                             </div>
 
                             <fieldset class="tickets-options tickets-type">
-                                <!-- <label class="lbl">
-                                    Permanent exhibition
-                                    <input
-                                        class="radio-mark"
-                                        type="radio"
-                                        name="category"
-                                        value="permanent"
-                                        id="categoryPermanent"
-                                        checked="checked"
-                                    >
-                                </label>
-                                <label class="lbl">
-                                    Temporary exhibition
-                                    <input class="radio-mark" type="radio" name="category" value="temporary" id="categoryTemporary">
-                                </label>
-                                <label class="lbl">
-                                    Combined Admission
-                                    <input class="radio-mark" type="radio" name="category" value="combined" id="categoryCombined">
-                                </label> -->
                             </fieldset>
                         </div>
         
@@ -661,27 +638,6 @@
                         <legend class="fieldset-title">
                             Entry ticket
                         </legend>
-                        <!-- <div class="category">
-                            <label class="lbl-order" for="basic">
-                                Basic 18+ (20 &#8364;)
-                            </label>
-                            <div class="order__ticket">
-                                <button class="btn__amount" type="button">&minus;</button>
-                                <input class="amount-value" type="number" name="ticket-amount" id="basic" min="0" max="20" value="0">
-                                <button class="btn__amount" type="button">&plus;</button>
-                            </div>
-                        </div> -->
-        
-                        <!-- <div class="category">
-                            <label class="lbl-order" for="senior">
-                                Senior 65+ (10 &#8364;)
-                            </label>
-                            <div class="order__ticket">
-                                <button class="btn__amount" type="button">&minus;</button>
-                                <input class="amount-value" type="number" name="ticket-amount" id="senior" min="0" max="20" value="0">
-                                <button class="btn__amount" type="button">&plus;</button>
-                            </div>
-                        </div> -->
                     </fieldset>
                     
                 </div>      
@@ -699,26 +655,26 @@
                         <div class="ticket-time-ico overview-ico"></div>
                         <div class="ticket-type-ico overview-ico"></div>
                         <p class="ticket-date-txt overview-txt">
-                            Friday, August 19
+                            ww, mm dd
                         </p>
                         <p class="ticket-time-txt overview-txt">
-                            16 &colon; 30
+                            -- &colon; --
                         </p>
                         <p class="ticket-type-txt overview-txt">
-                            Temporary exhibition
+                            Permanent exhibition
                         </p>
                     </div>
         
                     <div class="overview-order">
-                        <div class="ammount basic">2</div>
+                        <div class="amount basic">0</div>
                         <p class="category basic">
-                            Basic (20 &#8364;)
+                            Basic (<span class="product-price">0</span> &#8364;)
                         </p>
                         <div class="category-price basic">0 &#8364;</div>
         
-                        <div class="ammount senior">2</div>
+                        <div class="amount senior">0</div>
                         <p class="category senior">
-                            Senior (10 &#8364;)
+                            Senior (<span class="product-price">0</span> &#8364;)
                         </p>
                         <div class="category-price senior">0 &#8364;</div>
                         <div class="line"></div>
@@ -726,8 +682,6 @@
                             Total €
                             <input class="total-price overview-title amount-value sum" type="text" name="ticket-amount" id="total" value="0" size="4" disabled>
                         </label>
-                        <!-- <h2 class="total overview-title">Total:</h2>
-                        <h2 class="total-price overview-title">0 &#8364;</h2> -->
                     </div>
         
                     <fieldset  class="payment-data input-field">
@@ -748,7 +702,7 @@
                                     Expiration date
                                 </legend>
                                 <div class="expire-date">
-                                    <input type="number" name="card-exiration-month" id="exiration-month" value="03" class="card-txt card-inp">
+                                    <input type="number" name="card-exiration-month" id="exiration-month" value="" class="card-txt card-inp">
                                     <div class="spinner">
                                         <button type="button" class="spinner__btn spin__up"></button>
                                         <button type="button" class="spinner__btn spin__down"></button>
@@ -756,7 +710,7 @@
                                 </div>
             
                                 <div class="expire-date">
-                                    <input type="number" name="card-exiration-year" id="card-exiration-year" value="2024" class="card-txt card-inp">
+                                    <input type="number" name="card-exiration-year" id="card-exiration-year" value="" class="card-txt card-inp">
                                     <div class="spinner">
                                         <button type="button" class="spinner__btn spin__up"></button>
                                         <button type="button" class="spinner__btn spin__down"></button>
@@ -777,7 +731,14 @@
                             <label class="card-lbl card-txt" for="cvv">
                                 CVC/CVV
                             </label>
-                            <input type="number" name="card-cvv" id="cvv" class="card-txt card-inp">
+                            <input
+                                type="number"
+                                name="card-cvv"
+                                id="cvv"
+                                class="card-txt card-inp"
+                                pattern="[0-9]{3}"
+                                max="999"
+                            >
         
                             <div class="cvv-comment__wrapper">
                                 <p class="card-txt cvv-comment">
@@ -792,7 +753,7 @@
         
                     </fieldset>
         
-                    <button type="button" class="btn btn-submit">Book</button>
+                    <button type="submit" class="btn btn-submit">Book</button>
                 </div>      
             </div>
         </form>
