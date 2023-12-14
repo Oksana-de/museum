@@ -2,10 +2,32 @@ import data from '../assets/data/pricelist.json';
 
 const minAmount: number = 0;
 const maxAmount: number = 20;
+const workingHoursFrom: string = "09:00";
+const workingHoursTo: string = "18:00";
 
 const formLanding: HTMLFormElement | null = document.querySelector('.tickets-section .tickets__form');
-
 const formBooking: HTMLFormElement | null = document.querySelector('.buy-form');
+const displayCart: DOMDisplayCart = {
+    orderDate: formBooking?.querySelector('.overview-data .ticket-date-txt') as HTMLElement,
+    orderTime: formBooking?.querySelector('.overview-data .ticket-time-txt') as HTMLElement,
+    category: formBooking?.querySelector('.overview-data .ticket-type-txt') as HTMLElement,
+    products: [
+        {
+            productName: formBooking?.querySelectorAll('.overview-order .category')[0] as HTMLElement,
+            price: formBooking?.querySelectorAll('.overview-order .product-price')[0] as HTMLElement,
+            amount: formBooking?.querySelectorAll('.overview-order .amount')[0] as HTMLElement,
+            priceForProduct: formBooking?.querySelectorAll('.overview-order .category-price')[0] as HTMLElement
+        },
+        {
+            productName: formBooking?.querySelectorAll('.overview-order .category')[1] as HTMLElement,
+            price: formBooking?.querySelectorAll('.overview-order .product-price')[1] as HTMLElement,
+            amount: formBooking?.querySelectorAll('.overview-order .amount')[1] as HTMLElement,
+            priceForProduct: formBooking?.querySelectorAll('.overview-order .category-price')[1] as HTMLElement
+        }
+    ]
+
+
+};
 const closeBookingFormBtn: HTMLButtonElement | null = document.querySelector('.btn.btn-close');
 const overlay: HTMLDivElement | null = document.querySelector('.overlay');
 
@@ -20,6 +42,9 @@ const getProductsPrice = (productsCategoryName: string, productsName: string): n
         .filter((productsCategory) => productsCategory.category.name === productsCategoryName)[0].products
             .filter(product => product.name === productsName)[0].price;
 }
+
+const ticketDate: HTMLInputElement | null | undefined = formBooking?.querySelector('.ticket-date');
+const ticketTime: HTMLInputElement | null | undefined = formBooking?.querySelector('.ticket-time');
 
 // ------------ Mediator Pattern ------------ //
 const mediator = (function() {
@@ -254,16 +279,30 @@ class TicketsForm {
             this.productsCart.category = data.inputElement.value;
                
             this.productsCart.products
-                .map(product => product.price = getProductsPrice(this.productsCart.category, product.productType));
+                .map((product, index) => {
+                    product.price = getProductsPrice(this.productsCart.category, product.productType);
+                    (displayCart.products as ProductElements[])[index].price.textContent = getProductsPrice(this.productsCart.category, product.productType).toString();
+                    (displayCart.products as ProductElements[])[index].priceForProduct.textContent = `${getProductsPrice(this.productsCart.category, product.productType) * product.amount}`;
+
+                });
             
             // mediator logic   
             (this.categoryComponent![data.checkedCategory!].querySelector('.radio-mark')! as HTMLInputElement).checked = true;
             categoryDataBookingInfo?.setAttribute('data-content', currentProductCategoryBooking()!.parentElement?.textContent!);
+            this.ticketForm!.setAttribute('category', this.productsCart.category);
+
+            (displayCart.category as HTMLElement).textContent = currentProductCategoryBooking()!.parentElement?.textContent!;
 
             this.productsCart.sum = this.calculateTotalPrice();
         } else {
             this.productsCart.products
-                .map(product => product.amount = product.productType === data.inputElement.name ? +data.inputElement.value : product.amount);
+                .map((product, index) => {
+                    if (product.productType === data.inputElement.name) {
+                        product.amount = +data.inputElement.value;
+                        (displayCart.products as ProductElements[])[index].amount.textContent = data.inputElement.value;
+                        (displayCart.products as ProductElements[])[index].priceForProduct.textContent = `${product.price * product.amount}`;
+                    }
+                });
             this.productsCart.sum = this.calculateTotalPrice();
 
             // mediator logic
@@ -274,7 +313,13 @@ class TicketsForm {
 
     changeInputByControl(data: ChangeInput) {        
         this.productsCart.products
-                .map(product => product.amount = product.productType === data.inputElement.name ? +data.inputElement.value : product.amount);
+        .map((product, index) => {
+            if (product.productType === data.inputElement.name) {
+                product.amount = +data.inputElement.value;
+                (displayCart.products as ProductElements[])[index].amount.textContent = data.inputElement.value;
+                (displayCart.products as ProductElements[])[index].priceForProduct.textContent = `${product.price * product.amount}`;
+            }
+        });
         this.productsCart.sum = this.calculateTotalPrice();
         
         // mediator logic
@@ -379,6 +424,39 @@ function changeAmount(operator: HTMLButtonElement): ChangeInput {
 }
 // ------------ Implement Mediator Behavior End ------------ //
 
+// ------------ Other inputs and validation ------------ //
+const formatDateToStringInOrderForm = (date: Date | string): string => {
+    const currentDate = new Date(date!);
+    return currentDate.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+    });
+}
+
+const formatDateToShortDigits = (): string => {
+    const dateToFormat = new Date();
+    return `${dateToFormat.getFullYear()}-${dateToFormat.getMonth() + 1}-${dateToFormat.getDate()}`;
+}
+ticketDate!.min = formatDateToShortDigits();
+ticketDate!.addEventListener('change', (event) => {
+    if ((event.target as HTMLInputElement).value != '') {
+        (event.target as HTMLInputElement).classList.remove('info');
+        (displayCart.orderDate as HTMLElement).textContent = formatDateToStringInOrderForm((event.target as HTMLInputElement).value);
+    }
+})
+
+ticketTime!.min = workingHoursFrom;
+ticketTime!.max = workingHoursTo;
+ticketTime!.step = "1800";
+ticketTime!.addEventListener('change', (event) => {
+    if ((event.target as HTMLInputElement).value != '') {
+        (event.target as HTMLInputElement).classList.remove('info');
+        (displayCart.orderTime as HTMLElement).textContent = (event.target as HTMLInputElement).value;
+    }
+})
+// ------------ Other inputs and validation End ------------ //
+
 // ----------------- Manage BookingForm ----------------- //
 const isBookingForm = (): boolean | undefined => {
     return overlay?.classList.contains('show');
@@ -405,6 +483,15 @@ overlay?.addEventListener(
 )
 
 closeBookingFormBtn?.addEventListener('click', hideForm);
+
+formBooking?.addEventListener('submit', (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const data = new FormData(formBooking);
+    for (const entry of data) {
+        console.log(entry);        
+    }
+}, false)
 
 // TODO: close form clicking on the area around the form
 // document?.addEventListener(

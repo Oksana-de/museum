@@ -134,12 +134,24 @@
     .input-data__wrapper {
         margin-bottom: 20px;
 
-        &:nth-of-type(n+2),
+        &:nth-of-type(n+2) {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: auto;
+                height: 100%;
+                padding-left: 15px;
+            }
+        }
+
         .ticket-date,
         .ticket-time {
             position: relative;
 
-            &::before {
+            &.ico::before {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -170,6 +182,15 @@
         &::before {
             padding-top: 4px;
             content: url(../../assets/svg/book-form/tel-ico.svg);
+        }
+
+        .ticket-tel.input-data:valid {
+            text-decoration: none;
+
+        }
+
+        .ticket-tel.input-data:invalid {
+            text-decoration: underline dashed red;
         }
     }
 
@@ -282,12 +303,12 @@
         margin-right: 20px;
 
         
-        &::before {
+        &.ico::before {
             padding-top: 13px;
             content: url(../../assets/svg/book-form/date-ico.svg);
         }
 
-        &::after {
+        &.info::after {
             content: "Date";
         }
     }
@@ -295,12 +316,12 @@
     .ticket-time {
         width: calc((400px - 20px) / 2);
 
-        &::before {
+        &.ico::before {
             padding-top: 13px;
             content: url(../../assets/svg/book-form/time-ico.svg);
         }
 
-        &::after {
+        &.info::after {
             content: "Time";
         }
     }
@@ -503,7 +524,7 @@
             margin-bottom: 9px;
         }
 
-        .ammount {
+        .amount {
             width: 32px;
             height: 20px;
             text-align: center;
@@ -672,6 +693,15 @@
             height: 35px;
             margin: 0 20px 6px auto;
             text-align: center;
+            
+            &.card-txt:valid {
+                text-decoration: none;
+    
+            }
+    
+            &.card-txt:invalid {
+                text-decoration: underline dashed red;
+            }
         }
 
         .cvv-comment__wrapper {
