@@ -71,7 +71,7 @@ Some *animations*, *sliders*, and a *custom video player* in the **Video section
 #### 5. Section Gallery
 - when scrolling down the page, the appearance of pictures in the Galery section is accompanied by animation: the images smoothly rise from the bottom to the top, enlarging and creating a pop-up effect
 - if you scroll up the page and then scroll down again, the animation of the appearance of the pictures is repeated
-- when the page is refreshed, if the page has been scrolled to the Galery section, the animation of the paintings is repeated
+- when the page is refreshed, if the page has been scrolled to the Galery section, the animation of the paintings is repeated and the pictures are displayed in random order
 
 #### 6. Ticket Section and Booking ticket form
 - when clicking the **Buy Now** button opens a form *Booking ticket form* and it already contains the data specified on the website page - number of tickets, their type, total price for them
