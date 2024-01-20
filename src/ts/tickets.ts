@@ -79,7 +79,6 @@ const mediator = (function() {
 
 // ------------ Mediator Pattern End ------------ //
 
-
 // ------------ Rendering Form Elements ------------ //
 function generateProducts(productIndex: number): HTMLLabelElement {
     const product: HTMLLabelElement = document.createElement('label');
@@ -91,10 +90,15 @@ function generateProducts(productIndex: number): HTMLLabelElement {
     productData.classList.add('radio-mark');    
     productData.type = "radio";
     productData.name = "category";
-    productData.value = data.pricelist[productIndex].category.name;
+    productData.value = data.pricelist[productIndex].category.name;   
 
-    if (productIndex === 0) {
+    if (sessionStorage.cart === undefined && productIndex === 0) {
         productData.checked = true;
+    } else if (sessionStorage.cart !== undefined) {
+        const currentCart = JSON.parse(sessionStorage.cart);
+        productData.checked = productData.value === currentCart.category
+            ? true
+            : false;
     }
 
     product.append(productData);
@@ -127,8 +131,19 @@ function generateUsersInput(productIndex: number, index: number, base: HTMLEleme
     productInputElement.name = data.pricelist[productIndex].products[index].name;
     productInputElement.id = `${data.pricelist[productIndex].products[index].name}-ticket`;
     productInputElement.min = `${minAmount}`;
-    productInputElement.max = `${maxAmount}`;
-    productInputElement.value = `${minAmount}`;
+    productInputElement.max = `${maxAmount}`;    
+
+    if (sessionStorage.cart === undefined) {
+        productInputElement.value = `${minAmount}`;
+    } else {
+        const currentCart = JSON.parse(sessionStorage.cart);
+        
+        currentCart.products.map((item: Product) => {
+            if (item.productType === productInputElement.name) {
+                productInputElement.value = `${item.amount}`
+            }
+        })
+    }
 
     const productBtnDecrease: HTMLButtonElement = document.createElement('button');
     productBtnDecrease.classList.add('btn__amount', 'minus');
@@ -238,8 +253,7 @@ class TicketsForm {
         
         this.ticketForm?.addEventListener('formdata', (e: FormDataEvent): void => {
             const formData = e.formData;
-            
-            let formInput: HTMLInputElement;
+
             for (const [key, value] of formData) {                            
                 if (key === 'category') {
                     this.productsCart = {
@@ -256,6 +270,7 @@ class TicketsForm {
                     this.productsCart.products.push(this.product);
                     this.productsCart.sum = this.calculateTotalPrice();
                 }
+                sessionStorage.cart = JSON.stringify(this.productsCart);
             }
 
             this.purchaseSum!.value = `${this.productsCart.sum}`;            
@@ -264,10 +279,12 @@ class TicketsForm {
                 this.productsCart.products
                         .map(product => product.amount = product.productType === customEvent.detail.product().productType 
                             ? +customEvent.detail.product().amount 
-                            : product.amount);
+                            : product.amount
+                        );
                 this.productsCart.sum = this.calculateTotalPrice();
                 
-                this.purchaseSum!.value = `${this.productsCart.sum}`;            
+                this.purchaseSum!.value = `${this.productsCart.sum}`;
+                sessionStorage.cart = JSON.stringify(this.productsCart);            
             });                     
         });
 
@@ -309,6 +326,8 @@ class TicketsForm {
             this.productInput?.map(product => product.name === data.productName ? product.value = data.productAmount.toString() : '');
         }
         this.purchaseSum!.value = `${this.productsCart.sum}`;
+
+        sessionStorage.cart = JSON.stringify(this.productsCart);
     }
 
     changeInputByControl(data: ChangeInput) {        
@@ -325,6 +344,8 @@ class TicketsForm {
         // mediator logic
         this.productInput?.map(product => product.name === data.productName ? product.value = data.productAmount.toString() : '');
         this.purchaseSum!.value = `${this.productsCart.sum}`;
+
+        sessionStorage.cart = JSON.stringify(this.productsCart);
     }
 }
 

@@ -78,7 +78,7 @@ Some *animations*, *sliders*, and a *custom video player* in the **Video section
 - using the **"Mediator "** design pattern, data changes on the site in the *Ticket Section* are displayed in the *Booking ticket form* and vice versa, respectively
 - if you change the number of *Basic* and *Senior* tickets, the total price for them will be recalculated
 - each type of ticket has its own price (the information is stored in the *pricelist.json* file). If you change the ticket type, the total price for them is recalculated
-- `TODO` when the page is refreshed, the previously selected number of Basic and Senior tickets, the selected ticket type and the total price for them are saved
+- when the page is refreshed, the previously selected number of Basic and Senior tickets, the selected ticket type and the total price for them are saved (implemented through the repsessionStorage functionality due to the absence of functionality for authenticating the site user and a section such as "My Account")
 - it is possible to change the **type of ticket** as well as change the **number of tickets** of each type in the *Ticket type field* of the *Booking ticket form* on the left, thus changing the ticket type, the number of tickets, ticket price and total ticket price on the right
 - when a user selects a date and / or time in the form on the left, it is displayed in the ticket on the right
 - it is impossible to select a date in the past
