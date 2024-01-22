@@ -89,3 +89,9 @@ interface MediatorForTicketsForm extends TicketsForm {
 interface Subscriber {
     [eventName: string]: Function[]    
 }
+
+interface ValidatedData {
+    currentInputElement: HTMLInputElement | null,
+    valueMissingErr: boolean,
+    invalidMessage: string
+}

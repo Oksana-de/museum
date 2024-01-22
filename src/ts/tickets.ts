@@ -476,6 +476,57 @@ ticketTime!.addEventListener('change', (event) => {
         (displayCart.orderTime as HTMLElement).textContent = (event.target as HTMLInputElement).value;
     }
 })
+
+const visitorsName: HTMLInputElement | null = document.querySelector('#visitors-name');
+const visitorsEmail: HTMLInputElement | null = document.querySelector('#visitors-email');
+const visitorsTel: HTMLInputElement | null = document.querySelector('#visitors-tel');
+
+// ------------ Apply a data entry mask for Telephone number ------------ //
+
+visitorsTel?.addEventListener('input', (event) => {
+    if ((event?.target! as HTMLInputElement).value.length === 3 || (event?.target! as HTMLInputElement).value.length === 7 || (event?.target! as HTMLInputElement).value.length === 10) {
+        (event?.target! as HTMLInputElement).value = (event?.target! as HTMLInputElement).value + " ";
+    }
+});
+
+// ------------ Apply a data entry mask for Telephone number End ------------ //
+
+const inputsToBeValidated: ValidatedData[] = [
+    {
+        currentInputElement: visitorsName,
+        valueMissingErr: true,
+        invalidMessage: "Name must contain from 3 to 15 lower or upper case characters and spaces"
+    },
+    {
+        currentInputElement: visitorsEmail,
+        valueMissingErr: true,
+        invalidMessage: "You have entered an incorrect email address. Please try again."
+    },
+    {
+        currentInputElement: visitorsTel,
+        valueMissingErr: true,
+        invalidMessage: "Enter a phone number consisting of 10 digits"
+    }
+];
+
+inputsToBeValidated.map(inp => inp.currentInputElement?.addEventListener('blur', (event: Event) => validateData(event)));
+
+function validateData(dataInput: Event): void {    
+    const validityStateObj: ValidityState | undefined = (dataInput.target! as HTMLInputElement).validity;
+    const indexOfCurrentElement: number = inputsToBeValidated.findIndex(element => element.currentInputElement === (dataInput.target! as HTMLInputElement));
+    const isInputRequired: boolean = inputsToBeValidated[indexOfCurrentElement].valueMissingErr;
+
+    (dataInput.target! as HTMLInputElement).setCustomValidity("");
+
+    if (validityStateObj?.valueMissing || (dataInput.target! as HTMLInputElement).value === "" && isInputRequired) {
+        (dataInput.target! as HTMLInputElement).setCustomValidity("Please fill in the information");
+    } else if (!validityStateObj?.valid) {
+        (dataInput.target! as HTMLInputElement).setCustomValidity(inputsToBeValidated[indexOfCurrentElement].invalidMessage);
+    }
+    
+    (dataInput.target! as HTMLInputElement).reportValidity();
+}
+
 // ------------ Other inputs and validation End ------------ //
 
 // ----------------- Manage BookingForm ----------------- //

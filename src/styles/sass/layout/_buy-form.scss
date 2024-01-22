@@ -194,6 +194,14 @@
         }
     }
 
+    .ticket-name,
+    .ticket-email,
+    .ticket-tel {
+        &:invalid {
+            border: 5px solid red;
+        }
+    }
+
     .ticket-type__wrapper {
         position: relative;
 
