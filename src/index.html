@@ -581,8 +581,19 @@
         
                     <fieldset class="ticket-data input-field">
                         <div class="input-datetime input-data__wrapper">
-                            <input type="date" name="visitors-date" id="visitors-date" class="ticket-date input-data ico info">
-                            <input type="time" name="visitors-time" id="visitors-time" class="ticket-time input-data ico info" list="time-to-book">
+                            <input
+                                type="date"
+                                name="visitors-date"
+                                id="visitors-date"
+                                class="ticket-date input-data ico info"                                
+                            >
+                            <input
+                                type="time"
+                                name="visitors-time"
+                                id="visitors-time"
+                                class="ticket-time input-data ico info"
+                                list="time-to-book"
+                            >
                             <datalist id="time-to-book">
                                 <option value="09:00"></option>
                                 <option value="09:30"></option>
@@ -607,10 +618,26 @@
                         </div>
         
                         <div class="input-data__wrapper ticket-name__wrapper">
-                            <input type="text" name="visitors-name" id="visitors-name" class="ticket-name input-data" placeholder="Name">
+                            <input
+                                type="text"
+                                name="visitors-name"
+                                id="visitors-name"
+                                class="ticket-name input-data"
+                                placeholder="Name"                   
+                                pattern="[a-zA-Z\s]{3,15}"
+                                title="Name must contain from 3 to 15 lower or upper case characters and spaces"
+                            >
                         </div>
                         <div class="input-data__wrapper ticket-email__wrapper">
-                            <input type="email" name="visitors-email" id="visitors-email" class="ticket-email input-data" placeholder="E-mail">
+                            <input
+                                type="email"
+                                name="visitors-email"
+                                id="visitors-email"
+                                class="ticket-email input-data"
+                                placeholder="E-mail"
+                                pattern="^([a-zA-Z0-9_-.]{3,15}@[a-z]{4,}\.[a-z]{2,})$"
+                                title="You have entered an incorrect email address. Please try again."
+                            >
                         </div>
                         <div class="input-data__wrapper ticket-tel__wrapper">
                             <input type="tel"
@@ -618,10 +645,10 @@
                                 id="visitors-tel"
                                 class="ticket-tel input-data"
                                 placeholder="Phone"
-                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                minlength="10"
-                                maxlength="14"
-                                title="Enter a phone number consisting of 10 - 14 digits without separators"
+                                pattern="[0-9\s]{13}"
+                                minlength="13"
+                                maxlength="13"
+                                title="Enter a phone number consisting of 10 digits"
                             >
                         </div>
         

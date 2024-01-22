@@ -85,10 +85,10 @@ Some *animations*, *sliders*, and a *custom video player* in the **Video section
 - time can be selected from 9:00 to 18:00 with an interval of 30 minutes
 
 #### 7. Form validation
-- `TODO` validation of the user name: the username must contain from 3 to 15 characters, as characters can be used letters in lower or upper case and spaces.
-- `TODO` e-mail validation should pass only addresses of the following type: username@example.com, where: username - username, must contain from 3 to 15 characters (letters, digits, underscore, hyphen), must not contain spaces; @ - doggie symbol; example - first-level domain consists of at least 4 Latin letters; com - top-level domain, separated from the first-level domain by a dot and consists of at least 2 Latin letters.
-- `TODO` phone number validation: the number contains only digits; without separation or with separation into two or three digits; separation of digits can be through hyphen or space; with limitation on the number of digits not more than 10 digits
-- `TODO` when attempting to enter invalid value into input, its border is highlighted in red and a text warning in human-readable format is displayed
+- validation of the user name: the username must contain from 3 to 15 characters, as characters can be used letters in lower or upper case and spaces.
+- e-mail validation should pass only addresses of the following type: username@example.com, where: username - username, must contain from 3 to 15 characters (letters, digits, underscore, hyphen), must not contain spaces; @ - doggie symbol; example - first-level domain consists of at least 4 Latin letters; com - top-level domain, separated from the first-level domain by a dot and consists of at least 2 Latin letters.
+- phone number validation: the number contains only digits with limitation on 10 digits (the space separator is added programmatically).
+- when attempting to enter invalid value into input, its border is highlighted in red and a text warning in human-readable format is displayed
 
 #### 8. Parallax
 
